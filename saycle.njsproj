@@ -45,6 +45,12 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="project\" />
+    <Folder Include="project\concept\" />
+    <Folder Include="project\design\" />
+    <Folder Include="project\design\logo\" />
+    <Folder Include="project\documentation\" />
+    <Folder Include="project\uml\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
