@@ -1,10 +1,13 @@
 {
   "name": "saycle",
   "version": "0.0.0",
-  "description": "saycle",
+  "description": "A browser-based online game where users write stories together.",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "author": {
-    "name": "raaph",
+    "name": "",
     "email": ""
   },
   "dependencies": {
