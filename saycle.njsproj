@@ -40,6 +40,8 @@
     <Content Include=".gitignore" />
     <Content Include="package.json" />
     <Content Include="bower.json" />
+    <Content Include="project\database\create tables.sql" />
+    <Content Include="project\database\pgadmin screenshot.png" />
     <Content Include="public\index.html" />
     <Content Include="public\stylesheets\styles.css" />
     <Content Include="README.md" />
@@ -47,6 +49,7 @@
   <ItemGroup>
     <Folder Include="project\" />
     <Folder Include="project\concept\" />
+    <Folder Include="project\database\" />
     <Folder Include="project\design\" />
     <Folder Include="project\design\logo\" />
     <Folder Include="project\documentation\" />
