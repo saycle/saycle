@@ -5,6 +5,8 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>saycle</Name>
     <RootNamespace>saycle</RootNamespace>
+    <Environment>
+    </Environment>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -24,7 +26,7 @@
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <EnableTypeScript>true</EnableTypeScript>
-    <StartWebBrowser>true</StartWebBrowser>
+    <StartWebBrowser>True</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,8 +36,15 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="DAL\Context.ts" />
+    <TypeScriptCompile Include="DAL\RunQuery.ts" />
+    <TypeScriptCompile Include="DAL\User.ts" />
+    <TypeScriptCompile Include="DAL\UserController.ts" />
+    <TypeScriptCompile Include="DAL\Guid.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\pg\pg.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\Q\Q.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\stylus\stylus.d.ts" />
     <Content Include=".gitignore" />
     <Content Include="LICENSE" />
@@ -48,6 +57,7 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DAL\" />
     <Folder Include="project\" />
     <Folder Include="project\concept\" />
     <Folder Include="project\database\" />
@@ -62,6 +72,8 @@
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\express\" />
+    <Folder Include="Scripts\typings\Q\" />
+    <Folder Include="Scripts\typings\pg\" />
     <Folder Include="Scripts\typings\node\" />
     <Folder Include="Scripts\typings\stylus\" />
   </ItemGroup>
