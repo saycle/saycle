@@ -22,6 +22,6 @@ http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-context.UserController.getUsers().then((users) => {
-    console.log(users.length);
-});
+//context.UserController.getUsers().then((users) => {
+//    console.log(users.length);
+//});

@@ -1,5 +1,5 @@
-﻿//import userController = require('./UserController.ts');
+﻿import UserController = require('./UserController.ts');
 
 export = {
-    UserController: userController
+    UserController: UserController
 };

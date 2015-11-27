@@ -1,5 +1,6 @@
 ﻿import Q = require('q');
-//import RunQuery = require('./RunQuery');
+import User = require('../models/User');
+import RunQuery = require('./RunQuery');
 
 export module DAL {
     export class UserController {

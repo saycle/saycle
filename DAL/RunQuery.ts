@@ -29,3 +29,5 @@ class RunQuery {
         return deferred.promise;
     }
 }
+
+export = RunQuery;
