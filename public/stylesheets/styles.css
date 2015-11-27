@@ -58,3 +58,19 @@ main {
 article {
     margin-top: 5%;
 }
+
+.dropdown-menu {
+    padding: 10px 20px 20px;
+}
+
+.navbar-right {
+    margin-right: 10%;
+}
+
+nav ul li {
+    -moz-min-width: 200px;
+    -ms-min-width: 200px;
+    -o-min-width: 200px;
+    -webkit-min-width: 200px;
+    min-width: 200px;
+}
