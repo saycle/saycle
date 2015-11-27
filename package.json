@@ -4,6 +4,7 @@
   "description": "A browser-based online game where users write stories together.",
   "main": "app.js",
   "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install",
     "start": "node app.js"
   },
   "author": {
@@ -11,8 +12,7 @@
     "email": ""
   },
   "dependencies": {
-    "express": "^3.4.4",
-    "jade": "^1.11.0",
-    "stylus": "^0.52.4"
+    "express": "^3.21.2",
+    "bower": "1.6.7"
   }
 }
