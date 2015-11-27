@@ -38,6 +38,10 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="DAL\Context.ts" />
     <TypeScriptCompile Include="DAL\RunQuery.ts" />
+    <TypeScriptCompile Include="DAL\CycleController.ts" />
+    <TypeScriptCompile Include="DAL\StoryController.ts" />
+    <TypeScriptCompile Include="models\Cycle.ts" />
+    <TypeScriptCompile Include="models\Story.ts" />
     <TypeScriptCompile Include="models\User.ts" />
     <TypeScriptCompile Include="DAL\UserController.ts" />
     <TypeScriptCompile Include="DAL\Guid.ts" />
