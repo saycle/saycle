@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var context = require('./DAL/Context');
 var app = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -17,5 +18,8 @@ http.createServer(app).listen(app.get('port'), function () {
 });
 //context.UserController.getUsers().then((users) => {
 //    console.log(users.length);
-//}); 
+//});
+context.Users.getUsers().then(function (users) {
+    console.log(users);
+});
 //# sourceMappingURL=app.js.map

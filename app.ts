@@ -25,3 +25,6 @@ http.createServer(app).listen(app.get('port'), function () {
 //context.UserController.getUsers().then((users) => {
 //    console.log(users.length);
 //});
+context.Users.getUsers().then((users) => {
+    console.log(users);
+});

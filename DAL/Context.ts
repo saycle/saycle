@@ -1,7 +1,7 @@
-﻿import UserController = require('./UserController.ts');
-import StoryController = require('./StoryController.ts');
+﻿import UserController = require('./UserController');
+import StoryController = require('./StoryController');
 
 export = {
-    Users: UserController.DAL.UserController,
-    Stories: StoryController.DAL.StoryController
+    Users: UserController,
+    Stories: StoryController
 };
