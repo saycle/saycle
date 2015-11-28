@@ -70,6 +70,7 @@
     <Compile Include="public\scripts\login-service.js" />
     <Content Include="public\stylesheets\styles.css" />
     <Content Include="public\views\contact.html" />
+    <Content Include="public\views\imprint.html" />
     <Content Include="public\views\story-detail.html" />
     <Content Include="public\views\story-list.html" />
     <Content Include="README.md" />
@@ -100,6 +101,7 @@
     <Folder Include="Scripts\typings\stylus\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="public\scripts\story.js" />
     <Compile Include="public\scripts\login-controller.js" />
     <Compile Include="public\scripts\saycle.js" />
   </ItemGroup>

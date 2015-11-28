@@ -13,11 +13,10 @@
         .when('/contact', {
             templateUrl : '/public/views/contact.html'
         })
+        .when('/imprint', {
+            templateUrl : '/public/views/imprint.html'
+        })
         .otherwise({ redirectTo: '/' });;
-    });
-
-    app.controller('listController', function ($scope) {
-        $scope.message = 'Everyone come and see how good I look!';
     });
     
 })();
