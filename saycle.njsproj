@@ -66,6 +66,7 @@
     <Content Include="public\index.html" />
     <Content Include="public\stylesheets\styles.css" />
     <Content Include="public\views\contact.html" />
+    <Content Include="public\views\imprint.html" />
     <Content Include="public\views\story-detail.html" />
     <Content Include="public\views\story-list.html" />
     <Content Include="README.md" />

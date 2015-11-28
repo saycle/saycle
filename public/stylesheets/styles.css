@@ -98,10 +98,8 @@ main {
 }
 
 article {
-    margin-top: 5%;
+    margin: 5% 0;
 }
-
-
 
 
 @media (max-width: 1000px) {
