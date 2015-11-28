@@ -4,12 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="stylesheets/styles.css" />
+    <link rel="stylesheet" href="/public/stylesheets/styles.css" />
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/public/scripts/saycle.js"></script>
     <title>Saycle</title>
 </head>
-<body>
+<body ng-app="saycle">
+    <base href="/">
     <header>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
@@ -19,14 +23,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">
-                        <img id="logo" src="/images/saycle_logo.png" alt="saycle" height="36px" />
+                    <a class="navbar-brand" href="/">
+                        <img id="logo" src="/public/images/saycle_logo.png" alt="saycle" height="36px" />
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navigation">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Kontakt</a></li>
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a ng-href="/contact">Kontakt</a></li>
                         <li><a href="#">Impressum</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -85,6 +89,8 @@
         </nav>
     </header>
     <main>
+
+        <div ng-view></div>
         <article>
             <h1>saycle</h1>
             <h2>saycle</h2>

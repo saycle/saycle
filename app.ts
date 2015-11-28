@@ -4,14 +4,19 @@ import path = require('path');
 import context = require('./DAL/Context');
 
 var app = express();
+var publicFolder = path.join(__dirname, 'public');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(publicFolder));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+
+app.all('/*', function (req, res) {
+    res.sendfile('index.html', { root: publicFolder });
+});
 
 // development only
 if ('development' == app.get('env')) {
