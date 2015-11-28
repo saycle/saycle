@@ -41,6 +41,12 @@
     <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="bower.json" />
+    <Content Include="project\concept\Muckups PNG\comment form.png" />
+    <Content Include="project\concept\Muckups PNG\contact form.png" />
+    <Content Include="project\concept\Muckups PNG\main form.png" />
+    <Content Include="project\concept\Muckups PNG\register Form.png" />
+    <Content Include="project\concept\Muckups PNG\saycle form.png" />
+    <Content Include="project\concept\Muckups PNG\start Form.png" />
     <Content Include="project\database\create tables.sql" />
     <Content Include="project\database\pgadmin screenshot.png" />
     <Content Include="public\index.html" />
@@ -50,6 +56,7 @@
   <ItemGroup>
     <Folder Include="project\" />
     <Folder Include="project\concept\" />
+    <Folder Include="project\concept\Muckups PNG\" />
     <Folder Include="project\database\" />
     <Folder Include="project\design\" />
     <Folder Include="project\design\logo\" />
