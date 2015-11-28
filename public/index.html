@@ -10,6 +10,7 @@
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
     <script src="/public/scripts/saycle.js"></script>
+    <script src="/public/scripts/login-controller.js"></script>
     <title>Saycle</title>
 </head>
 <body ng-app="saycle">
@@ -42,26 +43,7 @@
                                 <span class="glyphicon glyphicon-user"></span>
                                 Registrieren
                             </a>
-                            <div id="register-dropdown" class="dropdown-menu">
-                                <form id="register-form" role="form">
-                                    <div class="form-group">
-                                        <label for="register-username">Benutzername</label>
-                                        <input type="text" class="form-control" id="register-username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="register-email">E-Mail Adresse</label>
-                                        <input type="email" class="form-control" id="register-email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="register-password">Passwort</label>
-                                        <input type="password" class="form-control" id="register-password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="register-passwordConfirm">Passwort bestätigen</label>
-                                        <input type="password" class="form-control" id="register-passwordConfirm">
-                                    </div>
-                                    <button type="submit" class="btn btn-default">Registrieren</button>
-                                </form>
+                            <div id="register-dropdown" class="dropdown-menu" ng-include="'/public/partials/register.html'">
                             </div>
                         </li>
                         <li>
@@ -69,21 +51,7 @@
                                 <span class="glyphicon glyphicon-log-in"></span>
                                 Anmelden
                             </a>
-                            <div id="login-wrapper" class="dropdown-menu">
-                                <form id="login-form" role="form">
-                                    <div class="form-group">
-                                        <label for="login-email">E-Mail Adresse</label>
-                                        <input type="email" class="form-control" id="login-email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="login-password">Passwort</label>
-                                        <input type="password" class="form-control" id="login-password">
-                                    </div>
-                                    <div class="checkbox">
-                                        <label><input type="checkbox">Eingeloggt bleiben</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-default">Registrieren</button>
-                                </form>
+                            <div id="login-wrapper" class="dropdown-menu" ng-include="'/public/partials/login.html'">
                             </div>
                         </li>
                     </ul>
@@ -92,7 +60,6 @@
         </nav>
     </header>
     <main>
-
         <div ng-view></div>
         <article>
             <h1>saycle</h1>

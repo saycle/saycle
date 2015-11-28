@@ -64,6 +64,10 @@
     <Content Include="project\database\pgadmin screenshot.png" />
     <Content Include="public\images\saycle_logo.png" />
     <Content Include="public\index.html" />
+    <Content Include="public\partials\login.html" />
+    <Content Include="public\partials\register.html" />
+    <Compile Include="public\scripts\register-controller.js" />
+    <Compile Include="public\scripts\login-service.js" />
     <Content Include="public\stylesheets\styles.css" />
     <Content Include="public\views\contact.html" />
     <Content Include="public\views\story-detail.html" />
@@ -83,6 +87,7 @@
     <Folder Include="project\uml\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
+    <Folder Include="public\partials\" />
     <Folder Include="public\scripts\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="public\views\" />
@@ -95,6 +100,7 @@
     <Folder Include="Scripts\typings\stylus\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="public\scripts\login-controller.js" />
     <Compile Include="public\scripts\saycle.js" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

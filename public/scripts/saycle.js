@@ -1,7 +1,6 @@
 ﻿(function () {
     var app = angular.module('saycle', ['ngRoute']);
     
-
     // configure routes
     app.config(function ($locationProvider, $routeProvider) {
         $locationProvider.html5Mode(true);
