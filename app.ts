@@ -1,6 +1,7 @@
 ﻿import express = require('express');
 import http = require('http');
 import path = require('path');
+import context = require('./DAL/Context');
 
 var app = express();
 
@@ -19,4 +20,11 @@ if ('development' == app.get('env')) {
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
+});
+
+//context.UserController.getUsers().then((users) => {
+//    console.log(users.length);
+//});
+context.Users.getUsers().then((users) => {
+    console.log(users);
 });

@@ -1,7 +1,76 @@
-﻿body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-	  }
+﻿@import url('http://fonts.googleapis.com/css?family=Noto+Serif');
+
+body {
+    font: 14px "Noto Serif";
+}
+
 a {
     color: #00B7FF;
+}
+
+h1, h2, h3 {
+}
+
+h1 {
+}
+
+h2 {
+}
+
+h3 {
+}
+
+
+.navbar-default {
+    background-color: #FFFFFF;
+    height: 50px;
+    border: none;
+}
+
+.navbar-brand {
+    padding: 7px 20px 7px 20px;
+}
+
+.nav a {
+    font-size: 20px;
+}
+
+.glyphicon {
+    margin-right: 10px;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+    color: #FFFFFF;
+    background-color: #384952;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    background-color: white;
+    border: none;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+article {
+    margin-top: 5%;
+}
+
+.dropdown-menu {
+    padding: 10px 20px 20px;
+}
+
+.navbar-right {
+    margin-right: 10%;
+}
+
+nav ul li {
+    -moz-min-width: 200px;
+    -ms-min-width: 200px;
+    -o-min-width: 200px;
+    -webkit-min-width: 200px;
+    min-width: 200px;
 }
