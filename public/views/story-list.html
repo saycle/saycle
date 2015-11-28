@@ -1,4 +1,9 @@
 ﻿Story-List: {{message}}
-<div ng-repeat="n in [1,2,3,4,5,6]">
-    Test
+<div ng-repeat="story in stories">
+    <h1>
+        {{story.title}}
+    </h1>
+    <p>
+        {{story.id}}
+    </p>
 </div>
