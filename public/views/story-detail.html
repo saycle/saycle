@@ -1,1 +1,14 @@
-﻿Story-Detail
+﻿<div>
+    <h1>Detail-View: {{message}}</h1>
+</div>
+<div ng-repeat="story in stories">
+    <div class="panel panel-default">
+        <div class="panel-heading">{{story.title}}</div>
+        <div class="panel-body">{{story.content}}</div>
+        <div class="panel-footer clearfix">
+            <div class="pull-right">
+                <a href="#" class="btn btn-default">save</a>
+            </div>
+        </div>
+    </div>
+</div>

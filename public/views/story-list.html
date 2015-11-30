@@ -1,9 +1,15 @@
-﻿Story-List: {{message}}
+﻿<div>
+    <h1>Story-List: {{message}}</h1>
+</div>
 <div ng-repeat="story in stories">
-    <h1>
-        {{story.title}}
-    </h1>
-    <p>
-        {{story.id}}
-    </p>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{story.title}}</div>
+        <div class="panel-body">{{story.content_start}}...<br />...{{story.content_end}}</div>
+        <div class="panel-footer clearfix">
+            <div class="pull-right">
+                <a href="#" class="btn btn-primary" ng-show="story.isnotlocked">saycle!</a>
+                <a href="/story-detail" class="btn btn-default">full story</a>
+            </div>
+        </div>
+    </div>
 </div>

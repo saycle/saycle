@@ -101,7 +101,8 @@
     <Folder Include="Scripts\typings\stylus\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="public\scripts\story.js" />
+    <Compile Include="public\scripts\story-detail.js" />
+    <Compile Include="public\scripts\story-list.js" />
     <Compile Include="public\scripts\login-controller.js" />
     <Compile Include="public\scripts\saycle.js" />
   </ItemGroup>

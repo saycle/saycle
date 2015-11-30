@@ -16,6 +16,14 @@
         .when('/imprint', {
             templateUrl : '/public/views/imprint.html'
         })
+        .when('/story-detail', {
+            templateUrl : '/public/views/story-detail.html',
+            controller  : 'listController'
+        })
+        .when('/story-list', {
+            templateUrl : '/public/views/story-list.html',
+            controller  : 'listController'
+        })
         .otherwise({ redirectTo: '/' });;
     });
     
