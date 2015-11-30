@@ -1,1 +1,41 @@
-﻿Contact
+﻿<article>
+    <h1>Kontakt</h1>
+    <form id="contact-form" role="form" ng-controller="contactCtrl">
+        <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input type="text" class="form-control" id="contact-name">
+        </div>
+        <div class="form-group">
+            <label for="contact-email">E-Mail</label>
+            <input type="email" class="form-control" id="contact-email">
+        </div>
+        <div class="form-group">
+            <label for="contact-reason">Grund</label>
+            <select class="form-control" id="contact-reason">
+                <option>
+                </option>
+                <option>
+                    Anfrage
+                </option>
+                <option>
+                    Geschichte melden
+                </option>
+                <option>
+                    Technisches Problem
+                </option>
+                <option>
+                    Diverses
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="contact-subject">Betreff</label>
+            <input type="text" class="form-control" id="contact-subject">
+        </div>
+        <div class="form-group">
+            <label for="contact-message">Nachricht</label>
+            <textarea type="text" class="form-control" id="contact-message" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Registrieren</button>
+    </form>
+</article>
