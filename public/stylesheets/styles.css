@@ -147,3 +147,11 @@ article {
         display: block !important;
     }
 }
+
+a.cycle-item {
+    color: black;
+}
+
+a.cycle-item:hover {
+    color: black;
+}
