@@ -10,6 +10,9 @@ var User = (function () {
         return bcrypt.compareSync(password, this.password);
     };
     ;
+    User.prototype.setPassword = function (password) {
+        throw "Error: not implemented yet";
+    };
     return User;
 })();
 module.exports = User;

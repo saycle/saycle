@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('saycle');
 
-    app.controller('loginCtrl', function ($http) {
+    app.controller('loginCtrl', function (loginService) {
         var vm = this;
         
         vm.user = {
@@ -10,7 +10,7 @@
         };
         
         vm.login = function () {
-            return $http.post('/login', vm.user);
+            loginService.login(vm.user);
         };
         
         return vm;

@@ -14,6 +14,9 @@ class User {
     validPassword(password) {
         return bcrypt.compareSync(password, this.password);
     };
+    setPassword(password) {
+        throw "Error: not implemented yet";
+    }
 }
 
 export = User;

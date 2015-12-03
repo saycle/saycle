@@ -1,10 +1,10 @@
 /// <reference path="../Scripts/typings/express/express.d.ts" />
 var express = require('express');
 var auth = require('./authentication');
-var app = express();
+var router = new express.Router();
 //app.post('/register',
-app.get('/getuser', auth.isAuthenticated, function (req, res) {
-    res.send('yippie');
+router.get('/getcurrentuser', auth.isAuthenticated, function (req, res) {
+    res.json({ name: "Server name" });
 });
-module.exports = app;
+module.exports = router;
 //# sourceMappingURL=Users.js.map

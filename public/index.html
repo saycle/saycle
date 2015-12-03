@@ -12,6 +12,7 @@
     <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="/public/scripts/saycle.js"></script>
+    <script src="/public/scripts/login-service.js"></script>
     <script src="/public/scripts/story-detail.js"></script>
     <script src="/public/scripts/story-list.js"></script>
     <script src="/public/scripts/login-controller.js"></script>
@@ -42,10 +43,10 @@
                         <li><a href="/imprint">Impressum</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li ng-if="vm.currentUser != null">
-                            <a style="pointer-events: none; cursor: default;">&#9787; Hallo {{vm.currentUser.name}}</a>
+                        <li ng-if="vm.authInfo.currentUser != null">
+                            <a style="pointer-events: none; cursor: default;">&#9787; Hallo {{vm.authInfo.currentUser.name}}</a>
                         </li>
-                        <li ng-if="vm.currentUser == null">
+                        <li ng-if="vm.authInfo.currentUser == null">
                             <a href="#" id="register" class="dropdown-toggle dropdown-toggle-custom" onclick="dropdownToggle(this)">
                                 <span class="glyphicon glyphicon-user"></span>
                                 Registrieren
@@ -53,7 +54,7 @@
                             <div id="register-dropdown" class="dropdown-menu dropdown-menu-custom" ng-include="'/public/partials/register.html'">
                             </div>
                         </li>
-                        <li ng-if="vm.currentUser == null">
+                        <li ng-if="vm.authInfo.currentUser == null">
                             <a href="#" id="login" class="dropdown-toggle dropdown-toggle-custom" onclick="dropdownToggle(this)">
                                 <span class="glyphicon glyphicon-log-in"></span>
                                 Anmelden
