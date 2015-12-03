@@ -1,8 +1,7 @@
 /// <reference path="../Scripts/typings/express/express.d.ts" />
 var express = require('express');
-var context = require('../DAL/Context');
+var context = require('../dal/context');
 var User = require('../models/User');
-var extend = require('extend');
 var app = express();
 app.get('/getcurrentuser', function (req, res) {
     if (req.user)

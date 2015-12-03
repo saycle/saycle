@@ -29,8 +29,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 import authentication = require('./API/authentication');
 authentication.configure(app, passport);
 
-import UsersApi = require('./API/Users');
-app.use('/api', UsersApi);
+import usersApi = require('./api/users');
+app.use('/api', usersApi);
+
+import storiesApi = require('./api/stories');
+app.use('/api/stories', storiesApi);
 
 app.get(/^((?!\/api).)*$/, function (req, res) {
     res.sendfile('index.html', { root: publicFolder });

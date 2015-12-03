@@ -35,16 +35,18 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="public\scripts\story-service.js" />
+    <TypeScriptCompile Include="api\stories.ts" />
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="DAL\Context.ts" />
-    <TypeScriptCompile Include="DAL\RunQuery.ts" />
-    <TypeScriptCompile Include="DAL\CycleController.ts" />
-    <TypeScriptCompile Include="DAL\StoryController.ts" />
-    <TypeScriptCompile Include="models\Cycle.ts" />
-    <TypeScriptCompile Include="models\Story.ts" />
-    <TypeScriptCompile Include="models\User.ts" />
-    <TypeScriptCompile Include="DAL\UserController.ts" />
-    <TypeScriptCompile Include="DAL\Guid.ts" />
+    <TypeScriptCompile Include="dal\context.ts" />
+    <TypeScriptCompile Include="dal\RunQuery.ts" />
+    <TypeScriptCompile Include="dal\CycleController.ts" />
+    <TypeScriptCompile Include="dal\StoryController.ts" />
+    <TypeScriptCompile Include="models\cycle.ts" />
+    <TypeScriptCompile Include="models\story.ts" />
+    <TypeScriptCompile Include="models\user.ts" />
+    <TypeScriptCompile Include="dal\UserController.ts" />
+    <TypeScriptCompile Include="dal\Guid.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\passport-local\passport-local.d.ts" />
@@ -69,8 +71,8 @@
     <Content Include="public\partials\login.html" />
     <Content Include="public\partials\register.html" />
     <Compile Include="public\scripts\custom-bootstrap.js" />
-    <Compile Include="API\authentication.ts" />
-    <Compile Include="API\Users.ts" />
+    <Compile Include="api\authentication.ts" />
+    <Compile Include="api\users.ts" />
     <Compile Include="public\scripts\register-controller.js" />
     <Compile Include="public\scripts\login-service.js" />
     <Content Include="public\stylesheets\styles.css" />
@@ -81,9 +83,9 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAL\" />
+    <Folder Include="dal\" />
     <Folder Include="models\" />
-    <Folder Include="API\" />
+    <Folder Include="api\" />
     <Folder Include="project\" />
     <Folder Include="project\concept\" />
     <Folder Include="project\concept\Muckups PNG\" />

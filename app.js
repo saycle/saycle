@@ -24,8 +24,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 var authentication = require('./API/authentication');
 authentication.configure(app, passport);
-var UsersApi = require('./API/Users');
-app.use('/api', UsersApi);
+var usersApi = require('./api/users');
+app.use('/api', usersApi);
+var storiesApi = require('./api/stories');
+app.use('/api/stories', storiesApi);
 app.get(/^((?!\/api).)*$/, function (req, res) {
     res.sendfile('index.html', { root: publicFolder });
 });

@@ -3,8 +3,11 @@
     var app = angular.module('saycle');
     
 
-    app.controller('listController', function ($scope) {
+    app.controller('listController', function ($scope, storyService) {
         $scope.stories = stories;
+        storyService.getStories().then(function (stories) {
+            $scope.stories = stories;
+        });
     });
 
     var stories = [

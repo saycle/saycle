@@ -3,7 +3,9 @@ var StoryController = (function () {
     function StoryController() {
     }
     StoryController.getStories = function () {
-        return RunQuery.runQuery("SELECT * FROM stories", []);
+        return RunQuery.runQuery("SELECT * FROM stories", []).then(function (result) {
+            return result.rows;
+        });
     };
     ;
     StoryController.getStoryById = function (id) {

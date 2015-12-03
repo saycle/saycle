@@ -1,9 +1,8 @@
 ﻿/// <reference path="../Scripts/typings/express/express.d.ts" />
 import express = require('express');
-import context = require('../DAL/Context');
+import context = require('../dal/context');
 import auth = require('./authentication');
 import User = require('../models/User');
-var extend = require('extend');
 
 var app = express();
 
