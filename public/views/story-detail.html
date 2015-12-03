@@ -6,15 +6,17 @@
     <div class="panel panel-default">
         <div class="panel-heading">Autor: {{story.username}}, Erstelldatum: {{story.date}}</div>
         <div class="panel-body">
-            <div ng-repeat="cycle in story.cycles">
+            <span id="story-content" ng-repeat="cycle in story.cycles">
                 <a href="#" class="cycle-item" tooltip-placement="bottom" uib-tooltip="Autor: {{cycle.username}} ({{cycle.date}})">
                     {{cycle.text}}
                 </a>
-            </div>
+            </span>
+            <span id="story-contribution" contenteditable="true"  ng-keypress="contributionKeypress()" data-started="{{contribution.started}}">Füge hier deine spannende Erweiterung an.</span>
         </div>
         <div class="panel-footer clearfix">
             <div class="pull-right">
-                <a href="/story-list" class="btn btn-default">save</a>
+                <button ng-if="!story.isLocked && !isEditMode" id="cycleEditButton"class="btn btn-default" ng-click="editStory(this)" >Edit</button>
+                <button ng-if="isEditMode" id="cycleSaveButton" class="btn btn-default" ng-click="editStory(this)" >Save</button>
             </div>
         </div>
     </div>

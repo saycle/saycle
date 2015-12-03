@@ -152,6 +152,20 @@ a.cycle-item {
     color: black;
 }
 
-a.cycle-item:hover {
-    color: black;
+    a.cycle-item:hover {
+        color: black;
+    }
+
+#story-contribution {
+    display: none;
+    outline: none;
+    font-style: italic;
 }
+
+    #story-contribution.visible {
+        display: initial;
+    }
+
+    #story-contribution .placeholder {
+        color: darkgrey;
+    }
