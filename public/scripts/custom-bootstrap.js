@@ -15,7 +15,3 @@ $(document).on('click', function (e) {
         $(".dropdown-toggle-custom").parent().removeClass("open");
     }
 });
-
-$(window).load(function () {
-    $("[data-toggle='tooltip']").tooltip();
-});

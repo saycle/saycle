@@ -1,14 +1,14 @@
 ﻿<div>
-    <h1>Story-List: {{message}}</h1>
+    <h1>Story-List</h1>
 </div>
 <div ng-repeat="story in stories">
     <div class="panel panel-default">
         <div class="panel-heading">{{story.title}}</div>
-        <div class="panel-body">{{story.content_start}}...<br />...{{story.content_end}}</div>
+        <div class="panel-body">{{story.cycles[0].text}}...<br />...{{story.cycles[story.cycles.length - 1].text}}</div>
         <div class="panel-footer clearfix">
             <div class="pull-right">
                 <a href="#" class="btn btn-primary" ng-show="story.islocked">saycle!</a>
-                <a href="/story-detail" class="btn btn-default">full story</a>
+                <a href="/story-detail/{{story.id}}" class="btn btn-default">full story</a>
             </div>
         </div>
     </div>

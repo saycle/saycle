@@ -9,6 +9,8 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="/public/scripts/saycle.js"></script>
     <script src="/public/scripts/story-detail.js"></script>
     <script src="/public/scripts/story-list.js"></script>
@@ -49,7 +51,7 @@
                                 Registrieren
                             </a>
                             <div id="register-dropdown" class="dropdown-menu dropdown-menu-custom" ng-include="'/public/partials/register.html'">
-                                    </div>
+                            </div>
                         </li>
                         <li ng-if="vm.currentUser == null">
                             <a href="#" id="login" class="dropdown-toggle dropdown-toggle-custom" onclick="dropdownToggle(this)">
@@ -57,7 +59,7 @@
                                 Anmelden
                             </a>
                             <div id="login-dropdown" class="dropdown-menu dropdown-menu-custom" ng-include="'/public/partials/login.html'">
-                                    </div>
+                            </div>
                         </li>
                     </ul>
                 </div>

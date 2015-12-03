@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('saycle', ['ngRoute']);
+    var app = angular.module('saycle', ['ngRoute', 'ui.bootstrap']);
     
     // configure routes
     app.config(function ($locationProvider, $routeProvider) {
@@ -16,13 +16,9 @@
         .when('/imprint', {
             templateUrl : '/public/views/imprint.html'
         })
-        .when('/story-detail', {
+        .when('/story-detail/:id', {
             templateUrl : '/public/views/story-detail.html',
-            controller  : 'listController'
-        })
-        .when('/story-list', {
-            templateUrl : '/public/views/story-list.html',
-            controller  : 'listController'
+            controller  : 'detailController'
         })
         .otherwise({ redirectTo: '/' });;
     });
