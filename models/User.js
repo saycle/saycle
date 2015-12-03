@@ -11,7 +11,7 @@ var User = (function () {
     };
     ;
     User.prototype.setPassword = function (password) {
-        throw "Error: not implemented yet";
+        this.password = bcrypt.hashSync(password);
     };
     return User;
 })();

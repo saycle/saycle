@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('saycle');
 
-    app.controller('registerCtrl', function ($http) {
+    app.controller('registerCtrl', function ($http, loginService) {
         var vm = this;
         vm.userToRegister = {};
         vm.register = function () {

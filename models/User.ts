@@ -15,7 +15,7 @@ class User {
         return bcrypt.compareSync(password, this.password);
     };
     setPassword(password) {
-        throw "Error: not implemented yet";
+        this.password = bcrypt.hashSync(password);
     }
 }
 

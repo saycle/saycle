@@ -3,6 +3,7 @@ import express = require('express');
 import context = require('../DAL/Context');
 import auth = require('./authentication');
 import User = require('../models/User');
+var extend = require('extend');
 
 var app = express();
 
@@ -14,7 +15,7 @@ app.get('/getcurrentuser', function (req, res) {
 });
 
 app.post('/register', function (req, res) {
-    var user: User = req.body;
+    var user = new User(req.body);
     context.Users.addUser(user).then(res.end);
 });
 
