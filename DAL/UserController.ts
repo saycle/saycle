@@ -16,7 +16,7 @@ class UserController {
 
     static addUser(user: User): Q.Promise<any> {
         return RunQuery.runQuery("INSERT INTO users (name, password, verified, email) VALUES ($1, $2, $3, $4)",
-            [user.name, user.password, user.verified, user.email])
+            [user.name, "", user.verified, user.email])
     };
 
     static verifyUser(user: User) {

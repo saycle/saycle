@@ -3,11 +3,11 @@ import express = require('express');
 import context = require('../DAL/Context');
 import auth = require('./authentication');
 
-var app = express();
+var router: any = new express.Router();
 
 //app.post('/register',
-app.get('/getuser', auth.isAuthenticated, function (req, res) {
-    res.send('yippie');
+router.get('/getcurrentuser', auth.isAuthenticated, function (req, res) {
+    res.json({ name: "Server name" });
 });
 
-export = app;
+export = router;

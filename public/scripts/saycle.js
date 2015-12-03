@@ -27,10 +27,10 @@
         .otherwise({ redirectTo: '/' });;
     });
     
-    app.controller('saycleCtrl', function () {
+    app.controller('saycleCtrl', function (loginService) {
         
         var vm = this;
-        vm.currentUser = { name: "Beni" };
+        vm.authInfo = loginService.getAuthInfo();
 
     });
 
