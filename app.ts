@@ -29,20 +29,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 import authentication = require('./API/authentication');
 authentication.configure(app, passport);
 
-//import UsersApi = require('./API/Users');
-//app.use('/api', UsersApi);
-app.get('/api/getcurrentuser', function (req, res) {
-    if (req.user)
-        res.json({ name: req.user.name, email: req.user.email });
-    else
-        res.json(null);
-});
+import UsersApi = require('./API/Users');
+app.use('/api', UsersApi);
 
-app.get('/test', authentication.isAuthenticated, function (req, res) {
-    res.send('yippie');
-});
-
-app.all('/*', function (req, res) {
+app.get(/^((?!\/api).)*$/, function (req, res) {
     res.sendfile('index.html', { root: publicFolder });
 });
 

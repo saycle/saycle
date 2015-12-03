@@ -2,12 +2,20 @@
 import express = require('express');
 import context = require('../DAL/Context');
 import auth = require('./authentication');
+import User = require('../models/User');
 
-var router: any = new express.Router();
+var app = express();
 
-//app.post('/register',
-router.get('/getcurrentuser', auth.isAuthenticated, function (req, res) {
-    res.json({ name: "Server name" });
+app.get('/getcurrentuser', function (req, res) {
+    if (req.user)
+        res.json({ name: req.user.name, email: req.user.email });
+    else
+        res.json(null);
 });
 
-export = router;
+app.post('/register', function (req, res) {
+    var user: User = req.body;
+    context.Users.addUser(user).then(res.end);
+});
+
+export = app;
