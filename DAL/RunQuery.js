@@ -7,14 +7,16 @@ var RunQuery = (function () {
         var deferred = Q.defer();
         pg.connect(RunQuery.conString, function (err, client, done) {
             if (err)
-                throw err;
-            client.query(query, values, function (err, result) {
-                //call `done()` to release the client back to the pool
-                done();
-                if (err)
-                    throw err;
-                deferred.resolve(result);
-            });
+                deferred.reject(err);
+            else
+                client.query(query, values, function (err, result) {
+                    //call `done()` to release the client back to the pool
+                    done();
+                    if (err)
+                        deferred.reject(err);
+                    else
+                        deferred.resolve(result);
+                });
         });
         return deferred.promise;
     };

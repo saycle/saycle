@@ -15,7 +15,7 @@ var UserController = (function () {
     ;
     UserController.addUser = function (user) {
         user.setPassword(user.password); // This will encrypt the password which is plain-text until here
-        return RunQuery.runQuery("INSERT INTO users (name, password, verified, email) VALUES ($1, $2, $3, $4)", [user.name, "", user.verified, user.email]);
+        return RunQuery.runQuery("INSERT INTO users (name, password, verified, email) VALUES ($1, $2, $3, $4)", [user.name, user.password, user.verified, user.email]);
     };
     ;
     UserController.verifyUser = function (user) {

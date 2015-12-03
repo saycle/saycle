@@ -17,7 +17,7 @@ class UserController {
     static addUser(user: User): Q.Promise<any> {
         user.setPassword(user.password); // This will encrypt the password which is plain-text until here
         return RunQuery.runQuery("INSERT INTO users (name, password, verified, email) VALUES ($1, $2, $3, $4)",
-            [user.name, "", user.verified, user.email])
+            [user.name, user.password, user.verified, user.email])
     };
 
     static verifyUser(user: User) {

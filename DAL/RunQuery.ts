@@ -11,18 +11,18 @@ class RunQuery {
 
         pg.connect(RunQuery.conString, function (err, client, done) {
             if (err)
-                throw err;
+                deferred.reject(err);
+            else
+                client.query(query, values, function (err, result) {
+                    //call `done()` to release the client back to the pool
+                    done();
 
-            client.query(query, values, function (err, result) {
-                //call `done()` to release the client back to the pool
-                done();
+                    if (err)
+                        deferred.reject(err);
+                    else
+                        deferred.resolve(result);
 
-                if (err)
-                    throw err;
-
-                deferred.resolve(result);
-
-            });
+                });
 
         });
 

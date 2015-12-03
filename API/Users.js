@@ -12,7 +12,7 @@ app.get('/getcurrentuser', function (req, res) {
 });
 app.post('/register', function (req, res) {
     var user = new User(req.body);
-    context.Users.addUser(user).then(res.end);
+    context.Users.addUser(user).then(function () { return res.send(200, 'registered'); }, function () { return res.send(500, 'Error while registering'); });
 });
 module.exports = app;
 //# sourceMappingURL=Users.js.map

@@ -50,7 +50,7 @@ var authentication = {
     isAuthenticated: function (req, res, next) {
         if (req.isAuthenticated())
             return next();
-        res.send('Unauthorized!');
+        res.send(401, 'Unauthorized - please login');
     }
 };
 
