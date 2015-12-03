@@ -6,7 +6,7 @@
     app.controller('listController', function ($scope, storyService) {
         $scope.stories = stories;
         storyService.getStories().then(function (stories) {
-            $scope.stories = stories;
+            console.log(stories);
         });
     });
 
