@@ -66,6 +66,7 @@
     <Content Include="public\index.html" />
     <Content Include="public\partials\login.html" />
     <Content Include="public\partials\register.html" />
+    <Compile Include="public\scripts\custom-bootstrap.js" />
     <Compile Include="public\scripts\register-controller.js" />
     <Compile Include="public\scripts\login-service.js" />
     <Content Include="public\stylesheets\styles.css" />
