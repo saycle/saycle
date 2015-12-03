@@ -1,13 +1,12 @@
 ﻿<div>
     <h1>Detail-View: {{message}}</h1>
 </div>
-<div ng-repeat="story in stories">
+<div>
     <div class="panel panel-default">
         <div class="panel-heading">{{story.title}}</div>
         <div class="panel-body">
+            <textarea name="story.content" cols="40" rows="5" ng-model="story.content"></textarea>
             {{story.content}}
-
-
             <a href="#" class="cycle-item" data-toggle="tooltip" data-placement="bottom" title="Autor: Max Muster   Datum:  03.12.2015">
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br />
                 Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
@@ -26,7 +25,7 @@
         </div>
         <div class="panel-footer clearfix">
             <div class="pull-right">
-                <a href="#" class="btn btn-default">save</a>
+                <a href="/story-list" class="btn btn-default">save</a>
             </div>
         </div>
     </div>
