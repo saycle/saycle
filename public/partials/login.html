@@ -1,14 +1,14 @@
-﻿<form id="login-form" role="form" ng-controller="loginCtrl">
+﻿<form id="login-form" role="form" ng-controller="loginCtrl as vm" name="login-form">
     <div class="form-group">
         <label for="login-email">E-Mail Adresse</label>
-        <input type="email" class="form-control" id="login-email">
+        <input ng-model="vm.user.email" type="email" class="form-control" id="login-email">
     </div>
     <div class="form-group">
         <label for="login-password">Passwort</label>
-        <input type="password" class="form-control" id="login-password">
+        <input ng-model="vm.user.password" type="password" class="form-control" id="login-password">
     </div>
     <div class="checkbox">
         <label><input type="checkbox">Eingeloggt bleiben</label>
     </div>
-    <button type="submit" class="btn btn-default">Registrieren</button>
+    <button type="submit" class="btn btn-default" ng-click="vm.login()">Anmelden</button>
 </form>

@@ -1,3 +1,4 @@
+var User = require('../models/User');
 var RunQuery = require('./RunQuery');
 var UserController = (function () {
     function UserController() {
@@ -6,8 +7,10 @@ var UserController = (function () {
         return RunQuery.runQuery("SELECT * FROM users", []);
     };
     ;
-    UserController.getUserByName = function (name) {
-        return RunQuery.runQuery("SELECT * FROM users WHERE name = $1", [name]);
+    UserController.getUserByMail = function (email) {
+        return RunQuery.runQuery("SELECT * FROM users WHERE email = $1", [email]).then(function (user) {
+            return new User(user.rows[0]);
+        });
     };
     ;
     UserController.addUser = function (user) {
