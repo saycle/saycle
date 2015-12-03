@@ -47,6 +47,8 @@
     <TypeScriptCompile Include="DAL\Guid.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\passport-local\passport-local.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\passport\passport.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\pg\pg.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\Q\Q.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\stylus\stylus.d.ts" />
@@ -66,6 +68,8 @@
     <Content Include="public\index.html" />
     <Content Include="public\partials\login.html" />
     <Content Include="public\partials\register.html" />
+    <Compile Include="API\authentication.ts" />
+    <Compile Include="API\Users.ts" />
     <Compile Include="public\scripts\register-controller.js" />
     <Compile Include="public\scripts\login-service.js" />
     <Content Include="public\stylesheets\styles.css" />
@@ -78,6 +82,7 @@
   <ItemGroup>
     <Folder Include="DAL\" />
     <Folder Include="models\" />
+    <Folder Include="API\" />
     <Folder Include="project\" />
     <Folder Include="project\concept\" />
     <Folder Include="project\concept\Muckups PNG\" />
@@ -95,6 +100,8 @@
     <Folder Include="Scripts\" />
     <Folder Include="Scripts\typings\" />
     <Folder Include="Scripts\typings\express\" />
+    <Folder Include="Scripts\typings\passport-local\" />
+    <Folder Include="Scripts\typings\passport\" />
     <Folder Include="Scripts\typings\Q\" />
     <Folder Include="Scripts\typings\pg\" />
     <Folder Include="Scripts\typings\node\" />

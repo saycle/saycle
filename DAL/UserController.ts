@@ -8,8 +8,10 @@ class UserController {
         return RunQuery.runQuery("SELECT * FROM users", []);
     };
 
-    static getUserByName(name: string): Q.Promise<User> {
-        return RunQuery.runQuery("SELECT * FROM users WHERE name = $1", [name]);
+    static getUserByMail(email: string): Q.Promise<User> {
+        return RunQuery.runQuery("SELECT * FROM users WHERE email = $1", [email]).then(function (user) {
+            return new User(user.rows[0]);
+        });
     };
 
     static addUser(user: User): Q.Promise<any> {

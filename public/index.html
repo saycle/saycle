@@ -14,7 +14,7 @@
     <script src="/public/scripts/login-controller.js"></script>
     <title>Saycle</title>
 </head>
-<body ng-app="saycle">
+<body ng-app="saycle" ng-controller="saycleCtrl as vm">
     <base href="/">
     <header>
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,10 +36,10 @@
                         <li><a href="/imprint">Impressum</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <!--<li>
-                            <a style="pointer-events: none; cursor: default;">&#9787; Hallo User</a>
-                        </li>-->
-                        <li>
+                        <li ng-if="vm.currentUser != null">
+                            <a style="pointer-events: none; cursor: default;">&#9787; Hallo {{vm.currentUser.name}}</a>
+                        </li>
+                        <li ng-if="vm.currentUser == null">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"></span>
                                 Registrieren
@@ -47,7 +47,7 @@
                             <div id="register-dropdown" class="dropdown-menu" ng-include="'/public/partials/register.html'">
                                     </div>
                         </li>
-                        <li>
+                        <li ng-if="vm.currentUser == null">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-log-in"></span>
                                 Anmelden

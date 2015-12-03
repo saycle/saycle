@@ -19,4 +19,11 @@
         .otherwise({ redirectTo: '/' });;
     });
     
+    app.controller('saycleCtrl', function () {
+        
+        var vm = this;
+        vm.currentUser = { name: "Beni" };
+
+    });
+
 })();
