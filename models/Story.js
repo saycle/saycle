@@ -4,4 +4,4 @@ var Story = (function () {
     return Story;
 })();
 module.exports = Story;
-//# sourceMappingURL=story.js.map
+//# sourceMappingURL=Story.js.map

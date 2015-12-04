@@ -15,3 +15,9 @@ $(document).on('click', function (e) {
         $(".dropdown-toggle-custom").parent().removeClass("open");
     }
 });
+
+function htmlKeypress(e, func) {
+    if (e.keyCode == 2 && e.ctrlKey) {
+        $("#easteregg-ctrlb").modal();
+    }
+}

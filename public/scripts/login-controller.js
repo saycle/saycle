@@ -5,20 +5,16 @@
         var vm = this;
         
         vm.user = {
-            email: "mail",
-            password: "pass"
+            email: "",
+            password: ""
         };
         
         vm.login = function () {
             loginService.login(vm.user);
         };
-        
-        
-        vm.logOut = function (req, res) {
-            req.session.destroy(function (err) {
-                res.redirect('/'); //Inside a callback… bulletproof!
-            });
-            location.reload();
+
+        vm.logout = function () {
+            loginService.logout();
         };
         
         return vm;

@@ -28,10 +28,6 @@
     app.controller('saycleCtrl', function (loginService, $scope) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
-        
-        vm.logOut = function (e) {
-
-        }
 
         $scope.$on('$routeChangeStart', function (current, next) {
             if(next.$$route)
