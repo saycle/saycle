@@ -11,6 +11,7 @@
     <script src="/bower_components/angular-route/angular-route.min.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src='/socket.io/socket.io.js'></script>
     <script src="/public/scripts/saycle.js"></script>
     <script src="/public/scripts/login-service.js"></script>
     <script src="/public/scripts/story-service.js"></script>
@@ -21,27 +22,7 @@
     <script src="/public/scripts/login-controller.js"></script>
     <script src="/public/scripts/register-controller.js"></script>
     <script src="/public/scripts/custom-bootstrap.js"></script>
-
-    <script src='/socket.io/socket.io.js'></script>
-    <script>
-            var socket = io();
-
-            socket.on('welcome', function(data) {
-                addMessage(data.message);
-
-                // Respond with a message including this clients' id sent from the server
-                socket.emit('i am client', {data: 'foo!', id: data.id});
-            });
-            socket.on('time', function(data) {
-                addMessage(data.time);
-            });
-            socket.on('error', console.error.bind(console));
-            socket.on('message', console.log.bind(console));
-
-            function addMessage(message) {
-                alert(message);
-            }
-    </script>
+    <script src="/public/scripts/socket-service.js"></script>
     <title>Saycle</title>
 </head>
 <body ng-app="saycle" ng-controller="saycleCtrl as vm">

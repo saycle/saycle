@@ -3,6 +3,7 @@ import express = require('express');
 import context = require('../dal/context');
 import auth = require('./authentication');
 import Story = require('../models/story');
+import socket = require('../socket/socket');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     cycle.username = req.user.name;
     context.Stories.addCycle(cycle).then(() => {
         res.send(200, 'added cycle');
+        socket.getIO().sockets.emit('refreshStory', { id: cycle.story });
     }, (reason) => {
         res.send(500, { message: 'error while adding cycle', error: reason });
     });

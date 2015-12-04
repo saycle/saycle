@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="public\scripts\contact.js" />
     <Compile Include="public\scripts\imprint.js" />
+    <Compile Include="public\scripts\socket-service.js" />
     <Compile Include="public\scripts\story-service.js" />
     <TypeScriptCompile Include="api\stories.ts" />
     <TypeScriptCompile Include="app.ts" />

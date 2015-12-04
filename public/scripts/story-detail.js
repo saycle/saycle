@@ -3,7 +3,7 @@
     var app = angular.module('saycle');
     
     
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService, socketService) {
         var vm = this;
         vm.id = $routeParams["id"];
         vm.story = null;
@@ -20,6 +20,11 @@
         };
         
         refreshStory();
+        
+        socketService.on('refreshStory', function (data) {
+            if(vm.id = data.id)
+                refreshStory();
+        });
         
         vm.editStory = function (e) {
             $("#story-contribution").toggleClass("visible");
