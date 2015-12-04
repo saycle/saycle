@@ -13,6 +13,9 @@
                 return $http.get('/api/stories/getstorybyid?id=' + id).then(function (result) {
                     return result.data;
                 });
+            },
+            addCycle: function (cycle) {
+                return $http.post('/api/stories/addcycle', cycle);
             }
         };
 

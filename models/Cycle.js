@@ -4,4 +4,4 @@ var Cycle = (function () {
     return Cycle;
 })();
 module.exports = Cycle;
-//# sourceMappingURL=cycle.js.map
+//# sourceMappingURL=Cycle.js.map

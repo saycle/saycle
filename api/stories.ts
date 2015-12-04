@@ -18,4 +18,14 @@ app.get('/getstorybyid', function (req, res) {
     });
 });
 
+app.post('/addcycle', auth.isAuthenticated, function (req, res) {
+    var cycle = req.body;
+    cycle.username = req.user.name;
+    context.Stories.addCycle(cycle).then(() => {
+        res.send(200, 'added cycle');
+    }, () => {
+        res.send(500, 'error while adding cycle');
+    });
+});
+
 export = app;

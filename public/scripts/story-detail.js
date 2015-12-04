@@ -13,18 +13,28 @@
             started: false
         }
         
-        storyService.getStoryById(vm.id).then(function (story) {
-            vm.story = story;
-        });
+        var refreshStory = function () {
+            storyService.getStoryById(vm.id).then(function (story) {
+                vm.story = story;
+            });
+        };
+        
+        refreshStory();
         
         vm.editStory = function (e) {
             $("#story-contribution").toggleClass("visible");
-            $scope.isEditMode = true;
+            vm.isEditMode = true;
         }
         
         vm.saveStory = function (e) {
+            storyService.addCycle({
+                story: vm.id,
+                index: vm.story.cycles.length,
+                text: vm.contribution.text
+            }).then(refreshStory);
+
             $("#story-contribution").toggleClass("visible");
-            $scope.isEditMode = false;
+            vm.isEditMode = false;
         }
         
         vm.contributionKeypress = function (e) {

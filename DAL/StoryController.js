@@ -30,7 +30,7 @@ var StoryController = (function () {
     };
     ;
     StoryController.addCycle = function (cycle) {
-        return RunQuery.runQuery("INSERT INTO cycles (story, index, username, text) VALUES ($1, $2, $3, $4)", [cycle.story, cycle.index, cycle.username, cycle.text]);
+        return RunQuery.runQuery("INSERT INTO cycles (story, index, username, text, date) VALUES ($1, $2, $3, $4, $5)", [cycle.story, cycle.index, cycle.username, cycle.text, new Date()]);
     };
     ;
     return StoryController;
