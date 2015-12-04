@@ -45,6 +45,7 @@
     <TypeScriptCompile Include="dal\context.ts" />
     <TypeScriptCompile Include="dal\runquery.ts" />
     <TypeScriptCompile Include="dal\storycontroller.ts" />
+    <TypeScriptCompile Include="mails\mails.ts" />
     <TypeScriptCompile Include="models\cycle.ts" />
     <TypeScriptCompile Include="models\story.ts" />
     <TypeScriptCompile Include="models\user.ts" />
@@ -91,6 +92,7 @@
     <Folder Include="dal\" />
     <Folder Include="models\" />
     <Folder Include="api\" />
+    <Folder Include="mails\" />
     <Folder Include="socket\" />
     <Folder Include="project\" />
     <Folder Include="project\concept\" />
