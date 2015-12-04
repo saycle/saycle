@@ -3,8 +3,9 @@
     var app = angular.module('saycle');
     
 
-    app.controller('listController', function ($scope, storyService) {
-        $scope.stories = stories;
+    app.controller('storyListCtrl', function ($scope, storyService) {
+        var vm = this;
+        vm.stories = stories;
         storyService.getStories().then(function (stories) {
             console.log(stories);
         });

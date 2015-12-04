@@ -3,35 +3,36 @@
     var app = angular.module('saycle');
     
     
-    app.controller('detailController', function ($scope, $routeParams, storyService) {
-        $scope.id = $routeParams["id"];
-        $scope.story = null;
-        $scope.isEditMode = false;
-        $scope.contribution = {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService) {
+        var vm = this;
+        vm.id = $routeParams["id"];
+        vm.story = null;
+        vm.isEditMode = false;
+        vm.contribution = {
             text: "",
             started: false
         }
         
-        storyService.getStoryById($scope.id).then(function (story) {
-            $scope.story = story;
+        storyService.getStoryById(vm.id).then(function (story) {
+            vm.story = story;
         });
         
-        $scope.editStory = function (e) {
+        vm.editStory = function (e) {
             $("#story-contribution").toggleClass("visible");
             $scope.isEditMode = true;
         }
         
-        $scope.saveStory = function (e) {
+        vm.saveStory = function (e) {
             $("#story-contribution").toggleClass("visible");
             $scope.isEditMode = false;
         }
         
-        $scope.contributionKeypress = function (e) {
-            if (!$scope.contribution.started) {
+        vm.contributionKeypress = function (e) {
+            if (!vm.contribution.started) {
                 $("#story-contribution").html("");
             }
-            $scope.contribution.started = true;
-            $scope.contribution.text = $("#story-contribution").html();
+            vm.contribution.started = true;
+            vm.contribution.text = $("#story-contribution").html();
         }
 
     });
