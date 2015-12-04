@@ -22,13 +22,12 @@
         refreshStory();
         
         socketService.on('refreshStory', function (data) {
-            if(vm.id = data.id)
+            if(vm.id == data.id)
                 refreshStory();
         });
         
         vm.editStory = function (e) {
             storyService.lock(vm.story).then(function () {
-                $("#story-contribution").toggleClass("visible");
                 vm.isEditMode = true;
             }, function () {
                 alert('Sorry, another user was faster...');
@@ -40,19 +39,11 @@
                 story: vm.id,
                 index: vm.story.cycles.length,
                 text: vm.contribution.text
-            }).then(refreshStory);
-
-            $("#story-contribution").toggleClass("visible");
-            vm.isEditMode = false;
+            }).then(function () {
+                vm.isEditMode = false;
+            });
         }
         
-        vm.contributionKeypress = function (e) {
-            if (!vm.contribution.started) {
-                $("#story-contribution").html("");
-            }
-            vm.contribution.started = true;
-            vm.contribution.text = $("#story-contribution").html();
-        }
 
     });
     
