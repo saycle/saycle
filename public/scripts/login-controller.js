@@ -13,6 +13,11 @@
             loginService.login(vm.user);
         };
         
+        
+        vm.logOut = function () {
+            alert("awd");
+        };
+        
         return vm;
     });
 })()
