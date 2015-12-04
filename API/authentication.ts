@@ -45,6 +45,15 @@ var authentication = {
                 res.redirect('/success');
             });
 
+         
+        // process the logout
+        app.get('/logout',
+            function (req, res) {
+                req.logout();
+                delete req.session;
+                res.end();
+            });
+
     },
 
     isAuthenticated: function (req, res, next) {

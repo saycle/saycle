@@ -1,6 +1,6 @@
 ﻿(function () {
     var app = angular.module('saycle');
-
+    
     app.service('loginService', function ($http) {
         var authInfo = {
             currentUser: null
@@ -12,9 +12,9 @@
                 authInfo.currentUser = result.data === "" ? null : result.data;
             });
         };
-        
-        refreshAuthInfo();
 
+        refreshAuthInfo();
+        
         return {
             login: function (loginInfo) {
                 return $http.post('/login', loginInfo).then(function () {
@@ -23,6 +23,12 @@
             },
             getAuthInfo: function () {
                 return authInfo;
+            },
+            logout: function () {
+                return $http.get('/logout').then(function () {
+                    location.reload();
+                });
+
             }
         };
     });
