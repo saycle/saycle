@@ -2,7 +2,9 @@
     var app = angular.module('saycle', ['ngRoute', 'ui.bootstrap']);
     
     // configure routes
-    app.config(function ($locationProvider, $routeProvider) {
+    app.config(function ($locationProvider, $routeProvider, $httpProvider) {
+        $httpProvider.interceptors.push('loginInterceptor');
+
         $locationProvider.html5Mode(true);
         
         $routeProvider
@@ -40,6 +42,19 @@
             }
         });
     });
+    
+    // register the interceptor as a service
+    app.factory('loginInterceptor', function ($q) {
+        return {
+            // optional method
+            'responseError': function (rejection) {
+                if (rejection.status == 401)
+                    alert("Please log in before writing something.")
+                return $q.reject(rejection);
+            }
+        };
+    });
+    
     
 
 })();
