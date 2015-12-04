@@ -9,5 +9,5 @@ var Guid = (function () {
     };
     return Guid;
 })();
-exports.Guid = Guid;
+module.exports = Guid;
 //# sourceMappingURL=guid.js.map

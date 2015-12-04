@@ -21,6 +21,16 @@ app.get('/getstorybyid', function (req, res) {
     });
 });
 
+app.post('/addstory', auth.isAuthenticated, function(req, res) {
+    var story = req.body;
+    story.username = req.user.name;
+    context.Stories.addStory(req.body).then(() => {
+        res.send(200, 'added story');
+    }, (reason) => {
+        res.send(500, { mesage: 'error while adding story', error: reason });
+    });
+});
+
 app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     var cycle = req.body;
     cycle.username = req.user.name;

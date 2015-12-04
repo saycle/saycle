@@ -16,6 +16,9 @@
             },
             addCycle: function (cycle) {
                 return $http.post('/api/stories/addcycle', cycle);
+            },
+            addStory: function (story) {
+                return $http.post('/api/stories/addstory', story);
             }
         };
 

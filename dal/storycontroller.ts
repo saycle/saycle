@@ -1,6 +1,7 @@
 ﻿import Story = require('../models/story');
 import Cycle = require('../models/cycle');
 import RunQuery = require('./runquery');
+import Guid = require('./guid');
 import Q = require('q');
 
 class StoryController {
@@ -22,8 +23,9 @@ class StoryController {
     };
 
     static addStory(story: Story): Q.Promise<any> {
-        return RunQuery.runQuery("INSERT INTO stories (id, title, username) VALUES ($1, $2, $3)",
-            [story.id, story.title, story.username]);
+        story.id = Guid.newGuid();
+        return RunQuery.runQuery("INSERT INTO stories (id, title, username, date) VALUES ($1, $2, $3, $4)",
+            [story.id, story.title, story.username, new Date()]);
     };
 
     static getCycles(storyId: string): Q.Promise<Cycle[]> {
