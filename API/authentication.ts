@@ -1,4 +1,4 @@
-﻿import Context = require('../DAL/Context');
+﻿import Context = require('../dal/context');
 import passportLocal = require('passport-local');
 
 var authentication = {

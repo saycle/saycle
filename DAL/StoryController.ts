@@ -1,6 +1,6 @@
 ﻿import Story = require('../models/story');
 import Cycle = require('../models/cycle');
-import RunQuery = require('./RunQuery');
+import RunQuery = require('./runquery');
 import Q = require('q');
 
 class StoryController {

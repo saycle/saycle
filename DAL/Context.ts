@@ -1,5 +1,5 @@
-﻿import UserController = require('./UserController');
-import StoryController = require('./StoryController');
+﻿import UserController = require('./usercontroller');
+import StoryController = require('./storycontroller');
 
 export = {
     Users: UserController,
