@@ -36,4 +36,4 @@ var StoryController = (function () {
     return StoryController;
 })();
 module.exports = StoryController;
-//# sourceMappingURL=StoryController.js.map
+//# sourceMappingURL=storycontroller.js.map

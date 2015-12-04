@@ -25,4 +25,4 @@ var UserController = (function () {
     return UserController;
 })();
 module.exports = UserController;
-//# sourceMappingURL=UserController.js.map
+//# sourceMappingURL=usercontroller.js.map
