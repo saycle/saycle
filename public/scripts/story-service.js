@@ -19,6 +19,9 @@
             },
             addStory: function (story) {
                 return $http.post('/api/stories/addstory', story);
+            },
+            lock: function (story) {
+                return $http.post('/api/stories/lock', story);
             }
         };
 

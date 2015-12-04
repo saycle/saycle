@@ -18,6 +18,7 @@
                 <div class="pull-right">
                     <button ng-if="!vm.story.isLocked && !vm.isEditMode" id="cycleEditButton" class="btn btn-default" ng-click="vm.editStory(this)">Edit</button>
                     <button ng-if="vm.isEditMode" id="cycleSaveButton" class="btn btn-default" ng-click="vm.saveStory(this)">Save</button>
+                    <div class="bg-info" ng-if="vm.story.isLocked">(another user is currently editing this story)</div>
                 </div>
             </div>
         </div>

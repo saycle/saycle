@@ -13,6 +13,7 @@ app.get('/getstories', function (req, res) {
 });
 app.get('/getstorybyid', function (req, res) {
     context.Stories.getStoryById(req.query.id).then(function (story) {
+        story.isLocked = !!lockedStories[story.id];
         res.json(story);
     });
 });
@@ -29,11 +30,22 @@ app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     var cycle = req.body;
     cycle.username = req.user.name;
     context.Stories.addCycle(cycle).then(function () {
+        delete lockedStories[cycle.story];
         res.send(200, 'added cycle');
         socket.getIO().sockets.emit('refreshStory', { id: cycle.story });
     }, function (reason) {
         res.send(500, { message: 'error while adding cycle', error: reason });
     });
+});
+var lockedStories = {};
+app.post('/lock', auth.isAuthenticated, function (req, res) {
+    if (lockedStories[req.body.id] == true)
+        res.send(500, 'story is already locked');
+    else {
+        lockedStories[req.body.id] = true;
+        socket.getIO().sockets.emit('refreshStory', { id: req.body.id });
+        res.send(200, 'story locked');
+    }
 });
 module.exports = app;
 //# sourceMappingURL=stories.js.map

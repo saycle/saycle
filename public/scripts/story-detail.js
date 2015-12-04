@@ -27,8 +27,12 @@
         });
         
         vm.editStory = function (e) {
-            $("#story-contribution").toggleClass("visible");
-            vm.isEditMode = true;
+            storyService.lock(vm.story).then(function () {
+                $("#story-contribution").toggleClass("visible");
+                vm.isEditMode = true;
+            }, function () {
+                alert('Sorry, another user was faster...');
+            });
         }
         
         vm.saveStory = function (e) {
