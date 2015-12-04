@@ -5,6 +5,7 @@ var User = (function () {
         this.password = userObj.password;
         this.verified = userObj.verified;
         this.email = userObj.email;
+        this.isadmin = userObj.isadmin;
     }
     User.prototype.validPassword = function (password) {
         return bcrypt.compareSync(password, this.password);
@@ -13,6 +14,7 @@ var User = (function () {
     User.prototype.setPassword = function (password) {
         this.password = bcrypt.hashSync(password);
     };
+    ;
     return User;
 })();
 module.exports = User;

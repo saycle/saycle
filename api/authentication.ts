@@ -60,6 +60,11 @@ var authentication = {
         if (req.isAuthenticated())
             return next();
         res.send(401, 'Unauthorized - please login');
+    },
+    isAdmin: function (req, res, next) {
+        if (req.isAuthenticated() && req.user.isadmin)
+            return next();
+        res.send(401, 'Unauthorized - please login');
     }
 };
 
