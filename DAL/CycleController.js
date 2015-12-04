@@ -3,7 +3,9 @@ var CycleController = (function () {
     function CycleController() {
     }
     CycleController.getCycles = function (storyId) {
-        return RunQuery.runQuery("SELECT * FROM cycles WHERE story = $1", [storyId]);
+        return RunQuery.runQuery("SELECT * FROM cycles WHERE story = $1", [storyId]).then(function (result) {
+            return result.rows;
+        });
     };
     ;
     CycleController.addCycle = function (cycle) {

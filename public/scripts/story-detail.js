@@ -3,26 +3,38 @@
     var app = angular.module('saycle');
     
     
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService) {
         var vm = this;
         vm.id = $routeParams["id"];
-        vm.story = story;
+        vm.story = null;
         vm.isEditMode = false;
         vm.contribution = {
             text: "",
             started: false
         }
         
+        var refreshStory = function () {
+            storyService.getStoryById(vm.id).then(function (story) {
+                vm.story = story;
+            });
+        };
         
+        refreshStory();
         
         vm.editStory = function (e) {
             $("#story-contribution").toggleClass("visible");
-            $scope.isEditMode = true;
+            vm.isEditMode = true;
         }
         
         vm.saveStory = function (e) {
+            storyService.addCycle({
+                story: vm.id,
+                index: vm.story.cycles.length,
+                text: vm.contribution.text
+            }).then(refreshStory);
+
             $("#story-contribution").toggleClass("visible");
-            $scope.isEditMode = false;
+            vm.isEditMode = false;
         }
         
         vm.contributionKeypress = function (e) {
@@ -35,7 +47,7 @@
 
     });
     
-    var story = 
+    /*var story = 
     {
         id: 1,
         title: "story 1",
@@ -56,7 +68,7 @@
                 date: "2015-12-03"
             }
         ]
-    };
+    };*/
     
 })();
 

@@ -8,6 +8,14 @@
                 return $http.get('/api/stories/getstories').then(function (result) {
                     return result.data;
                 });
+            },
+            getStoryById: function (id) {
+                return $http.get('/api/stories/getstorybyid?id=' + id).then(function (result) {
+                    return result.data;
+                });
+            },
+            addCycle: function (cycle) {
+                return $http.post('/api/stories/addcycle', cycle);
             }
         };
 

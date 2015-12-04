@@ -12,4 +12,20 @@ app.get('/getstories', function (req, res) {
     });
 });
 
+app.get('/getstorybyid', function (req, res) {
+    context.Stories.getStoryById(req.query.id).then((story) => {
+        res.json(story);
+    });
+});
+
+app.post('/addcycle', auth.isAuthenticated, function (req, res) {
+    var cycle = req.body;
+    cycle.username = req.user.name;
+    context.Stories.addCycle(cycle).then(() => {
+        res.send(200, 'added cycle');
+    }, (reason) => {
+        res.send(500, { message: 'error while adding cycle', error: reason });
+    });
+});
+
 export = app;
