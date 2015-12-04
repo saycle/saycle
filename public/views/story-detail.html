@@ -1,23 +1,25 @@
-﻿<div>
-    <h3>{{id}}</h3>
-    <h1>{{story.title}}</h1>
-</div>
-<div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Autor: {{story.username}}, Erstelldatum: {{story.date}}</div>
-        <div class="panel-body">
-            <span id="story-content" ng-repeat="cycle in story.cycles">
-                <a href="#" class="cycle-item" tooltip-placement="bottom" uib-tooltip="Autor: {{cycle.username}} ({{cycle.date}})">
-                    {{cycle.text}}
-                </a>
-            </span>
-            <span id="story-contribution" contenteditable="true"  ng-keypress="contributionKeypress()" data-started="{{contribution.started}}">Füge hier deine spannende Erweiterung an.</span>
-        </div>
-        <div class="panel-footer clearfix">
-            <div class="pull-right">
-                <button ng-if="!story.isLocked && !isEditMode" id="cycleEditButton"class="btn btn-default" ng-click="editStory(this)" >Edit</button>
-                <button ng-if="isEditMode" id="cycleSaveButton" class="btn btn-default" ng-click="editStory(this)" >Save</button>
+﻿<article ng-controller="storyDetailCtrl as vm">
+    <div>
+        <h3>{{vm.id}}</h3>
+        <h1>{{vm.story.title}}</h1>
+    </div>
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Autor: {{vm.story.username}}, Erstelldatum: {{vm.story.date}}</div>
+            <div class="panel-body">
+                <span id="story-content" ng-repeat="cycle in vm.story.cycles">
+                    <a href="#" class="cycle-item" tooltip-placement="bottom" uib-tooltip="Autor: {{cycle.username}} ({{cycle.date}})">
+                        {{cycle.text}}
+                    </a>
+                </span>
+                <span id="story-contribution" contenteditable="true" ng-keypress="vm.contributionKeypress()" data-started="{{vm.contribution.started}}">Füge hier deine spannende Erweiterung an.</span>
+            </div>
+            <div class="panel-footer clearfix">
+                <div class="pull-right">
+                    <button ng-if="!vm.story.isLocked && !vm.isEditMode" id="cycleEditButton" class="btn btn-default" ng-click="vm.editStory(this)">Edit</button>
+                    <button ng-if="vm.isEditMode" id="cycleSaveButton" class="btn btn-default" ng-click="vm.saveStory(this)">Save</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</article>

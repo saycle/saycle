@@ -16,6 +16,8 @@
     <script src="/public/scripts/story-service.js"></script>
     <script src="/public/scripts/story-detail.js"></script>
     <script src="/public/scripts/story-list.js"></script>
+    <script src="/public/scripts/contact.js"></script>
+    <script src="/public/scripts/imprint.js"></script>
     <script src="/public/scripts/login-controller.js"></script>
     <script src="/public/scripts/register-controller.js"></script>
     <script src="/public/scripts/custom-bootstrap.js"></script>
@@ -38,9 +40,9 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navigation">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li><a href="/contact">Kontakt</a></li>
-                        <li><a href="/imprint">Impressum</a></li>
+                        <li ng-class="{active: vm.activetab == 'home'}"><a href="/">Home</a></li>
+                        <li ng-class="{active: vm.activetab == 'contact'}"><a href="/contact">Kontakt</a></li>
+                        <li ng-class="{active: vm.activetab == 'imprint'}"><a href="/imprint">Impressum</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-if="vm.authInfo.currentUser != null">
