@@ -14,8 +14,11 @@
         };
         
         
-        vm.logOut = function () {
-            alert("awd");
+        vm.logOut = function (req, res) {
+            req.session.destroy(function (err) {
+                res.redirect('/'); //Inside a callback… bulletproof!
+            });
+            location.reload();
         };
         
         return vm;
