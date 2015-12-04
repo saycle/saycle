@@ -3,9 +3,10 @@ var io = null;
 
 
 var socket = {
-    init: function (io) {
+    init: function (xio) {
         if (io != null)
             throw 'IO has been initialized before, cant initialize again';
+        io = xio;
 
         // Send current time to all connected clients
         var sendTime = function () {

@@ -14,4 +14,4 @@ app.post('/register', function (req, res) {
     context.Users.addUser(user).then(function () { return res.send(200, 'registered'); }, function () { return res.send(500, 'Error while registering'); });
 });
 module.exports = app;
-//# sourceMappingURL=Users.js.map
+//# sourceMappingURL=users.js.map

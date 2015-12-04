@@ -4,4 +4,4 @@ module.exports = {
     Users: UserController,
     Stories: StoryController
 };
-//# sourceMappingURL=Context.js.map
+//# sourceMappingURL=context.js.map
