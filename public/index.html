@@ -48,6 +48,9 @@
                         <li ng-if="vm.authInfo.currentUser != null">
                             <a style="pointer-events: none; cursor: default;">&#9787; Hallo {{vm.authInfo.currentUser.name}}</a>
                         </li>
+                        <li ng-if="vm.authInfo.currentUser != null">
+                            <a ng-controller="loginCtrl as vmLogin" ng-click="vmLogin.logOut()" type="button" class="btn btn-default">Logout</a>
+                        </li>
                         <li ng-if="vm.authInfo.currentUser == null">
                             <a href="#" id="register" class="dropdown-toggle dropdown-toggle-custom" onclick="dropdownToggle(this)">
                                 <span class="glyphicon glyphicon-user"></span>

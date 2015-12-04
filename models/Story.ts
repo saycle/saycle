@@ -5,6 +5,7 @@ class Story {
     title: string;
     username: string;
     cycles: Cycle[];
+    date: Date;
 }
 
 export = Story;
