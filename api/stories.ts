@@ -23,8 +23,8 @@ app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     cycle.username = req.user.name;
     context.Stories.addCycle(cycle).then(() => {
         res.send(200, 'added cycle');
-    }, () => {
-        res.send(500, 'error while adding cycle');
+    }, (reason) => {
+        res.send(500, { message: 'error while adding cycle', error: reason });
     });
 });
 

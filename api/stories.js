@@ -18,8 +18,8 @@ app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     cycle.username = req.user.name;
     context.Stories.addCycle(cycle).then(function () {
         res.send(200, 'added cycle');
-    }, function () {
-        res.send(500, 'error while adding cycle');
+    }, function (reason) {
+        res.send(500, { message: 'error while adding cycle', error: reason });
     });
 });
 module.exports = app;
