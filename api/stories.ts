@@ -9,6 +9,8 @@ var app = express();
 app.get('/getstories', function (req, res) {
     context.Stories.getStories().then((stories) => {
         res.json(stories);
+    }, (reason) => {
+        res.send(500, { message: 'error', error: reason });
     });
 });
 
