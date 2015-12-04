@@ -6,6 +6,8 @@ var app = express();
 app.get('/getstories', function (req, res) {
     context.Stories.getStories().then(function (stories) {
         res.json(stories);
+    }, function (reason) {
+        res.send(500, { message: 'error', error: reason });
     });
 });
 app.get('/getstorybyid', function (req, res) {

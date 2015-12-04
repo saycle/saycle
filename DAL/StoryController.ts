@@ -6,7 +6,7 @@ import Q = require('q');
 class StoryController {
 
     static getStories(): Q.Promise<Story[]> {
-        return RunQuery.runQuery("SELECT * FROM stories", []).then((result) => {
+        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = id) AS cyclecount, id, title, username, date FROM stories", []).then((result) => {
             return result.rows;
         });
     };

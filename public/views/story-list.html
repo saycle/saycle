@@ -4,8 +4,8 @@
     </div>
     <div ng-repeat="story in vm.stories">
         <div class="panel panel-default">
-            <div class="panel-heading">{{story.title}}</div>
-            <div class="panel-body">{{story.cycles[0].text}}...<br />...{{story.cycles[vm.story.cycles.length - 1].text}}</div>
+            <div class="panel-heading">{{story.title}} <span class="badge">{{story.cyclecount}}</span></div>
+            <div class="panel-body"><!--{{story.cycles[0].text}}...<br />...{{story.cycles[vm.story.cycles.length - 1].text}}--></div>
             <div class="panel-footer clearfix">
                 <div class="pull-right">
                     <a href="#" class="btn btn-primary" ng-show="vm.story.islocked">saycle!</a>
