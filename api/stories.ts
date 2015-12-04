@@ -7,6 +7,11 @@ import socket = require('../socket/socket');
 
 var app = express();
 
+app.all('/*', function (req, res, next) {
+    res.setHeader('Cache-Control', 'no-cache');
+    next();
+});
+
 app.get('/getstories', function (req, res) {
     context.Stories.getStories().then((stories) => {
         res.json(stories);

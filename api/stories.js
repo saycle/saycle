@@ -4,6 +4,10 @@ var context = require('../dal/context');
 var auth = require('./authentication');
 var socket = require('../socket/socket');
 var app = express();
+app.all('/*', function (req, res, next) {
+    res.setHeader('Cache-Control', 'no-cache');
+    next();
+});
 app.get('/getstories', function (req, res) {
     context.Stories.getStories().then(function (stories) {
         res.json(stories);
