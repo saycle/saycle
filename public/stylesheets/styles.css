@@ -60,6 +60,10 @@ h3 {
     max-height: 100%;
 }
 
+.navbar-collapse {
+    overflow: hidden !important;
+}
+
 
 .dropdown-menu {
     width: 100%;
