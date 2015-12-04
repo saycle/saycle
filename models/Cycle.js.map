@@ -1,1 +1,1 @@
-{"version":3,"file":"Cycle.js","sourceRoot":"","sources":["Cycle.ts"],"names":["Cycle","Cycle.constructor"],"mappings":"AAAA;IAAAA;IAKAC,CAACA;IAADD,YAACA;AAADA,CAACA,AALD,IAKC;AAED,iBAAS,KAAK,CAAC"}
+{"version":3,"file":"cycle.js","sourceRoot":"","sources":["cycle.ts"],"names":["Cycle","Cycle.constructor"],"mappings":"AAAA;IAAAA;IAKAC,CAACA;IAADD,YAACA;AAADA,CAACA,AALD,IAKC;AAED,iBAAS,KAAK,CAAC"}

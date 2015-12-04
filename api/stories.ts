@@ -12,4 +12,10 @@ app.get('/getstories', function (req, res) {
     });
 });
 
+app.get('/getstorybyid', function (req, res) {
+    context.Stories.getStoryById(req.query.id).then((story) => {
+        res.json(story);
+    });
+});
+
 export = app;

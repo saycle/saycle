@@ -1,1 +1,1 @@
-{"version":3,"file":"Story.js","sourceRoot":"","sources":["Story.ts"],"names":["Story","Story.constructor"],"mappings":"AAAA;IAAAA;IAIAC,CAACA;IAADD,YAACA;AAADA,CAACA,AAJD,IAIC;AAED,iBAAS,KAAK,CAAC"}
+{"version":3,"file":"story.js","sourceRoot":"","sources":["story.ts"],"names":["Story","Story.constructor"],"mappings":"AAEA;IAAAA;IAKAC,CAACA;IAADD,YAACA;AAADA,CAACA,AALD,IAKC;AAED,iBAAS,KAAK,CAAC"}

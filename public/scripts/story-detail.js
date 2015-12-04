@@ -3,16 +3,18 @@
     var app = angular.module('saycle');
     
     
-    app.controller('detailController', function ($scope, $routeParams) {
+    app.controller('detailController', function ($scope, $routeParams, storyService) {
         $scope.id = $routeParams["id"];
-        $scope.story = story;
+        $scope.story = null;
         $scope.isEditMode = false;
         $scope.contribution = {
             text: "",
             started: false
         }
         
-        
+        storyService.getStoryById($scope.id).then(function (story) {
+            $scope.story = story;
+        });
         
         $scope.editStory = function (e) {
             $("#story-contribution").toggleClass("visible");
@@ -34,7 +36,7 @@
 
     });
     
-    var story = 
+    /*var story = 
     {
         id: 1,
         title: "story 1",
@@ -55,7 +57,7 @@
                 date: "2015-12-03"
             }
         ]
-    };
+    };*/
     
 })();
 
