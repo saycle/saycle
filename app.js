@@ -39,7 +39,11 @@ app.use(express.logger('dev'));
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
-http.createServer(app).listen(app.get('port'), function () {
+var server = http.createServer(app);
+// Socket.io server listens to our app
+var io = require('socket.io').listen(server);
+require('./socket/socket.js').init(io);
+server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 //# sourceMappingURL=app.js.map

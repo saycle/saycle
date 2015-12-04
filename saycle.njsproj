@@ -82,11 +82,13 @@
     <Content Include="public\views\story-detail.html" />
     <Content Include="public\views\story-list.html" />
     <Content Include="README.md" />
+    <TypeScriptCompile Include="socket\socket.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dal\" />
     <Folder Include="models\" />
     <Folder Include="api\" />
+    <Folder Include="socket\" />
     <Folder Include="project\" />
     <Folder Include="project\concept\" />
     <Folder Include="project\concept\Muckups PNG\" />
