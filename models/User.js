@@ -16,4 +16,4 @@ var User = (function () {
     return User;
 })();
 module.exports = User;
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=user.js.map

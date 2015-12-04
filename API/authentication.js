@@ -1,4 +1,4 @@
-var Context = require('../DAL/Context');
+var Context = require('../dal/context');
 var passportLocal = require('passport-local');
 var authentication = {
     configure: function (app, passport) {

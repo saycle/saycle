@@ -10,4 +10,4 @@ var Guid = (function () {
     return Guid;
 })();
 exports.Guid = Guid;
-//# sourceMappingURL=Guid.js.map
+//# sourceMappingURL=guid.js.map

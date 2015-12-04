@@ -1,5 +1,5 @@
-var User = require('../models/User');
-var RunQuery = require('./RunQuery');
+var User = require('../models/user');
+var RunQuery = require('./runquery');
 var UserController = (function () {
     function UserController() {
     }

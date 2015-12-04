@@ -1,4 +1,4 @@
-var RunQuery = require('./RunQuery');
+var RunQuery = require('./runquery');
 var StoryController = (function () {
     function StoryController() {
     }
