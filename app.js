@@ -22,7 +22,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-var authentication = require('./API/authentication');
+var authentication = require('./api/authentication');
 authentication.configure(app, passport);
 var usersApi = require('./api/users');
 app.use('/api', usersApi);

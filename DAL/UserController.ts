@@ -1,5 +1,5 @@
-﻿import User = require('../models/User');
-import RunQuery = require('./RunQuery');
+﻿import User = require('../models/user');
+import RunQuery = require('./runquery');
 import Q = require('q');
 
 class UserController {

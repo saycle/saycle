@@ -1,5 +1,5 @@
-var UserController = require('./UserController');
-var StoryController = require('./StoryController');
+var UserController = require('./usercontroller');
+var StoryController = require('./storycontroller');
 module.exports = {
     Users: UserController,
     Stories: StoryController

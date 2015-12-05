@@ -1,4 +1,5 @@
-var RunQuery = require('./RunQuery');
+var RunQuery = require('./runquery');
+var Guid = require('./guid');
 var StoryController = (function () {
     function StoryController() {
     }
@@ -20,7 +21,8 @@ var StoryController = (function () {
     };
     ;
     StoryController.addStory = function (story) {
-        return RunQuery.runQuery("INSERT INTO stories (id, title, username) VALUES ($1, $2, $3)", [story.id, story.title, story.username]);
+        story.id = Guid.newGuid();
+        return RunQuery.runQuery("INSERT INTO stories (id, title, username, date) VALUES ($1, $2, $3, $4)", [story.id, story.title, story.username, new Date()]);
     };
     ;
     StoryController.getCycles = function (storyId) {
@@ -36,4 +38,4 @@ var StoryController = (function () {
     return StoryController;
 })();
 module.exports = StoryController;
-//# sourceMappingURL=StoryController.js.map
+//# sourceMappingURL=storycontroller.js.map

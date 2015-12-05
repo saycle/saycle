@@ -26,7 +26,7 @@ app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-import authentication = require('./API/authentication');
+import authentication = require('./api/authentication');
 authentication.configure(app, passport);
 
 import usersApi = require('./api/users');

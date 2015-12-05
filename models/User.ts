@@ -6,6 +6,7 @@ class User {
         this.password = userObj.password;
         this.verified = userObj.verified;
         this.email = userObj.email;
+        this.isadmin = userObj.isadmin;
     }
     name: string;
     password: string;
@@ -16,7 +17,8 @@ class User {
     };
     setPassword(password) {
         this.password = bcrypt.hashSync(password);
-    }
+    };
+    isadmin: boolean;
 }
 
 export = User;

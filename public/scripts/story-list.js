@@ -3,11 +3,21 @@
     var app = angular.module('saycle');
     
 
-    app.controller('storyListCtrl', function ($scope, storyService) {
+    app.controller('storyListCtrl', function ($scope, storyService, $location) {
         var vm = this;
-        storyService.getStories().then(function (stories) {
-            vm.stories = stories;
-        });
+        var refresh = function () {
+            storyService.getStories().then(function (stories) {
+                vm.stories = stories;
+            });
+        };
+        
+        refresh();
+
+        vm.addStory = function () {
+            storyService.addStory({ title: vm.newStoryTitle }).then(function () {
+                refresh();
+            });;
+        };
     });
 
     //var stories = [

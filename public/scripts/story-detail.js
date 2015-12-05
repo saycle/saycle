@@ -3,11 +3,11 @@
     var app = angular.module('saycle');
     
     
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService, socketService) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService, socketService, loginService) {
         var vm = this;
         vm.id = $routeParams["id"];
+        vm.auth = loginService.getAuthInfo();
         vm.story = null;
-        vm.isEditMode = false;
         vm.contribution = {
             text: "",
             started: false
@@ -22,33 +22,32 @@
         refreshStory();
         
         socketService.on('refreshStory', function (data) {
-            if(vm.id = data.id)
+            if(vm.id == data.id)
                 refreshStory();
         });
         
         vm.editStory = function (e) {
-            $("#story-contribution").toggleClass("visible");
-            vm.isEditMode = true;
+            storyService.lock(vm.story).then(function () {
+                
+            }, function () {
+                alert('Sorry, another user was faster...');
+            });
         }
+
+        vm.isEditing = function () {
+            return vm.auth.currentUser != null && vm.story.isLockedBy == vm.auth.currentUser.name;
+        };
         
         vm.saveStory = function (e) {
             storyService.addCycle({
                 story: vm.id,
                 index: vm.story.cycles.length,
                 text: vm.contribution.text
-            }).then(refreshStory);
-
-            $("#story-contribution").toggleClass("visible");
-            vm.isEditMode = false;
+            }).then(function () {
+                
+            });
         }
         
-        vm.contributionKeypress = function (e) {
-            if (!vm.contribution.started) {
-                $("#story-contribution").html("");
-            }
-            vm.contribution.started = true;
-            vm.contribution.text = $("#story-contribution").html();
-        }
 
     });
     

@@ -24,4 +24,4 @@ var RunQuery = (function () {
     return RunQuery;
 })();
 module.exports = RunQuery;
-//# sourceMappingURL=RunQuery.js.map
+//# sourceMappingURL=runquery.js.map

@@ -1,4 +1,4 @@
-﻿import Context = require('../DAL/Context');
+﻿import Context = require('../dal/context');
 import passportLocal = require('passport-local');
 
 var authentication = {
@@ -58,6 +58,11 @@ var authentication = {
 
     isAuthenticated: function (req, res, next) {
         if (req.isAuthenticated())
+            return next();
+        res.send(401, 'Unauthorized - please login');
+    },
+    isAdmin: function (req, res, next) {
+        if (req.isAuthenticated() && req.user.isadmin)
             return next();
         res.send(401, 'Unauthorized - please login');
     }

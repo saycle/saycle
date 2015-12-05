@@ -2,7 +2,7 @@
 import express = require('express');
 import context = require('../dal/context');
 import auth = require('./authentication');
-import User = require('../models/User');
+import User = require('../models/user');
 
 var app = express();
 
