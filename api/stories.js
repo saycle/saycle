@@ -17,7 +17,7 @@ app.get('/getstories', function (req, res) {
 });
 app.get('/getstorybyid', function (req, res) {
     context.Stories.getStoryById(req.query.id).then(function (story) {
-        story.isLocked = !!lockedStories[story.id];
+        story.isLockedBy = lockedStories[story.id] ? lockedStories[story.id].user : null;
         res.json(story);
     });
 });
@@ -43,10 +43,10 @@ app.post('/addcycle', auth.isAuthenticated, function (req, res) {
 });
 var lockedStories = {};
 app.post('/lock', auth.isAuthenticated, function (req, res) {
-    if (lockedStories[req.body.id] == true)
+    if (lockedStories[req.body.id])
         res.send(500, 'story is already locked');
     else {
-        lockedStories[req.body.id] = true;
+        lockedStories[req.body.id] = { user: req.user.name };
         socket.getIO().sockets.emit('refreshStory', { id: req.body.id });
         res.send(200, 'story locked');
     }

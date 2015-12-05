@@ -3,11 +3,11 @@
     var app = angular.module('saycle');
     
     
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService, socketService) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService, socketService, loginService) {
         var vm = this;
         vm.id = $routeParams["id"];
+        vm.auth = loginService.getAuthInfo();
         vm.story = null;
-        vm.isEditMode = false;
         vm.contribution = {
             text: "",
             started: false
@@ -28,7 +28,7 @@
         
         vm.editStory = function (e) {
             storyService.lock(vm.story).then(function () {
-                vm.isEditMode = true;
+                
             }, function () {
                 alert('Sorry, another user was faster...');
             });
@@ -40,7 +40,7 @@
                 index: vm.story.cycles.length,
                 text: vm.contribution.text
             }).then(function () {
-                vm.isEditMode = false;
+                
             });
         }
         

@@ -7,7 +7,7 @@ class Story {
     cycles: Cycle[];
     cyclecount: number;
     date: Date;
-    isLocked: boolean;
+    isLockedBy: string;
 }
 
 export = Story;
