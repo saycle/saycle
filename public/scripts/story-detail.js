@@ -33,6 +33,10 @@
                 alert('Sorry, another user was faster...');
             });
         }
+
+        vm.isEditing = function () {
+            return vm.auth.currentUser != null && vm.story.isLockedBy == vm.auth.currentUser.name;
+        };
         
         vm.saveStory = function (e) {
             storyService.addCycle({

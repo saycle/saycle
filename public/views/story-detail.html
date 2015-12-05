@@ -12,13 +12,13 @@
                         {{cycle.text}}
                     </a>
                 </span>
-                <span ng-show="vm.story.isLockedBy == vm.auth.currentUser.name" contenteditable="true" ng-click="vm.contribution.text = ''" ng-model="vm.contribution.text">Füge hier deine spannende Erweiterung an.</span>
+                <span ng-show="vm.isEditing()" contenteditable="true" ng-click="vm.contribution.text = ''" ng-model="vm.contribution.text">Füge hier deine spannende Erweiterung an.</span>
             </div>
             <div class="panel-footer clearfix">
                 <div class="pull-right">
                     <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-default" ng-click="vm.editStory(this)">Edit</button>
-                    <button ng-if="vm.story.isLockedBy == vm.auth.currentUser.name" id="cycleSaveButton" class="btn btn-default" ng-click="vm.saveStory(this)">Save</button>
-                    <div class="bg-info" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">(another user is currently editing this story)</div>
+                    <button ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-default" ng-click="vm.saveStory(this)">Save</button>
+                    <div class="bg-info" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">(user '{{vm.story.isLockedBy}}' is currently editing this story)</div>
                 </div>
             </div>
         </div>
