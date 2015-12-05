@@ -61,7 +61,7 @@
             require: 'ngModel',
             link: function (scope, elm, attrs, ctrl) {
                 // view -> model
-                elm.bind('blur', function () {
+                elm.bind('keyup', function () {
                     scope.$apply(function () {
                         ctrl.$setViewValue(elm.html());
                     });
