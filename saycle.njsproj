@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="public\scripts\contact.js" />
     <Compile Include="public\scripts\imprint.js" />
+    <Compile Include="public\scripts\ranking.js" />
     <Compile Include="public\scripts\socket-service.js" />
     <Compile Include="public\scripts\story-service.js" />
     <TypeScriptCompile Include="api\stories.ts" />
@@ -82,6 +83,7 @@
     <Content Include="public\stylesheets\styles.css" />
     <Content Include="public\views\contact.html" />
     <Content Include="public\views\imprint.html" />
+    <Content Include="public\views\ranking.html" />
     <Content Include="public\views\story-detail.html" />
     <Content Include="public\views\story-list.html" />
     <Content Include="README.md" />

@@ -12,6 +12,10 @@
             templateUrl: '/public/views/story-list.html',
             activetab: 'home'
         })
+        .when('/ranking', {
+            templateUrl : '/public/views/ranking.html',
+            activetab: 'ranking'
+        })
         .when('/contact', {
             templateUrl : '/public/views/contact.html',
             activetab: 'contact'
