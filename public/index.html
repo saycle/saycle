@@ -47,6 +47,8 @@
     <script src="/public/scripts/ranking-service.js"></script>
     <script src="/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="/bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
     <title>Saycle</title>
 </head>
 <body ng-app="saycle" ng-controller="saycleCtrl as vm">
@@ -66,7 +68,7 @@
                 </div>
                 <div class="collapse navbar-collapse no-transition" id="navigation">
                     <ul class="nav navbar-nav">
-                        <li ng-class="{active: vm.activetab == 'home'}"><a href="/">Stories</a></li>
+                        <li ng-class="{active: vm.activetab == 'home'}"><a href="/">{{'Stories' | translate}}</a></li>
                         <li ng-class="{active: vm.activetab == 'ranking'}"><a href="/ranking">Ranking</a></li>
                         <li ng-class="{active: vm.activetab == 'contact'}"><a href="/contact">Kontakt</a></li>
                         <li ng-class="{active: vm.activetab == 'imprint'}"><a href="/imprint">Impressum</a></li>
@@ -94,6 +96,12 @@
                             <div id="login-dropdown" class="dropdown-menu dropdown-menu-custom" ng-include="'/public/partials/login.html'">
                             </div>
                         </li>
+                        <li>
+                            <a ng-click="vm.changeLanguage('de')">DE</a>
+                        </li>
+                        <li>
+                            <a ng-click="vm.changeLanguage('en')">EN</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -102,7 +110,6 @@
     <div class="container-fluid">
         <main ng-view></main>
     </div>
-
     <div ng-include="'/public/partials/easteregg-ctrlb.html'" class="modal fade easteregg" id="easteregg-ctrlb" tabindex="-1" role="dialog" aria-labelledby="Easteregg" aria-hidden="true"></div>
 </body>
 </html>

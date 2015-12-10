@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr']);
+    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate']);
     
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
@@ -31,10 +31,21 @@
         .otherwise({ redirectTo: '/' });;
     });
     
-    app.controller('saycleCtrl', function (loginService, $scope) {
+    app.config(function ($translateProvider) {
+        $translateProvider
+        .useStaticFilesLoader({
+            prefix: '/public/translations/locale-',
+            suffix: '.json'
+        })
+        .preferredLanguage('en');
+    });
+
+    app.controller('saycleCtrl', function (loginService, $scope, $translate) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
-
+        vm.changeLanguage = function (key) {
+            $translate.use(key);
+        };
         $scope.$on('$routeChangeStart', function (current, next) {
             if(next.$$route)
             {
