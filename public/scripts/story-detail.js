@@ -25,6 +25,16 @@
             if(vm.id == data.id)
                 refreshStory();
         });
+        socketService.on('updateDraft', function (data) {
+            if (!vm.isEditing() && vm.id == data.id)
+                $scope.$apply(function () { vm.contribution.text = data.text; });
+        });
+        $scope.$watch('vm.contribution.text', function () {
+            if (vm.isEditing()) {
+                console.log('sending draft...');
+                socketService.emit('draftChanged', { id: vm.id, text: vm.contribution.text });
+            }
+        });
         
         vm.editStory = function (e) {
             storyService.lock(vm.story).then(function () {
@@ -35,7 +45,7 @@
         }
 
         vm.isEditing = function () {
-            return vm.auth.currentUser != null && vm.story.isLockedBy == vm.auth.currentUser.name;
+            return vm.auth.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.auth.currentUser.name;
         };
         
         vm.saveStory = function (e) {

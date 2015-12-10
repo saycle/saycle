@@ -60,4 +60,12 @@ app.post('/lock', auth.isAuthenticated, function (req, res) {
     }
 });
 
+setTimeout(function () {
+    socket.getIO().sockets.on('connection', function (client) {
+        client.on('draftChanged', function (draft) {
+            socket.getIO().sockets.emit('updateDraft', draft);
+        });
+    });
+}, 500);
+
 export = app;
