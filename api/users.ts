@@ -13,10 +13,17 @@ app.get('/getcurrentuser', function (req, res) {
         res.json(null);
 });
 
+app.get('/getrankedusers', function (req, res) {
+    context.Users.getRankedUsers().then((rankedUsers) => res.json(rankedUsers),
+        () =>
+            res.send(500, 'Error while getting ranked users'));
+});
+
 app.post('/register', function (req, res) {
     var user = new User(req.body);
     context.Users.addUser(user).then(() => res.send(200, 'registered'),
-    () => res.send(500, 'Error while registering'));
+        () =>
+            res.send(500, 'Error while registering'));
 });
 
 export = app;
