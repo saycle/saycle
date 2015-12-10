@@ -2,9 +2,46 @@
     <h1>Ranking</h1>
     <div id="ranking-wrapper">
         <div id="podest">
-            <div id="podest-2" class="podest-block">2</div>
-            <div id="podest-1" class="podest-block">1</div>
-            <div id="podest-3" class="podest-block">3</div>
+            <div id="podest-2" class="podest-block">
+                <div class="podest-user">{{vm.users[0].name}}</div>2
+            </div>
+            <div id="podest-1" class="podest-block">
+                <div class="podest-user">{{vm.users[1].name}}</div>1
+            </div>
+            <div id="podest-3" class="podest-block">
+                <div class="podest-user">{{vm.users[2].name}}</div>3
+            </div>
+        </div>
+    </div>
+    <div id="ranking-list">
+
+        <div class="table-responsive">
+            <table class="table table-hover table-stripped">
+                <thead>
+                    <tr>
+                        <th>Benutzername</th>
+                        <th>Anzahl Zeichen</th>
+                        <th>Letzter Eintrag</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="user in vm.users">
+                    <tr>
+                        <td>
+                            {{user.name}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{user.charCount}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/story-detail/{{user.lastStory.id}}">{{user.lastStory.name}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </article>

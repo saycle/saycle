@@ -16,7 +16,13 @@
     </div>
     <div>
         <h3>Add a story</h3>
-        <input class="form-control" type="text" ng-model="vm.newStoryTitle" />
-        <button class="btn btn-primary" ng-click="vm.addStory()">Add a story</button>
+        <div class="row">
+            <div class="col-md-8">
+                <input class="form-control" type="text" ng-model="vm.newStoryTitle" />
+            </div>
+            <div class="col-md-4">
+                <button id="addStoryButton" class="btn btn-primary float-right" ng-click="vm.addStory()">Add a story</button>
+            </div>
+        </div>
     </div>
 </article>
