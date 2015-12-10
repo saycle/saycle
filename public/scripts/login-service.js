@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('saycle');
     
-    app.service('loginService', function ($http) {
+    app.service('loginService', function ($http, toastr) {
         var authInfo = {
             currentUser: null
         };
@@ -27,8 +27,8 @@
             logout: function () {
                 return $http.get('/logout').then(function () {
                     location.reload();
+                    toastr.success('You are logged off.');
                 });
-
             }
         };
     });

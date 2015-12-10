@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('saycle', ['ngRoute', 'ui.bootstrap']);
+    var app = angular.module('saycle', ['ngRoute', 'ui.bootstrap', 'toastr']);
     
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
