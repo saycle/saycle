@@ -11,7 +11,7 @@
                         {{cycle.text}}
                     </a>
                 </span>
-                <span ng-show="vm.isEditing()" contenteditable="true" ng-click="vm.contribution.text = ''" ng-model="vm.contribution.text">Füge hier deine spannende Erweiterung an.</span>
+                <textarea class="form-control" style="margin-top:20px;" ng-show="vm.isEditing()" ng-model="vm.contribution.text" placeholder="Füge hier deine spannende Erweiterung an."></textarea>
             </div>
             <div class="panel-footer clearfix">
                 <div class="pull-right">

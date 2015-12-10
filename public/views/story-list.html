@@ -1,7 +1,8 @@
 ﻿<article ng-controller="storyListCtrl as vm">
     <div>
         <h1>View all stories</h1>
-    </div>
+        <p>Saycle ist eine Plattform, auf der verschiedene Benutzer zusammen Geschichten schreiben können. Dies ist die Liste aller begonnenen Geschichten, an denen weitergearbeitet werden kann. Du kannst auch einen neue Geschichte hinzufügen. Viel Spass!</p>
+    </div><br />
     <div class="list-group">
             <a href="/story-detail/{{story.id}}" class="list-group-item" ng-repeat="story in vm.stories">
                 <h4 class="list-group-item-heading">{{story.title}} <span class="badge">{{story.cyclecount}} cycles</span></h4>

@@ -43,12 +43,9 @@
                 story: vm.id,
                 index: vm.story.cycles.length,
                 text: vm.contribution.text
-            }).then(function () {
-                
             });
-        }
+        };
         
-
     });
     
     /*var story = 

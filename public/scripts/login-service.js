@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('saycle');
     
-    app.service('loginService', function ($http) {
+    app.service('loginService', function ($http, toastr, waitinfo) {
         var authInfo = {
             currentUser: null
         };
@@ -17,8 +17,11 @@
         
         return {
             login: function (loginInfo) {
+                waitinfo.show();
                 return $http.post('/login', loginInfo).then(function () {
+                    waitinfo.hide();
                     refreshAuthInfo();
+                    toastr.success('You are logged in.', 'Success');
                 });
             },
             getAuthInfo: function () {
@@ -28,7 +31,6 @@
                 return $http.get('/logout').then(function () {
                     location.reload();
                 });
-
             }
         };
     });

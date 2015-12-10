@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('saycle', ['ngRoute', 'ui.bootstrap']);
+    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr']);
     
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
@@ -54,28 +54,32 @@
             }
         };
     });
-    
-    // Contenteditable binding
-    app.directive('contenteditable', function () {
+
+    app.service('waitinfo', function (toastr) {
+        var showWait = 0;
+        var toast = null;
+        var refresh = function () {
+            if (showWait <= 0 && toast != null && toast.isOpened)
+                toastr.clear(toast);
+            if(showWait > 0 && (!toast || !toast.isOpened))
+                toast = toastr.info('Please wait...', 'Working', { timeOut: 0, extendedTimeOut: 0, autoDismiss: false });
+        };
         return {
-            require: 'ngModel',
-            link: function (scope, elm, attrs, ctrl) {
-                // view -> model
-                elm.bind('keyup', function () {
-                    scope.$apply(function () {
-                        ctrl.$setViewValue(elm.html());
-                    });
-                });
-                
-                // model -> view
-                ctrl.$render = function () {
-                    elm.html(ctrl.$viewValue);
-                };
-                
-                // load init value from DOM
-                ctrl.$setViewValue(elm.html());
+            show: function () {
+                showWait++;
+                refresh();
+            },
+            hide: function () {
+                showWait--;
+                refresh();
             }
         };
+    });
+
+    app.config(function (toastrConfig) {
+        angular.extend(toastrConfig, {
+            positionClass: 'toast-bottom-right'
+        });
     });
 
 })();
