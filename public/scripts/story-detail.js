@@ -8,10 +8,7 @@
         vm.id = $routeParams["id"];
         vm.auth = loginService.getAuthInfo();
         vm.story = null;
-        vm.contribution = {
-            text: "",
-            started: false
-        }
+        vm.contribution = "";
         
         var refreshStory = function () {
             storyService.getStoryById(vm.id).then(function (story) {
@@ -27,19 +24,19 @@
         });
         socketService.on('updateDraft', function (data) {
             if (!vm.isEditing() && vm.id == data.id)
-                $scope.$apply(function () { vm.contribution.text = data.text; });
+                $scope.$apply(function () { vm.contribution = data.text; });
         });
         $scope.$watch('vm.contribution.text', function () {
             if (vm.isEditing()) {
                 console.log('sending draft...');
-                socketService.emit('draftChanged', { id: vm.id, text: vm.contribution.text });
+                socketService.emit('draftChanged', { id: vm.id, text: vm.contribution });
             }
         });
         
         vm.editStory = function (e) {
             storyService.lock(vm.story).then(function () {
-                
-            }, function () {
+                vm.contribution = "";
+            }, function (err) {
                 alert('Sorry, another user was faster...');
             });
         }
@@ -52,34 +49,12 @@
             storyService.addCycle({
                 story: vm.id,
                 index: vm.story.cycles.length,
-                text: vm.contribution.text
+                text: vm.contribution
             });
+            vm.contribution = "";
         };
         
     });
-    
-    /*var story = 
-    {
-        id: 1,
-        title: "story 1",
-        username: "Lucky Hans",
-        date: "2015-12-03",
-        isLocked: false,
-        cycles: [
-            {
-                index: 1,
-                text: "Hallo Welt",
-                username: "User",
-                date: "2015-12-03"
-            },
-            {
-                index: 2,
-                text: " wie geht es dir heute?",
-                username: "User",
-                date: "2015-12-03"
-            }
-        ]
-    };*/
     
 })();
 

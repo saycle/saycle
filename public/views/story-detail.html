@@ -11,14 +11,19 @@
                         {{cycle.text}}
                     </a>
                 </span>
-                <i>{{vm.contribution.text}}</i>
-                <textarea class="form-control" style="margin-top:20px;" ng-show="vm.isEditing()" ng-model="vm.contribution.text" placeholder="Füge hier deine spannende Erweiterung an."></textarea>
+                <i>{{vm.contribution}}</i>
+                <textarea class="form-control" style="margin-top:20px;" ng-show="vm.isEditing()" ng-model="vm.contribution" placeholder="Füge hier deine spannende Erweiterung an."></textarea>
             </div>
             <div class="panel-footer clearfix">
                 <div class="pull-right">
                     <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-primary" ng-click="vm.editStory(this)">Edit</button>
                     <button ng-disabled="vm.contribution.text == ''" ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-primary" ng-click="vm.saveStory(this)">Save</button>
-                    <p class="bg-info" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">(user '{{vm.story.isLockedBy}}' is currently editing this story)</p>
+                    <p id="inTurnFadingTextG" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">
+                        <span>Die Geschichte wird von {{vm.story.isLockedBy}} bearbeitet</span>
+                        <span id="inTurnFadingTextG_1" class="inTurnFadingTextG">.</span>
+                        <span id="inTurnFadingTextG_2" class="inTurnFadingTextG">.</span>
+                        <span id="inTurnFadingTextG_3" class="inTurnFadingTextG">.</span>
+                    </p>
                 </div>
             </div>
         </div>
