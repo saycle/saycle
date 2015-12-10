@@ -35,6 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="public\scripts\ranking-service.js" />
     <Content Include="public\images\favicon\android-chrome-144x144.png" />
     <Content Include="public\images\favicon\android-chrome-192x192.png" />
     <Content Include="public\images\favicon\android-chrome-36x36.png" />
@@ -78,6 +79,7 @@
     <TypeScriptCompile Include="mails\mails.ts" />
     <TypeScriptCompile Include="models\cycle.ts" />
     <TypeScriptCompile Include="models\story.ts" />
+    <TypeScriptCompile Include="models\rankeduser.ts" />
     <TypeScriptCompile Include="models\user.ts" />
     <TypeScriptCompile Include="dal\usercontroller.ts" />
     <TypeScriptCompile Include="dal\guid.ts" />

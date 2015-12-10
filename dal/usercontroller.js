@@ -7,13 +7,17 @@ var UserController = (function () {
         return RunQuery.runQuery("SELECT * FROM users", []);
     };
     ;
-    UserController.getUsersRanking = function () {
-        return RunQuery.runQuery("SELECT storymostrecent.name, SUM(storylengths.length), storymostrecent.story " +
-            "FROM (SELECT name, LENGTH(text) \"length\" FROM users LEFT JOIN cycles ON users.name = cycles.username) AS storylengths " +
-            "INNER JOIN (SELECT name, story " +
-            "FROM users LEFT JOIN cycles ON users.name = cycles.username WHERE cycles.date = (SELECT max(date) FROM cycles WHERE cycles.username = users.name)) AS storymostrecent" +
-            "ON storymostrecent.name = storylengths.name " +
-            "GROUP BY storylengths.name, storymostrecent.name, storymostrecent.story;", []);
+    UserController.getRankedUsers = function () {
+        return RunQuery.runQuery('SELECT storymostrecent.name "username", SUM(storylengths.length) "charCount", storymostrecent.story "recentStoryId", stories.title "recentStoryTitle" ' +
+            'FROM (SELECT name, LENGTH(text) "length" FROM users LEFT JOIN cycles ON users.name = cycles.username) AS storylengths ' +
+            'INNER JOIN (SELECT name, story ' +
+            'FROM users LEFT JOIN cycles ON users.name = cycles.username WHERE cycles.date = (SELECT max(date) FROM cycles WHERE cycles.username = users.name)) AS storymostrecent ' +
+            'ON storymostrecent.name = storylengths.name ' +
+            'INNER JOIN stories ON storymostrecent.story = stories.id ' +
+            'GROUP BY storylengths.name, storymostrecent.name, storymostrecent.story, stories.title ORDER BY SUM(storylengths.length) DESC;', []).then(function (result) {
+            return result.rows;
+        });
+        ;
     };
     ;
     UserController.getUserByMail = function (email) {

@@ -1,16 +1,17 @@
 ﻿<article ng-controller="rankingCtrl as vm">
     <h1>Ranking</h1>
-    <div id="ranking-wrapper">
-        <div id="podest">
-            <div id="podest-2" class="podest-block">
-                <div class="podest-user">{{vm.users[0].name}}</div>2
-            </div>
-            <div id="podest-1" class="podest-block">
-                <div class="podest-user">{{vm.users[1].name}}</div>1
-            </div>
-            <div id="podest-3" class="podest-block">
-                <div class="podest-user">{{vm.users[2].name}}</div>3
-            </div>
+    <div id="podest">
+        <div id="podest-2" class="podest-block-wrapper">
+            <div class="podest-user">{{vm.users[1].username}}</div>
+            <div class="podest-block">2</div>
+        </div>
+        <div id="podest-1" class="podest-block-wrapper">
+            <div class="podest-user">{{vm.users[0].username}}</div>
+            <div class="podest-block">2</div>
+        </div>
+        <div id="podest-3" class="podest-block-wrapper">
+            <div class="podest-user">{{vm.users[2].username}}</div>
+            <div class="podest-block">3</div>
         </div>
     </div>
     <div id="ranking-list">
@@ -24,20 +25,16 @@
                         <th>Letzter Eintrag</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="user in vm.users">
-                    <tr>
+                <tbody>
+                    <tr ng-repeat="user in vm.users">
                         <td>
-                            {{user.name}}
+                            {{user.username}}
                         </td>
-                    </tr>
-                    <tr>
                         <td>
                             {{user.charCount}}
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-                            <a href="/story-detail/{{user.lastStory.id}}">{{user.lastStory.name}}</a>
+                            <a href="/story-detail/{{user.recentStoryId}}">{{user.recentStoryTitle}}</a>
                         </td>
                     </tr>
                 </tbody>

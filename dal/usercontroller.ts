@@ -1,4 +1,5 @@
 ﻿import User = require('../models/user');
+import RankedUser = require('../models/rankeduser');
 import RunQuery = require('./runquery');
 import Q = require('q');
 
@@ -8,13 +9,16 @@ class UserController {
         return RunQuery.runQuery("SELECT * FROM users", []);
     };
 
-    static getUsersRanking(): Q.Promise<User[]> {
-        return RunQuery.runQuery("SELECT storymostrecent.name, SUM(storylengths.length), storymostrecent.story " + 
-	"FROM (SELECT name, LENGTH(text) \"length\" FROM users LEFT JOIN cycles ON users.name = cycles.username) AS storylengths " +
-	"INNER JOIN (SELECT name, story " +
-	"FROM users LEFT JOIN cycles ON users.name = cycles.username WHERE cycles.date = (SELECT max(date) FROM cycles WHERE cycles.username = users.name)) AS storymostrecent" +
-    "ON storymostrecent.name = storylengths.name " +
-    "GROUP BY storylengths.name, storymostrecent.name, storymostrecent.story;", []);
+    static getRankedUsers(): Q.Promise<RankedUser[]> {
+        return RunQuery.runQuery('SELECT storymostrecent.name "username", SUM(storylengths.length) "charCount", storymostrecent.story "recentStoryId", stories.title "recentStoryTitle" ' +
+            'FROM (SELECT name, LENGTH(text) "length" FROM users LEFT JOIN cycles ON users.name = cycles.username) AS storylengths ' +
+            'INNER JOIN (SELECT name, story ' +
+            'FROM users LEFT JOIN cycles ON users.name = cycles.username WHERE cycles.date = (SELECT max(date) FROM cycles WHERE cycles.username = users.name)) AS storymostrecent ' +
+            'ON storymostrecent.name = storylengths.name ' +
+            'INNER JOIN stories ON storymostrecent.story = stories.id ' +
+            'GROUP BY storylengths.name, storymostrecent.name, storymostrecent.story, stories.title ORDER BY SUM(storylengths.length) DESC;', []).then((result) => {
+                return result.rows;
+            });;
     };
 
     static getUserByMail(email: string): Q.Promise<User> {

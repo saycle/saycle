@@ -200,13 +200,10 @@ a.cycle-item {
         color: darkgrey;
     }
 
-#ranking-wrapper {
-    width: 100%;
-    height: 400px;
-}
 
 #podest {
-    height: 100%;
+    width: 100%;
+    height: 400px;
     position: relative;
 }
 
@@ -246,16 +243,15 @@ a.cycle-item {
     font-size: 250%;
 }
 
+.podest-block-wrapper {
+    
+}
+
 .podest-user {
     text-align: center;
     position: absolute;
     color: black;
     width: 100%;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3.5);
     text-shadow: 4px 4px 0px #d5d5d5, 7px 7px 0px rgba(0, 0, 0, 0.2);
 }
 
