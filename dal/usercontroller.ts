@@ -8,6 +8,15 @@ class UserController {
         return RunQuery.runQuery("SELECT * FROM users", []);
     };
 
+    static getUsersRanking(): Q.Promise<User[]> {
+        return RunQuery.runQuery("SELECT storymostrecent.name, SUM(storylengths.length), storymostrecent.story " + 
+	"FROM (SELECT name, LENGTH(text) \"length\" FROM users LEFT JOIN cycles ON users.name = cycles.username) AS storylengths " +
+	"INNER JOIN (SELECT name, story " +
+	"FROM users LEFT JOIN cycles ON users.name = cycles.username WHERE cycles.date = (SELECT max(date) FROM cycles WHERE cycles.username = users.name)) AS storymostrecent" +
+    "ON storymostrecent.name = storylengths.name " +
+    "GROUP BY storylengths.name, storymostrecent.name, storymostrecent.story;", []);
+    };
+
     static getUserByMail(email: string): Q.Promise<User> {
         return RunQuery.runQuery("SELECT * FROM users WHERE email = $1", [email]).then(function (user) {
             return new User(user.rows[0]);

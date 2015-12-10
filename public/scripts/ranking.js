@@ -5,6 +5,8 @@
     
     app.controller('rankingCtrl', function ($scope, $route) {
         var vm = this;
+
+
     });
 
 })();

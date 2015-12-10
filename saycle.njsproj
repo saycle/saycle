@@ -21,7 +21,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <NodejsPort>1337</NodejsPort>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
@@ -35,6 +35,35 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="public\images\favicon\android-chrome-144x144.png" />
+    <Content Include="public\images\favicon\android-chrome-192x192.png" />
+    <Content Include="public\images\favicon\android-chrome-36x36.png" />
+    <Content Include="public\images\favicon\android-chrome-48x48.png" />
+    <Content Include="public\images\favicon\android-chrome-72x72.png" />
+    <Content Include="public\images\favicon\android-chrome-96x96.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-114x114.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-120x120.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-144x144.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-152x152.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-180x180.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-57x57.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-60x60.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-72x72.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-76x76.png" />
+    <Content Include="public\images\favicon\apple-touch-icon-precomposed.png" />
+    <Content Include="public\images\favicon\apple-touch-icon.png" />
+    <Content Include="public\images\favicon\browserconfig.xml" />
+    <Content Include="public\images\favicon\favicon-16x16.png" />
+    <Content Include="public\images\favicon\favicon-32x32.png" />
+    <Content Include="public\images\favicon\favicon-96x96.png" />
+    <Content Include="public\images\favicon\favicon.ico" />
+    <Content Include="public\images\favicon\manifest.json" />
+    <Content Include="public\images\favicon\mstile-144x144.png" />
+    <Content Include="public\images\favicon\mstile-150x150.png" />
+    <Content Include="public\images\favicon\mstile-310x150.png" />
+    <Content Include="public\images\favicon\mstile-310x310.png" />
+    <Content Include="public\images\favicon\mstile-70x70.png" />
+    <Content Include="public\images\favicon\safari-pinned-tab.svg" />
     <Content Include="public\scripts\contact.js" />
     <Content Include="public\scripts\imprint.js" />
     <Content Include="public\scripts\socket-service.js" />
@@ -95,6 +124,7 @@
     <Folder Include="models\" />
     <Folder Include="api\" />
     <Folder Include="mails\" />
+    <Folder Include="public\images\favicon\" />
     <Folder Include="socket\" />
     <Folder Include="project\" />
     <Folder Include="project\concept\" />
