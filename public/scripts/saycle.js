@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('saycle', ['ngRoute', 'ui.bootstrap', 'toastr']);
+    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr']);
     
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
@@ -53,6 +53,33 @@
                 return $q.reject(rejection);
             }
         };
+    });
+
+    app.service('waitinfo', function (toastr) {
+        var showWait = 0;
+        var toast = null;
+        var refresh = function () {
+            if (showWait <= 0 && toast != null && toast.isOpened)
+                toastr.clear(toast);
+            if(showWait > 0 && (!toast || !toast.isOpened))
+                toast = toastr.info('Please wait...', 'Working', { timeOut: 0, extendedTimeOut: 0, autoDismiss: false });
+        };
+        return {
+            show: function () {
+                showWait++;
+                refresh();
+            },
+            hide: function () {
+                showWait--;
+                refresh();
+            }
+        };
+    });
+
+    app.config(function (toastrConfig) {
+        angular.extend(toastrConfig, {
+            positionClass: 'toast-bottom-right'
+        });
     });
     
     // Contenteditable binding
