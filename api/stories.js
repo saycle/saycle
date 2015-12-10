@@ -51,5 +51,12 @@ app.post('/lock', auth.isAuthenticated, function (req, res) {
         res.send(200, 'story locked');
     }
 });
+setTimeout(function () {
+    socket.getIO().sockets.on('connection', function (client) {
+        client.on('draftChanged', function (draft) {
+            socket.getIO().sockets.emit('updateDraft', draft);
+        });
+    });
+}, 500);
 module.exports = app;
 //# sourceMappingURL=stories.js.map
