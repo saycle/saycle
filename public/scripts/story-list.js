@@ -3,7 +3,7 @@
     var app = angular.module('saycle');
     
 
-    app.controller('storyListCtrl', function ($scope, storyService, $location) {
+    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval) {
         var vm = this;
         var refresh = function () {
             storyService.getStories().then(function (stories) {
@@ -13,56 +13,18 @@
         
         refresh();
 
+        // Refresh stories every 10 seconds
+        var refreshInterval = $interval(refresh, 10000);
+        $scope.$on('$destroy', function () {
+            $interval.cancel(refreshInterval);
+        });
+
         vm.addStory = function () {
             storyService.addStory({ title: vm.newStoryTitle }).then(function () {
                 refresh();
             });;
         };
     });
-
-    //var stories = [
-    //    {
-    //        id: 1,
-    //        title: "story 1",
-    //        username: "Lucky Hans",
-    //        isLocked: true,
-    //        cycles: [
-    //            {
-    //                index: 1,
-    //                text: "Hallo Welt",
-    //                username: "User",
-    //                date: "2015-12-03"
-    //            },
-    //            {
-    //                index: 2,
-    //                text: " wie geht es dir heute?",
-    //                username: "User",
-    //                date: "2015-12-03"
-    //            }
-    //        ]
-    //    },
-    //    {
-    //        id: 2,
-    //        title: "story 2",
-    //        username: "Lucky Hans",
-    //        date: "2015-12-03",
-    //        isLocked: true,
-    //        cycles: [
-    //            {
-    //                index: 1,
-    //                text: "Hallo Welt",
-    //                username: "User",
-    //                date: "2015-12-03"
-    //            },
-    //            {
-    //                index: 2,
-    //                text: " wie geht es dir heute?",
-    //                username: "User",
-    //                date: "2015-12-03"
-    //            }
-    //        ]
-    //    } 
-    //];
     
 })();
 
