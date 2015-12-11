@@ -64,7 +64,7 @@ class Authentication {
         res.send(401, 'Unauthorized - please login');
     };
 
-    static isAdmin (req, res, next) {
+    static isAdmin(req, res, next) {
         if (req.isAuthenticated() && req.user.isadmin)
             return next();
         res.send(401, 'Unauthorized - please login as admin');

@@ -26,6 +26,8 @@ var authentication = require('./api/authentication');
 authentication.configure(app, passport);
 var usersApi = require('./api/users');
 app.use('/api', usersApi);
+var contactApi = require('./api/contact');
+app.use('/api/contact', contactApi);
 var storiesApi = require('./api/stories');
 app.use('/api/stories', storiesApi);
 app.get(/^((?!\/api).)*$/, function (req, res) {

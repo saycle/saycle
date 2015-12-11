@@ -32,6 +32,9 @@ authentication.configure(app, passport);
 import usersApi = require('./api/users');
 app.use('/api', usersApi);
 
+import contactApi = require('./api/contact');
+app.use('/api/contact', contactApi);
+
 import storiesApi = require('./api/stories');
 app.use('/api/stories', storiesApi);
 

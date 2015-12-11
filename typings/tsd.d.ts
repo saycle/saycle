@@ -7,3 +7,4 @@
 /// <reference path="pg/pg.d.ts" />
 /// <reference path="q/Q.d.ts" />
 /// <reference path="stylus/stylus.d.ts" />
+/// <reference path="sendgrid/sendgrid.d.ts" />
