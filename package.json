@@ -19,7 +19,7 @@
     "cookie-session": "^2.0.0-alpha.1",
     "express": "^3.21.2",
     "extend": "^3.0.0",
-    "passport": "^0.3.0",
+    "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pg": "^4.4.3",
     "q": "^2.0.3",

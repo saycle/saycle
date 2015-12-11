@@ -1,4 +1,3 @@
-/// <reference path="../Scripts/typings/express/express.d.ts" />
 var express = require('express');
 var context = require('../dal/context');
 var auth = require('./authentication');

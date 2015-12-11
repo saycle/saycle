@@ -31,8 +31,6 @@
         .otherwise({ redirectTo: '/' });;
     });
     
-    var globalToastr = null;
-    app.controller('saycleCtrl', function (loginService, $scope, toastr) {
     app.config(function ($translateProvider) {
         $translateProvider
         .useStaticFilesLoader({
@@ -42,11 +40,15 @@
         .preferredLanguage('en');
     });
 
-    app.controller('saycleCtrl', function (loginService, $scope, $translate) {
+    var globalToastr = null;
+    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
+        vm.changeLanguage = function (key) {
+            $translate.use(key);
+        };
+
         globalToastr = toastr;
-        
         $scope.$on('$routeChangeStart', function (current, next) {
             if (next.$$route) {
                 vm.activetab = next.$$route.activetab;
