@@ -1,17 +1,17 @@
 ﻿<article ng-controller="contactCtrl as vm">
     <h1>Kontakt</h1>
-    <form id="contact-form" role="form" ng-controller="contactCtrl">
-        <div class="form-group">
-            <label for="contact-name">Name</label>
-            <input type="text" class="form-control" id="contact-name">
+    <form id="contactform" role="form" name="contactform" ng-submit="submit(contactform)">
+        <div class="form-group" ng-class="{ 'has-error': vm.contactform.name.$invalid && vm.submitted }">
+            <label for="name" class="control-label">Name</label>
+            <input ng-model="formData.name" id="name" name="name" type="text" class="form-control" required>
         </div>
-        <div class="form-group">
-            <label for="contact-email">E-Mail</label>
-            <input type="email" class="form-control" id="contact-email">
+        <div class="form-group" ng-class="{ 'has-error': vm.contactform.email.$invalid && vm.submitted }">
+            <label for="email" class="control-label">E-Mail</label>
+            <input ng-model="formData.email" id="email" name="email" type="email" class="form-control" required="">
         </div>
-        <div class="form-group">
-            <label for="contact-reason">Grund</label>
-            <select class="form-control" id="contact-reason">
+        <div class="form-group" ng-class="{ 'has-error': vm.contactform.reason.$invalid && vm.submitted }">
+            <label for="reason" class="control-label">Grund</label>
+            <select ng-model="formData.reason" id="reason" name="reason" class="form-control">
                 <option></option>
                 <option>
                     Anfrage
@@ -27,14 +27,15 @@
                 </option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="contact-subject">Betreff</label>
-            <input type="text" class="form-control" id="contact-subject">
+        <div class="form-group" ng-class="{ 'has-error': vm.contactform.subject.$invalid && vm.submitted }">
+            <label for="subject" class="control-label">Betreff</label>
+            <input ng-model="formData.subject" id="subject" name="subject" type="text" class="form-control" required>
         </div>
-        <div class="form-group">
-            <label for="contact-message">Nachricht</label>
-            <textarea type="text" class="form-control" id="contact-message" rows="10"></textarea>
+        <div class="form-group" ng-class="{ 'has-error': contactform.message.$invalid && submitted }">
+            <label for="message" class="control-label">Nachricht</label>
+            <textarea ng-model="formData.message" id="message" name="message" type="text" class="form-control" rows="10"></textarea>
         </div>
-        <button type="submit" class="btn btn-default">Registrieren</button>
+        <button ng-disabled="submitDisabled" type="submit" class="btn btn-default">Abschicken</button>
     </form>
+    <p ng-class="result.class" style="padding: 15px; margin: 0;">{{ vm.result.message }}</p>
 </article>
