@@ -1,4 +1,4 @@
-﻿// Type definitions for Passport v0.2.0
+// Type definitions for Passport v0.2.0
 // Project: http://passportjs.org
 // Definitions by: Horiuchi_H <https://github.com/horiuchi/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -75,7 +75,7 @@ declare module 'passport' {
         provider: string;
         id: string;
         displayName: string;
-        name?: {
+        name? : {
             familyName: string;
             givenName: string;
             middleName?: string;
@@ -89,3 +89,4 @@ declare module 'passport' {
         }[];
     }
 }
+

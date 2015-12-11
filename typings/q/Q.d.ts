@@ -1,4 +1,4 @@
-﻿// Type definitions for Q
+// Type definitions for Q
 // Project: https://github.com/kriskowal/q
 // Definitions by: Barrie Nemetchek <https://github.com/bnemetchek>, Andrew Gaspar <https://github.com/AndrewGaspar/>, John Reilly <https://github.com/johnnyreilly>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -20,7 +20,7 @@ declare module Q {
 
     interface Deferred<T> {
         promise: Promise<T>;
-        resolve(value: T): void;
+        resolve(value?: T): void;
         reject(reason: any): void;
         notify(value: any): void;
         makeNodeResolver(): (reason: any, value: T) => void;
@@ -206,6 +206,11 @@ declare module Q {
      * Returns a promise that is fulfilled with an array containing the fulfillment value of each promise, or is rejected with the same rejection reason as the first promise to be rejected.
      */
     export function all<T>(promises: IPromise<T>[]): Promise<T[]>;
+    
+    /**
+    * Returns a promise for the first of an array of promises to become settled.
+    */
+    export function race<T>(promises: IPromise<T>[]): Promise<T>;
 
     /**
      * Returns a promise that is fulfilled with an array of promise state snapshots, but only after all the original promises have settled, i.e. become either fulfilled or rejected.
@@ -236,7 +241,7 @@ declare module Q {
     /**
      * Returns a promise that will be fulfilled with undefined after at least ms milliseconds have passed.
      */
-    export function delay(ms: number): Promise<void>;
+    export function delay(ms: number): Promise <void>;
     /**
      * Returns whether a given promise is in the fulfilled state. When the static version is used on non-promises, the result is always true.
      */
@@ -265,7 +270,7 @@ declare module Q {
      */
     export function reject<T>(reason?: any): Promise<T>;
 
-    export function Promise<T>(resolver: (resolve: (val: T | IPromise<T>) => void, reject: (reason: any) => void, notify: (progress: any) => void) => void): Promise<T>;
+    export function Promise<T>(resolver: (resolve: (val: T | IPromise<T>) => void , reject: (reason: any) => void , notify: (progress: any) => void ) => void ): Promise<T>;
 
     /**
      * Creates a new version of func that accepts any combination of promise and non-promise values, converting them to their fulfillment values before calling the original func. The returned version also always returns a promise: if func does a return or throw, then Q.promised(func) will return fulfilled or rejected promise, respectively.
@@ -322,7 +327,7 @@ declare module Q {
 	 * This will either be undefined if there was no version or the version of Q which was already loaded before.
 	 * @returns { The last version of Q. }
 	 */
-    export function noConflict(): typeof Q;
+	export function noConflict(): typeof Q;
 }
 
 declare module "q" {
