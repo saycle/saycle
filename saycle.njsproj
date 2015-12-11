@@ -35,6 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Gruntfile.js" />
     <Content Include="public\scripts\contact-service.js" />
     <Content Include="project\documentation\Bedienungsablauf.vsd" />
     <Content Include="project\documentation\WEB1 Projektdokumentation saycle.docx" />
