@@ -18,11 +18,14 @@
         return {
             login: function (loginInfo) {
                 waitinfo.show();
-                return $http.post('/login', loginInfo).then(function () {
+                return $http.post('/login', loginInfo).success(function () {
                     waitinfo.hide();
                     refreshAuthInfo();
                     toastr.success('You are logged in.', 'Success');
-                    test();
+                    hideNavigation();
+                }).error(function(result) {
+                    waitinfo.hide();
+                    toastr.error('Sorry, login failed.', 'Error');
                 });
             },
             getAuthInfo: function () {

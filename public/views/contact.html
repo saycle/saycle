@@ -1,17 +1,17 @@
 ﻿<article ng-controller="contactCtrl as vm">
     <h1>Kontakt</h1>
-    <form id="contactform" role="form" name="contactform" ng-submit="submit(contactform)">
-        <div class="form-group" ng-class="{ 'has-error': vm.contactform.name.$invalid && vm.submitted }">
-            <label for="name" class="control-label">Name</label>
-            <input ng-model="formData.name" id="name" name="name" type="text" class="form-control" required>
+    <form id="contact-form" name="contactform" role="form" ng-submit="contactform.$valid && vm.submit()">
+        <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && contactform.name.$invalid }">
+            <label for="contact-name" class="control-label">Name</label>
+            <input ng-model="vm.formData.name" id="contact-name" name="name" type="text" class="form-control" required>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': vm.contactform.email.$invalid && vm.submitted }">
-            <label for="email" class="control-label">E-Mail</label>
-            <input ng-model="formData.email" id="email" name="email" type="email" class="form-control" required="">
+        <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && contactform.email.$invalid }">
+            <label for="contact-email" class="control-label">E-Mail</label>
+            <input ng-model="vm.formData.email" id="contact-email" name="email" type="email" class="form-control" required="">
         </div>
-        <div class="form-group" ng-class="{ 'has-error': vm.contactform.reason.$invalid && vm.submitted }">
-            <label for="reason" class="control-label">Grund</label>
-            <select ng-model="formData.reason" id="reason" name="reason" class="form-control">
+        <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && contactform.reason.$invalid }">
+            <label for="contact-reason" class="control-label">Grund</label>
+            <select ng-model="vm.formData.reason" id="contact-reason" name="reason" class="form-control">
                 <option></option>
                 <option>
                     Anfrage
@@ -27,15 +27,14 @@
                 </option>
             </select>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': vm.contactform.subject.$invalid && vm.submitted }">
-            <label for="subject" class="control-label">Betreff</label>
-            <input ng-model="formData.subject" id="subject" name="subject" type="text" class="form-control" required>
+        <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && contactform.subject.$invalid }">
+            <label for="contact-subject" class="control-label">Betreff</label>
+            <input ng-model="vm.formData.subject" id="contact-subject" name="subject" type="text" class="form-control" required>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': contactform.message.$invalid && submitted }">
-            <label for="message" class="control-label">Nachricht</label>
-            <textarea ng-model="formData.message" id="message" name="message" type="text" class="form-control" rows="10"></textarea>
+        <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && contactform.message.$invalid }">
+            <label for="contact-message" class="control-label">Nachricht</label>
+            <textarea ng-model="vm.formData.message" id="contact-message" name="message" type="text" class="form-control" rows="10"></textarea>
         </div>
-        <button ng-disabled="submitDisabled" type="submit" class="btn btn-default">Abschicken</button>
+        <button ng-disabled="vm.submitDisabled || contactform.$invalid" type="submit" class="btn btn-default">Abschicken</button>
     </form>
-    <p ng-class="result.class" style="padding: 15px; margin: 0;">{{ vm.result.message }}</p>
 </article>

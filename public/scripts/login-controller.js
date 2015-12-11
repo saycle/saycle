@@ -3,14 +3,16 @@
 
     app.controller('loginCtrl', function (loginService) {
         var vm = this;
-        
-        vm.user = {
-            email: "",
-            password: ""
-        };
-        
+        vm.user = {};
+        vm.submitDisabled = false;
+        vm.submitted = false;
         vm.login = function () {
-            loginService.login(vm.user);
+            vm.submitDisabled = true;
+            vm.submitted = true;
+            loginService.login(vm.formData).then(function() {
+                vm.submitDisabled = false;
+            });
+            vm.submitDisabled = false;
         };
 
         vm.logout = function () {

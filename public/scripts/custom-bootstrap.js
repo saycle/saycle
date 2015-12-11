@@ -17,8 +17,8 @@ $(document).on('click', function (e) {
     if ($(e.target).data("closeaction") || (!$("#navigation").is(e.target)
             && $("#navigation").has(e.target).length === 0
             && $(".in").has(e.target).length === 0
-    )) {
-        $("#navigation").removeClass("in");
+)) {
+        hideNavigation();
     }
 });
 
@@ -28,6 +28,6 @@ function htmlKeypress(e, func) {
     }
 }
 
-function test() {
-    alert("b");
+function hideNavigation() {
+    $("#navigation").removeClass("in");
 }

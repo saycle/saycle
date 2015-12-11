@@ -11,7 +11,7 @@ app.post('/send', function (req, res) {
         res.send(500, 'error - mail not defined');
     else {
         Mails.send({
-            to: 'david@flury.email', from: 'info@saycle.xyz', replyto: form.email, subject: 'Contact Form Saycle',
+            to: 'info@saycle.xyz', from: 'info@saycle.xyz', replyto: form.email, subject: 'Contact Form Saycle',
             text: 'Name: ' + form.name + '\nE-Mail: ' + form.email + '\nReason: ' + form.reason + '\nSubject: ' + form.subject + '\nMessage: ' + form.message
         })
             .then(function () {

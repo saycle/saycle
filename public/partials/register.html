@@ -1,19 +1,21 @@
-﻿<form id="register-form" name="register-form" role="form" id="register-form" ng-controller="registerCtrl as vm">
-    <div class="form-group">
-        <label for="register-username">Benutzername</label>
-        <input ng-model="vm.userToRegister.name" type="text" class="form-control" id="register-username">
-    </div>
-    <div class="form-group">
-        <label for="register-email">E-Mail Adresse</label>
-        <input ng-model="vm.userToRegister.email" type="email" class="form-control" id="register-email">
-    </div>
-    <div class="form-group">
-        <label for="register-password">Passwort</label>
-        <input ng-model="vm.userToRegister.password" type="password" class="form-control" id="register-password">
-    </div>
-    <div class="form-group">
-        <label for="register-passwordConfirm">Passwort bestätigen</label>
-        <input type="password" class="form-control" id="register-passwordConfirm">
-    </div>
-    <button type="submit" class="btn btn-default" ng-click="vm.register()">Registrieren</button>
-</form>
+﻿<div ng-controller="registerCtrl as vm">
+    <form id="register-form" name="registerform" role="form" ng-submit="registerform.$valid && vm.register()">
+        <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && registerform.name.$invalid }">
+            <label for="register-username">Benutzername</label>
+            <input ng-model="vm.formData.name" name="name" type="text" class="form-control" id="register-username" required>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && registerform.email.$invalid }">
+            <label for="register-email">E-Mail Adresse</label>
+            <input ng-model="vm.formData.email" name="email" type="email" class="form-control" id="register-email" required>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && registerform.password.$invalid }">
+            <label for="register-password">Passwort</label>
+            <input ng-model="vm.formData.password" name="password" type="password" class="form-control" id="register-password" required>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': (vm.formSubmitted && registerform.passwordConfirm.$invalid) || !(vm.formData.password == vm.formData.passwordConfirm) }">
+            <label for="register-passwordConfirm">Passwort bestätigen</label>
+            <input ng-model="vm.formData.passwordConfirm" name="passwordConfirm" type="password" class="form-control" id="register-passwordConfirm" required>
+        </div>
+        <button ng-disabled="vm.submitDisabled || registerform.$invalid" type="submit" class="btn btn-default">Registrieren</button>
+    </form>
+</div>
