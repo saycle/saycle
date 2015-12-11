@@ -66,17 +66,17 @@
                 </div>
                 <div class="collapse navbar-collapse no-transition" id="navigation">
                     <ul class="nav navbar-nav">
-                        <li ng-class="{active: vm.activetab == 'home'}"><a href="/">Stories</a></li>
-                        <li ng-class="{active: vm.activetab == 'ranking'}"><a href="/ranking">Ranking</a></li>
-                        <li ng-class="{active: vm.activetab == 'contact'}"><a href="/contact">Kontakt</a></li>
-                        <li ng-class="{active: vm.activetab == 'imprint'}"><a href="/imprint">Impressum</a></li>
+                        <li ng-class="{active: vm.activetab == 'home'}"><a data-closeaction="true" href="/">Stories</a></li>
+                        <li ng-class="{active: vm.activetab == 'ranking'}"><a data-closeaction="true" href="/ranking">Ranking</a></li>
+                        <li ng-class="{active: vm.activetab == 'contact'}"><a data-closeaction="true" href="/contact">Kontakt</a></li>
+                        <li ng-class="{active: vm.activetab == 'imprint'}"><a data-closeaction="true" href="/imprint">Impressum</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-if="vm.authInfo.currentUser != null">
                             <a style="pointer-events: none; cursor: default;">&#9787; Hallo {{vm.authInfo.currentUser.name}}</a>
                         </li>
                         <li ng-if="vm.authInfo.currentUser != null">
-                            <a ng-controller="loginCtrl as vmLogin" ng-click="vmLogin.logout()" type="button" class="btn btn-default">Logout</a>
+                            <a data-closeaction="true" ng-controller="loginCtrl as vmLogin" ng-click="vmLogin.logout()" type="button" class="btn btn-default">Logout</a>
                         </li>
                         <li ng-if="vm.authInfo.currentUser == null">
                             <a href="#" id="register" class="dropdown-toggle dropdown-toggle-custom" onclick="dropdownToggle(this)">
