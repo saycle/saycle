@@ -27,3 +27,7 @@ function htmlKeypress(e, func) {
         $("#easteregg-ctrlb").modal();
     }
 }
+
+function test() {
+    alert("b");
+}

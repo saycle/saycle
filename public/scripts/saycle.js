@@ -1,10 +1,10 @@
 ﻿(function () {
-    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr']);
+    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate']);
     
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
         $httpProvider.interceptors.push('loginInterceptor');
-        
+
         $locationProvider.html5Mode(true);
         
         $routeProvider
@@ -30,9 +30,19 @@
         })
         .otherwise({ redirectTo: '/' });;
     });
-
+    
     var globalToastr = null;
     app.controller('saycleCtrl', function (loginService, $scope, toastr) {
+    app.config(function ($translateProvider) {
+        $translateProvider
+        .useStaticFilesLoader({
+            prefix: '/public/translations/locale-',
+            suffix: '.json'
+        })
+        .preferredLanguage('en');
+    });
+
+    app.controller('saycleCtrl', function (loginService, $scope, $translate) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
         globalToastr = toastr;
@@ -56,7 +66,7 @@
             }
         };
     });
-    
+
     app.service('waitinfo', function (toastr) {
         var showWait = 0;
         var toast = null;
@@ -77,7 +87,7 @@
             }
         };
     });
-    
+
     app.config(function (toastrConfig) {
         angular.extend(toastrConfig, {
             positionClass: 'toast-bottom-right'

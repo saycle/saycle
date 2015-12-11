@@ -26,6 +26,7 @@
             if (!vm.isEditing() && vm.id == data.id)
                 $scope.$apply(function () { vm.contribution = data.text; });
         });
+        
         $scope.$watch('vm.contribution.text', function () {
             if (vm.isEditing()) {
                 console.log('sending draft...');
