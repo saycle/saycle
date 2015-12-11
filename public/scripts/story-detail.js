@@ -3,7 +3,7 @@
     var app = angular.module('saycle');
     
     
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService, socketService, loginService) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, storyService, socketService, loginService, toastr) {
         var vm = this;
         vm.id = $routeParams["id"];
         vm.auth = loginService.getAuthInfo();
@@ -38,7 +38,13 @@
             storyService.lock(vm.story).then(function () {
                 vm.contribution = "";
             }, function (err) {
-                alert('Sorry, another user was faster...');
+                switch(err.status) {
+                    case 401:
+                        break;
+                    case 500:
+                        toastr.warning('Sorry, another user was faster...', 'Locked');
+                        break;
+                }
             });
         }
 

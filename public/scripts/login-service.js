@@ -22,6 +22,7 @@
                     waitinfo.hide();
                     refreshAuthInfo();
                     toastr.success('You are logged in.', 'Success');
+                    test();
                 });
             },
             getAuthInfo: function () {

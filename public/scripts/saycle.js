@@ -31,6 +31,8 @@
         .otherwise({ redirectTo: '/' });;
     });
     
+    var globalToastr = null;
+    app.controller('saycleCtrl', function (loginService, $scope, toastr) {
     app.config(function ($translateProvider) {
         $translateProvider
         .useStaticFilesLoader({
@@ -43,12 +45,10 @@
     app.controller('saycleCtrl', function (loginService, $scope, $translate) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
-        vm.changeLanguage = function (key) {
-            $translate.use(key);
-        };
+        globalToastr = toastr;
+        
         $scope.$on('$routeChangeStart', function (current, next) {
-            if(next.$$route)
-            {
+            if (next.$$route) {
                 vm.activetab = next.$$route.activetab;
             }
         });
@@ -59,8 +59,9 @@
         return {
             // optional method
             'responseError': function (rejection) {
-                if (rejection.status == 401)
-                    alert("Please log in before writing something.")
+                if (rejection.status == 401) {
+                    globalToastr.warning('Please log in before writing something.');
+                }
                 return $q.reject(rejection);
             }
         };
@@ -72,7 +73,7 @@
         var refresh = function () {
             if (showWait <= 0 && toast != null && toast.isOpened)
                 toastr.clear(toast);
-            if(showWait > 0 && (!toast || !toast.isOpened))
+            if (showWait > 0 && (!toast || !toast.isOpened))
                 toast = toastr.info('Please wait...', 'Working', { timeOut: 0, extendedTimeOut: 0, autoDismiss: false });
         };
         return {
