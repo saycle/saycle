@@ -26,7 +26,7 @@ app.get('/getstorybyid', function (req, res) {
     });
 });
 
-app.post('/addstory', auth.isAuthenticated, function(req, res) {
+app.post('/addstory', auth.isAuthenticated, function (req, res) {
     var story = req.body;
     story.username = req.user.name;
     context.Stories.addStory(req.body).then(() => {

@@ -1,13 +1,15 @@
 var Context = require('../dal/context');
-var passportLocal = require('passport-local');
-var authentication = {
-    configure: function (app, passport) {
-        var LocalStrategy = passportLocal.Strategy;
-        passport.use('local-login', new LocalStrategy({
+var PassportLocal = require('passport-local');
+var Authentication = (function () {
+    function Authentication() {
+    }
+    Authentication.configure = function (app, passport) {
+        passport.use('local-login', new PassportLocal.Strategy({
             usernameField: 'email',
             passwordField: 'password'
         }, function (email, password, done) {
-            Context.Users.getUserByMail(email).then(function (user) {
+            Context.Users.getUserByMail(email)
+                .then(function (user) {
                 if (!user) {
                     return done(null, false, { message: 'Incorrect e-mail.' });
                 }
@@ -23,7 +25,8 @@ var authentication = {
             done(null, user.email);
         });
         passport.deserializeUser(function (email, done) {
-            Context.Users.getUserByMail(email).then(function (user) {
+            Context.Users.getUserByMail(email)
+                .then(function (user) {
                 done(null, user);
             }, function (err) {
                 done(err, null);
@@ -41,17 +44,21 @@ var authentication = {
             delete req.session;
             res.end();
         });
-    },
-    isAuthenticated: function (req, res, next) {
+    };
+    ;
+    Authentication.isAuthenticated = function (req, res, next) {
         if (req.isAuthenticated())
             return next();
         res.send(401, 'Unauthorized - please login');
-    },
-    isAdmin: function (req, res, next) {
+    };
+    ;
+    Authentication.isAdmin = function (req, res, next) {
         if (req.isAuthenticated() && req.user.isadmin)
             return next();
         res.send(401, 'Unauthorized - please login as admin');
-    }
-};
-module.exports = authentication;
+    };
+    ;
+    return Authentication;
+})();
+module.exports = Authentication;
 //# sourceMappingURL=authentication.js.map

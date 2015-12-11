@@ -1,27 +1,28 @@
 ﻿import Context = require('../dal/context');
-import passportLocal = require('passport-local');
+import PassportLocal = require('passport-local');
+import Express = require('express');
+import Passport = require('passport');
 
-var authentication = {
-    configure: function (app, passport) {
+class Authentication {
+    static configure(app: Express.Application, passport: Passport.Passport) {
 
-        var LocalStrategy = passportLocal.Strategy;
-
-        passport.use('local-login', new LocalStrategy({
+        passport.use('local-login', new PassportLocal.Strategy({
             usernameField: 'email',
             passwordField: 'password'
         },
-            function (email, password, done) {
-                Context.Users.getUserByMail(email).then(function (user) {
-                    if (!user) {
-                        return done(null, false, { message: 'Incorrect e-mail.' });
-                    }
-                    if (!user.validPassword(password)) {
-                        return done(null, false, { message: 'Incorrect password.' });
-                    }
-                    return done(null, user);
-                }, function (err) {
-                    done(err);
-                });
+            (email, password, done) => {
+                Context.Users.getUserByMail(email)
+                    .then((user) => {
+                        if (!user) {
+                            return done(null, false, { message: 'Incorrect e-mail.' });
+                        }
+                        if (!user.validPassword(password)) {
+                            return done(null, false, { message: 'Incorrect password.' });
+                        }
+                        return done(null, user);
+                    }, (err) => {
+                        done(err);
+                    });
             }
         ));
 
@@ -30,16 +31,17 @@ var authentication = {
         });
 
         passport.deserializeUser(function (email, done) {
-            Context.Users.getUserByMail(email).then(function (user) {
+            Context.Users.getUserByMail(email)
+                .then(user => {
                 done(null, user);
-            }, function (err) {
+            }, err => {
                 done(err, null);
             });
         });
 
         // process the login form
         app.post('/login', passport.authenticate('local-login'),
-            function (req, res) {
+            (req, res) => {
                 // If this function gets called, authentication was successful.
                 // `req.user` contains the authenticated user.
                 res.redirect('/success');
@@ -48,24 +50,26 @@ var authentication = {
          
         // process the logout
         app.get('/logout',
-            function (req, res) {
+            (req, res) => {
                 req.logout();
                 delete req.session;
                 res.end();
             });
 
-    },
+    };
 
-    isAuthenticated: function (req, res, next) {
+    static isAuthenticated (req, res, next) {
         if (req.isAuthenticated())
             return next();
         res.send(401, 'Unauthorized - please login');
-    },
-    isAdmin: function (req, res, next) {
+    };
+
+    static isAdmin (req, res, next) {
         if (req.isAuthenticated() && req.user.isadmin)
             return next();
         res.send(401, 'Unauthorized - please login as admin');
-    }
-};
+    };
+}
 
-export = authentication;
+
+export = Authentication;
