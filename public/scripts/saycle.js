@@ -90,7 +90,7 @@
             if (showWait <= 0 && toast != null && toast.isOpened)
                 toastr.clear(toast);
             if (showWait > 0 && (!toast || !toast.isOpened))
-                toast = toastr.info('Please wait...', 'Working', { timeOut: 0, extendedTimeOut: 0, autoDismiss: false });
+                toast = toastr.info('Please wait...', 'Working', { timeOut: 0, extendedTimeOut: 1, autoDismiss: true });
         };
         return {
             show: function () {

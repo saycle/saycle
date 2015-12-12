@@ -8,10 +8,10 @@
             <div class="panel-body">
                 <span id="story-content" ng-repeat="cycle in vm.story.cycles">
                     <a href="#" class="cycle-item" tooltip-placement="bottom" uib-tooltip="Autor: {{cycle.username}} ({{cycle.date | date: 'dd.MM.yyyy HH:mm'}})">
-                        {{cycle.text}}
+                        <span ng-bind-html-unsafe="cycle.text | breakFilter"></span>
                     </a>
                 </span>
-                <i>{{vm.contribution}}</i>
+                <i><span ng-bind-html-unsafe="vm.contribution | breakFilter"></span></i>
                 <textarea class="form-control" style="margin-top:20px;" ng-show="vm.isEditing()" ng-model="vm.contribution" placeholder="Füge hier deine spannende Erweiterung an."></textarea>
             </div>
             <div class="panel-footer clearfix">

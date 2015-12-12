@@ -21,6 +21,7 @@
 
         vm.addStory = function () {
             storyService.addStory({ title: vm.newStoryTitle }).then(function () {
+                vm.newStoryTitle = "";
                 refresh();
             });;
         };
