@@ -473,7 +473,7 @@ function openLogin() {
 (function () {
     var app = angular.module('saycle');
     
-    app.service('storyService', function ($http, waitinfo, toastr) {
+    app.service('storyService', function ($http, waitinfo, toastr, $translate) {
         
         return {
             getStories: function () {
@@ -489,7 +489,7 @@ function openLogin() {
             addCycle: function (cycle) {
                 waitinfo.show();
                 return $http.post('/api/stories/addcycle', cycle).then(function () {
-                    toastr.success('Cycle has been added', 'Done');
+                    toastr.success( $translate.instant('Toastr.CycleAdded'), $translate.instant('Toastr.Done'));
                     waitinfo.hide();
                 });
             },

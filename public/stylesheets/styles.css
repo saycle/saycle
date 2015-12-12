@@ -36,6 +36,7 @@ textarea.form-control {
     background-color: #FFFFFF;
     height: 50px;
     border: none;
+    z-index: 10;
 }
 
 .navbar-brand {

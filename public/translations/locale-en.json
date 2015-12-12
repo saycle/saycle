@@ -1,13 +1,25 @@
 ﻿{
-    "StoryList": {
+  "StoryList": {
     "AllStories": "View all stories",
     "AddStoryTitle": "Add your own story",
     "AddStoryBody": "Enter your storytitle",
     "AddStoryButton": "Add Story",
-      "IntroductionText": "Saycle is a platform on which diffrent users can write stories together. This is the list with all started stories, on which you can write further. Shurely you can start your own story."
+    "IntroductionText": "Saycle is a platform on which diffrent users can write stories together. This is the list with all started stories, on which you can write further. Shurely you can start your own story.",
+    "CycleCount": "Saycles"
   },
 
-  "story": {
-    "cycleCount": "Saycles"
+  "StoryDetail": {
+    "Author": "Author",
+    "DateOfCreationText": "Date of creation",
+    "ButtonSaveText": "Save",
+    "ButtonEditText": "Edit",
+    "StoryIsLockedText": "The story ist edited by {{isLockedBy}} at the moment"
+  },
+
+  "Toastr": {
+    "Success": "Success",
+    "Error": "Error",
+    "CycleAdded": "Cycle has been added",
+    "Done": "Done"
   }
 }
