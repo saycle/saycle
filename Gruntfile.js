@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             js: {
-                src: 'pubic/scripts/*.js',
+                src: ['public/scripts/*.js'],
                 dest: 'public/dist/js/saycle.js'
             }
         },

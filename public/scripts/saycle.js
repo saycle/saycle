@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate']);
+    var app = angular.module('saycle');
     
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {

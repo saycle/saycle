@@ -10,12 +10,11 @@
             vm.submitted = true;
             if (vm.formData.password == vm.formData.passwordConfirm) {
                 waitinfo.show();
-                $http.post('/api/register', vm.formData).success(function() {
+                $http.post('/api/register', vm.formData).success(function () {
                     waitinfo.hide();
                     toastr.success('Your user has been registered. You can login now.', 'Success');
                     vm.submitted = false;
-                }).error(function (result) 
-                {
+                }).error(function (result) {
                     waitinfo.hide();
                     toastr.error('Registering failed', 'Error');
                 });
@@ -23,4 +22,4 @@
             vm.submitDisabled = false;
         }
     });
-})()
+})();
