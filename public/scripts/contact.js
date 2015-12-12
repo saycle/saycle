@@ -15,9 +15,10 @@
         vm.submit = function () {
             vm.submitted = true;
             vm.submitDisabled = true;
-            contactService.send().success(function () {
+            contactService.send(vm.formData).then(function () {
                 vm.submitDisabled = false;
             });
+            return false;
         }
 
     });
