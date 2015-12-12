@@ -1,26 +1,30 @@
-﻿module.exports = function (grunt) {
-
-	// Project configuration.
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
-		uglify: {
-			options: {
-				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-			},
-			build: {
-				src: 'src/<%= pkg.name %>.js',
-				dest: 'build/<%= pkg.name %>.min.js'
-			}
-		}
-	});
-
-	// Load the plugin that provides the "uglify" task.
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-concat');
-
-	
-
-	// Default task(s).
-	grunt.registerTask('default', ['uglify']);
+﻿/// <binding ProjectOpened='default' />
+module.exports = function (grunt) {
+    
+    // Project configuration.
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        concat: {
+            js: {
+                src: 'pubic/scripts/*.js',
+                dest: 'public/dist/js/saycle.js'
+            }
+        },
+        watch: {
+            scripts: {
+                files: 'public/scripts/**/*.js',
+                tasks: ['concat'],
+                options: {
+                    interrupt: true,
+                },
+            },
+        }
+    });
+    
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    
+    // Default task(s)
+    grunt.registerTask('default', ['concat', 'watch']);
 
 };
