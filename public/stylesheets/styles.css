@@ -28,6 +28,10 @@ h3 {
     float: left;
 }
 
+textarea.form-control {
+    max-width: 100% !important;
+}
+
 .navbar-default {
     background-color: #FFFFFF;
     height: 50px;
