@@ -9,7 +9,7 @@
         vm.login = function () {
             vm.submitDisabled = true;
             vm.submitted = true;
-            loginService.login(vm.formData).success(function() {
+            loginService.login(vm.formData).then(function () {
                 vm.submitDisabled = false;
             }).error(function(result) {
                 console.log("Test");
@@ -23,4 +23,4 @@
         
         return vm;
     });
-})()
+})();
