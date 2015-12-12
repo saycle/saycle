@@ -47,6 +47,9 @@
         vm.changeLanguage = function (key) {
             $translate.use(key);
         };
+        vm.isCurrentLanguage = function (key) {
+            return $translate.use() == key
+        };
 
         globalToastr = toastr;
         $scope.$on('$routeChangeStart', function (current, next) {

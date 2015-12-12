@@ -113,14 +113,23 @@ h3 {
 main {
     max-width: 940px;
     margin: 0 auto;
-    padding-top: 50px;
 }
 
 
 article {
     margin: 5% 0;
 }
-
+.languages {
+    padding-top:15px;
+    margin-left:20px
+}
+    .languages a {
+        cursor:pointer;
+        opacity:0.5;
+    }
+        .languages a.active, .languages a:hover {
+            opacity:1;
+        }
 
 @media (max-width: 1000px) {
     .navbar-header {
@@ -177,6 +186,7 @@ article {
     #addStoryButton {
         margin-top: 10px;
     }
+    
 }
 
 a.cycle-item {
