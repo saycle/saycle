@@ -81,6 +81,15 @@ function htmlKeypress(e, func) {
 function hideNavigation() {
     $("#navigation").removeClass("in");
 }
+
+function openNavigation() {
+    $("#navigation").addClass("in");
+}
+
+function openLogin() {
+    openNavigation();
+    $("#login").parent().addClass("open");
+}
 //This is the js which represents the imprint
 (function () {
     var app = angular.module('saycle');
@@ -104,6 +113,8 @@ function hideNavigation() {
             vm.submitted = true;
             loginService.login(vm.formData).then(function () {
                 vm.submitDisabled = false;
+            }).error(function(result) {
+                console.log("Test");
             });
             vm.submitDisabled = false;
         };
@@ -111,7 +122,7 @@ function hideNavigation() {
         vm.logout = function () {
             loginService.logout();
         };
-
+        
         return vm;
     });
 })();
@@ -189,7 +200,7 @@ function hideNavigation() {
 (function () {
     var app = angular.module('saycle');
 
-    app.controller('registerCtrl', function ($http, loginService, toastr, waitinfo) {
+    app.controller('registerCtrl', function (registerService) {
         var vm = this;
         vm.formData = {};
         vm.submitDisabled = false;
@@ -197,18 +208,33 @@ function hideNavigation() {
         vm.register = function () {
             vm.submitted = true;
             if (vm.formData.password == vm.formData.passwordConfirm) {
+                registerService.register(vm.formData).then(function () {
+                    vm.submitted = false;
+                    vm.formData = {};
+                    hideNavigation();
+                });
+            }
+            vm.submitDisabled = false;
+        }
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+
+    app.service('registerService', function ($http, toastr, waitinfo) {
+
+        return {
+            register: function (registerInfo) {
                 waitinfo.show();
-                $http.post('/api/register', vm.formData).success(function () {
+                return $http.post('/api/register', registerInfo).success(function () {
                     waitinfo.hide();
                     toastr.success('Your user has been registered. You can login now.', 'Success');
-                    vm.submitted = false;
                 }).error(function (result) {
                     waitinfo.hide();
                     toastr.error('Registering failed', 'Error');
                 });
             }
-            vm.submitDisabled = false;
-        }
+        };
     });
 })();
 (function () {
@@ -275,7 +301,21 @@ function hideNavigation() {
             // optional method
             'responseError': function (rejection) {
                 if (rejection.status == 401) {
-                    globalToastr.warning('Please log in before writing something.');
+                    switch(rejection.data) {
+                        case "Unauthorized":
+                            break;
+                        case "LoginFirst":
+                            globalToastr.warning('Please log in before you write something.');
+                            openLogin();
+                            break;
+                        case "LoginAdmin":
+                            globalToastr.warning('Please log in as admin.');
+                            openLogin();
+                            break;
+                        default:
+                            globalToastr.warning('Please log in.');
+                            break;
+                    }
                 }
                 return $q.reject(rejection);
             }

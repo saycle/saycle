@@ -62,7 +62,21 @@
             // optional method
             'responseError': function (rejection) {
                 if (rejection.status == 401) {
-                    globalToastr.warning('Please log in before writing something.');
+                    switch(rejection.data) {
+                        case "Unauthorized":
+                            break;
+                        case "LoginFirst":
+                            globalToastr.warning('Please log in before you write something.');
+                            openLogin();
+                            break;
+                        case "LoginAdmin":
+                            globalToastr.warning('Please log in as admin.');
+                            openLogin();
+                            break;
+                        default:
+                            globalToastr.warning('Please log in.');
+                            break;
+                    }
                 }
                 return $q.reject(rejection);
             }

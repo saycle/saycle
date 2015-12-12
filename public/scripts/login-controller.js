@@ -11,6 +11,8 @@
             vm.submitted = true;
             loginService.login(vm.formData).then(function () {
                 vm.submitDisabled = false;
+            }).error(function(result) {
+                console.log("Test");
             });
             vm.submitDisabled = false;
         };
@@ -18,7 +20,7 @@
         vm.logout = function () {
             loginService.logout();
         };
-
+        
         return vm;
     });
 })();
