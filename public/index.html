@@ -63,8 +63,8 @@
                         <li ng-class="{active: vm.activetab == 'imprint'}"><a data-closeaction="true" href="/imprint">Impressum</a></li>
                     </ul>
                     <div class="languages pull-right">
-                        <a ng-class="{active: vm.isCurrentLanguage('de') }" ng-click="vm.changeLanguage('de')"><img src="http://www.geonames.org/flags/x/de.gif" alt="DE" width="40" /></a>
-                        <a ng-class="{active: vm.isCurrentLanguage('en') }" ng-click="vm.changeLanguage('en')"><img src="http://www.geonames.org/flags/x/gb.gif" alt="EN" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de') }" ng-click="vm.changeLanguage('de')"><img src="http://www.geonames.org/flags/x/de.gif" alt="DE" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('en') }" ng-click="vm.changeLanguage('en')"><img src="http://www.geonames.org/flags/x/gb.gif" alt="EN" width="40" /></a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-if="vm.authInfo.currentUser != null">
