@@ -136,6 +136,10 @@ article {
         }
 
 @media (max-width: 1000px) {
+    .languages {
+        float:none!important;
+    }
+
     .navbar-header {
         float: none;
     }
