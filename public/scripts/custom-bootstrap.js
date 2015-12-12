@@ -31,3 +31,12 @@ function htmlKeypress(e, func) {
 function hideNavigation() {
     $("#navigation").removeClass("in");
 }
+
+function openNavigation() {
+    $("#navigation").addClass("in");
+}
+
+function openLogin() {
+    openNavigation();
+    $("#login").parent().addClass("open");
+}

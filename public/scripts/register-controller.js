@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('saycle');
 
-    app.controller('registerCtrl', function ($http, loginService, toastr, waitinfo) {
+    app.controller('registerCtrl', function (registerService) {
         var vm = this;
         vm.formData = {};
         vm.submitDisabled = false;
@@ -9,15 +9,10 @@
         vm.register = function () {
             vm.submitted = true;
             if (vm.formData.password == vm.formData.passwordConfirm) {
-                waitinfo.show();
-                $http.post('/api/register', vm.formData).success(function() {
-                    waitinfo.hide();
-                    toastr.success('Your user has been registered. You can login now.', 'Success');
+                registerService.register(vm.formData).then(function () {
                     vm.submitted = false;
-                }).error(function (result) 
-                {
-                    waitinfo.hide();
-                    toastr.error('Registering failed', 'Error');
+                    vm.formData = {};
+                    hideNavigation();
                 });
             }
             vm.submitDisabled = false;

@@ -61,13 +61,13 @@ class Authentication {
     static isAuthenticated (req, res, next) {
         if (req.isAuthenticated())
             return next();
-        res.send(401, 'Unauthorized - please login');
+        res.send(401, 'LoginFirst');
     };
 
     static isAdmin(req, res, next) {
         if (req.isAuthenticated() && req.user.isadmin)
             return next();
-        res.send(401, 'Unauthorized - please login as admin');
+        res.send(401, 'LoginAdmin');
     };
 }
 
