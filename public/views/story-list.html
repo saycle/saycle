@@ -1,11 +1,11 @@
 ﻿<article ng-controller="storyListCtrl as vm">
     <div>
         <h1>{{ 'StoryList.AllStories' | translate}}</h1>
-        <p>Saycle ist eine Plattform, auf der verschiedene Benutzer zusammen Geschichten schreiben können. Dies ist die Liste aller begonnenen Geschichten, an denen weitergearbeitet werden kann. Du kannst auch einen neue Geschichte hinzufügen. Viel Spass!</p>
+        <p>{{'StoryList.IntroductionText' | translate}}</p>
     </div><br />
     <div class="list-group">
             <a href="/story-detail/{{story.id}}" class="list-group-item" ng-repeat="story in vm.stories">
-                <h4 class="list-group-item-heading">{{story.title}} <span class="badge">{{story.cyclecount}} cycles</span></h4>
+                <h4 class="list-group-item-heading">{{story.title}} <span class="badge">{{story.cyclecount}} {{'story.cycleCount' | translate}}</span></h4>
                 <p class="list-group-item-text">by {{story.username}}, {{story.date | date: 'dd.MM.yyyy HH:mm'}}</p>
             </a>
             <!--<div class="panel panel-default">
@@ -21,14 +21,13 @@
         </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Add your own story</h3>
+            <h3 class="panel-title">{{'StoryList.AddStoryTitle' | translate}}</h3>
     </div>
         <div class="panel-body">
-            <input placeholder="Enter story title" class="form-control" type="text" ng-model="vm.newStoryTitle" />
+            <input placeholder="{{'StoryList.AddStoryBody' | translate}}" class="form-control" type="text" ng-model="vm.newStoryTitle" />
         </div>
         <div class="panel-footer">
-            <button class="btn btn-primary" ng-click="vm.addStory()" ng-disabled="vm.newStoryTitle == '' || vm.newStoryTitle == null">Add story</button>
+            <button class="btn btn-primary" ng-click="vm.addStory()" ng-disabled="vm.newStoryTitle == '' || vm.newStoryTitle == null">{{'StoryList.AddStoryButton' | translate}}</button>
         </div>
     </div>
-        
 </article>

@@ -1,6 +1,13 @@
 ﻿{
-  "Stories": "Geschichten",
   "StoryList": {
-    "AllStories":  "Alle Geschichten"
+    "AllStories": "Alle Geschichten",
+    "AddStoryTitle": "Füge deine eigene Geschichte hinzu",
+    "AddStoryBody": "Gib hier den Titel der Geschichte ein",
+    "AddStoryButton": "Story hinzufügen",
+    "IntroductionText": "Saycle ist eine Plattform, auf der verschiedene Benutzer zusammen Geschichten schreiben können. Dies ist die Liste aller begonnenen Geschichten, an denen weitergearbeitet werden kann. Du kannst auch einen neue Geschichte hinzufügen. Viel Spass!"
+  },
+
+  "story": {
+    "cycleCount": "Saycles"
   }
 }
