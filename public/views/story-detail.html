@@ -4,10 +4,10 @@
     </div>
     <div ng-if="vm.story != null">
         <div class="panel panel-default">
-            <div class="panel-heading">Autor: {{vm.story.username}}, Erstelldatum: {{vm.story.date | date: 'dd.MM.yyyy HH:mm'}}</div>
+            <div class="panel-heading">{{'StoryDetail.Author' | translate}}: {{vm.story.username}}, {{'StoryDetail.DateOfCreationText' | translate}}: {{vm.story.date | date: 'dd.MM.yyyy HH:mm'}}</div>
             <div class="panel-body">
                 <span id="story-content" ng-repeat="cycle in vm.story.cycles">
-                    <a href="#" class="cycle-item" tooltip-placement="bottom" uib-tooltip="Autor: {{cycle.username}} ({{cycle.date | date: 'dd.MM.yyyy HH:mm'}})">
+                    <a href="#" class="cycle-item" tooltip-placement="bottom" uib-tooltip="{{'StoryDetail.Author' | translate}}: {{cycle.username}} ({{cycle.date | date: 'dd.MM.yyyy HH:mm'}})">
                         {{cycle.text}}
                     </a>
                 </span>
@@ -16,10 +16,10 @@
             </div>
             <div class="panel-footer clearfix">
                 <div class="pull-right">
-                    <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-primary" ng-click="vm.editStory(this)">Edit</button>
-                    <button ng-disabled="vm.contribution.text == ''" ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-primary" ng-click="vm.saveStory(this)">Save</button>
+                    <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-primary" ng-click="vm.editStory(this)">{{'StoryDetail.ButtonEditText' | translate}}</button>
+                    <button ng-disabled="vm.contribution.text == ''" ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-primary" ng-click="vm.saveStory(this)">{{'StoryDetail.ButtonSaveText' | translate}}</button>
                     <p id="inTurnFadingTextG" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">
-                        <span>Die Geschichte wird von {{vm.story.isLockedBy}} bearbeitet</span>
+                        <span>{{'StoryDetail.StoryIsLockedText' | translate: vm.story }}</span>
                         <span id="inTurnFadingTextG_1" class="inTurnFadingTextG">.</span>
                         <span id="inTurnFadingTextG_2" class="inTurnFadingTextG">.</span>
                         <span id="inTurnFadingTextG_3" class="inTurnFadingTextG">.</span>

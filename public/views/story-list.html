@@ -5,11 +5,11 @@
     </div><br />
     <div class="list-group">
             <a href="/story-detail/{{story.id}}" class="list-group-item" ng-repeat="story in vm.stories">
-                <h4 class="list-group-item-heading">{{story.title}} <span class="badge">{{story.cyclecount}} {{'story.cycleCount' | translate}}</span></h4>
+                <h4 class="list-group-item-heading">{{story.title}} <span class="badge">{{story.cyclecount}} {{'StoryList.CycleCount' | translate}}</span></h4>
                 <p class="list-group-item-text">by {{story.username}}, {{story.date | date: 'dd.MM.yyyy HH:mm'}}</p>
             </a>
             <!--<div class="panel panel-default">
-            <div class="panel-heading">{{story.title}} <span class="badge">{{story.cyclecount}}</span></div>
+            <div class="panel-heading">{{story.title}} <span class="badge">{{StoryList.Cyclecount}}</span></div>
                 <div class="panel-body"><!--{{story.cycles[0].text}}...<br />...{{story.cycles[vm.story.cycles.length - 1].text}}--</div>
             <div class="panel-footer clearfix">
                 <div class="pull-right">
