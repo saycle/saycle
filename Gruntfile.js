@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        concat: {
+        concat_sourcemap: {
             js: {
                 src: ['public/scripts/*.js'],
                 dest: 'public/dist/js/saycle.js'
@@ -13,7 +13,7 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: 'public/scripts/**/*.js',
-                tasks: ['concat'],
+                tasks: ['concat_sourcemap'],
                 options: {
                     interrupt: true,
                 },
@@ -21,10 +21,11 @@ module.exports = function (grunt) {
         }
     });
     
-    grunt.loadNpmTasks('grunt-contrib-concat');
+    //grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-concat-sourcemap');
     grunt.loadNpmTasks('grunt-contrib-watch');
     
     // Default task(s)
-    grunt.registerTask('default', ['concat', 'watch']);
+    grunt.registerTask('default', ['concat_sourcemap', 'watch']);
 
 };
