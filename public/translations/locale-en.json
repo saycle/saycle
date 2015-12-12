@@ -1,6 +1,13 @@
 ﻿{
-  "Stories": "Stories",
-  "StoryList": {
-    "AllStories":  "View all stories"
+    "StoryList": {
+    "AllStories": "View all stories",
+    "AddStoryTitle": "Add your own story",
+    "AddStoryBody": "Enter your storytitle",
+    "AddStoryButton": "Add Story",
+      "IntroductionText": "Saycle is a platform on which diffrent users can write stories together. This is the list with all started stories, on which you can write further. Shurely you can start your own story."
+  },
+
+  "story": {
+    "cycleCount": "Saycles"
   }
 }
