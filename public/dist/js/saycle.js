@@ -426,11 +426,11 @@ function openLogin() {
 
     });
 
-    //app.filter('breakFilter', function ($sce) {
-    //    return function (text) {
-    //        return $sce.trustAsHtml(text.replace(/\n/g, "<br>"));
-    //    };
-    //});
+    app.filter('breakFilter', function () {
+        return function (text) {
+            return text.replace(/\n/g, "<br>");
+        };
+    });
 
 
 })();

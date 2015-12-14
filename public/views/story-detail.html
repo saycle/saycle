@@ -8,10 +8,10 @@
             <div class="panel-body">
                 <span id="story-content" ng-repeat="cycle in vm.story.cycles">
                     <a href="#" class="cycle-item" tooltip-placement="bottom" uib-tooltip="{{'StoryDetail.Author' | translate}}: {{cycle.username}} ({{cycle.date | date: 'dd.MM.yyyy HH:mm'}})">
-                        <span btf-markdown="cycle.text"></span>
+                        <span ng-bind-html="cycle.text | breakFilter"></span>
                     </a>
                 </span>
-                <i><span btf-markdown="vm.contribution"></span></i>
+                <i><span ng-bind-html="vm.contribution | breakFilter"></span></i>
                 <textarea class="form-control msd-elastic" style="margin-top:20px;" ng-show="vm.isEditing()" ng-model="vm.contribution" placeholder="Füge hier deine spannende Erweiterung an."></textarea>
             </div>
             <div class="panel-footer clearfix">
@@ -21,7 +21,7 @@
                     <p id="inTurnFadingTextG" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">
                         <span>{{'StoryDetail.StoryIsLockedText' | translate: vm.story }}</span>
                         <span id="inTurnFadingTextG_1" class="inTurnFadingTextG">.</span>
-                        <span id="inTurnFadingTextG_2" class="inTurnFadingTextG">.</span>
+                        <span id="inTurnFadingTextG_2" class="inTurnFadingTextG">.</span> 
                         <span id="inTurnFadingTextG_3" class="inTurnFadingTextG">.</span>
                     </p>
                 </div>
