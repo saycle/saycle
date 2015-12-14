@@ -36,6 +36,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Gruntfile.js" />
+    <Content Include="project\concept\Mockups PNG\comment form.png" />
+    <Content Include="project\concept\Mockups PNG\contact form.png" />
+    <Content Include="project\concept\Mockups PNG\impress form.png" />
+    <Content Include="project\concept\Mockups PNG\login Form.png" />
+    <Content Include="project\concept\Mockups PNG\main form.png" />
+    <Content Include="project\concept\Mockups PNG\ranking form.png" />
+    <Content Include="project\concept\Mockups PNG\register Form.png" />
+    <Content Include="project\concept\Mockups PNG\saycle form.png" />
+    <Content Include="project\concept\Mockups PNG\start Form.png" />
+    <Content Include="project\documentation\Pictures\Mobile view\Contact.PNG" />
+    <Content Include="project\documentation\Pictures\Mobile view\Impress.PNG" />
+    <Content Include="project\documentation\Pictures\Mobile view\Main.PNG" />
+    <Content Include="project\documentation\Pictures\Mobile view\Menu.PNG" />
+    <Content Include="project\documentation\Pictures\Mobile view\Ranking.PNG" />
     <Content Include="public\scripts\_saycle-app.js" />
     <Content Include="public\scripts\register-service.js" />
     <Content Include="public\scripts\contact-service.js" />
@@ -142,6 +156,9 @@
     <Folder Include="models\" />
     <Folder Include="api\" />
     <Folder Include="mails\" />
+    <Folder Include="project\concept\Mockups PNG\" />
+    <Folder Include="project\documentation\Pictures\" />
+    <Folder Include="project\documentation\Pictures\Mobile view\" />
     <Folder Include="project\translation\" />
     <Folder Include="public\images\favicon\" />
     <Folder Include="public\translations\" />

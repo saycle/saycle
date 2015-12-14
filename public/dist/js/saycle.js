@@ -499,7 +499,7 @@ function openLogin() {
             addStory: function (story) {
                 waitinfo.show();
                 return $http.post('/api/stories/addstory', story).then(function () {
-                    toastr.success('Your story has been added.', 'Done');
+                    toastr.success($translate.instant('Toastr.StoryAdded'), $translate.instant('Toastr.Done'));
                     waitinfo.hide();
                 });
             },

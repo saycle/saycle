@@ -20,6 +20,7 @@
     "Success": "Success",
     "Error": "Error",
     "CycleAdded": "Cycle has been added",
-    "Done": "Done"
+    "Done": "Done",
+    "StoryAdded": "Your story has been added."
   }
 }
