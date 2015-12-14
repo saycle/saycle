@@ -27,7 +27,7 @@
                 $scope.$apply(function () { vm.contribution = data.text; });
         });
 
-        $scope.$watch('vm.contribution.text', function () {
+        $scope.$watch('vm.contribution', function () {
             if (vm.isEditing()) {
                 socketService.emit('draftChanged', { id: vm.id, text: vm.contribution });
             }
@@ -62,11 +62,11 @@
 
     });
 
-    app.filter('breakFilter', function ($sce) {
-        return function (text) {
-            return $sce.trustAsHtml(text.replace(/\n/g, "<br>"));
-        };
-    });
+    //app.filter('breakFilter', function ($sce) {
+    //    return function (text) {
+    //        return $sce.trustAsHtml(text.replace(/\n/g, "<br>"));
+    //    };
+    //});
 
 
 })();

@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate', 'monospaced.elastic' ]);
+    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate', 'monospaced.elastic', 'btford.markdown' ]);
 })();
 (function () {
     var app = angular.module('saycle');
@@ -136,7 +136,6 @@ function openLogin() {
         
         var refreshAuthInfo = function () {
             $http.get('/api/getcurrentuser').then(function (result) {
-                console.log("Refreshing auth info...");
                 authInfo.currentUser = result.data === "" ? null : result.data;
             });
         };
@@ -151,7 +150,7 @@ function openLogin() {
                     refreshAuthInfo();
                     toastr.success('You are logged in.', 'Success');
                     hideNavigation();
-                }).error(function(result) {
+                }, function(result) {
                     waitinfo.hide();
                     toastr.error('Sorry, login failed.', 'Error');
                 });
@@ -392,7 +391,7 @@ function openLogin() {
                 $scope.$apply(function () { vm.contribution = data.text; });
         });
 
-        $scope.$watch('vm.contribution.text', function () {
+        $scope.$watch('vm.contribution', function () {
             if (vm.isEditing()) {
                 socketService.emit('draftChanged', { id: vm.id, text: vm.contribution });
             }
@@ -427,11 +426,11 @@ function openLogin() {
 
     });
 
-    app.filter('breakFilter', function ($sce) {
-        return function (text) {
-            return $sce.trustAsHtml(text.replace(/\n/g, "<br>"));
-        };
-    });
+    //app.filter('breakFilter', function ($sce) {
+    //    return function (text) {
+    //        return $sce.trustAsHtml(text.replace(/\n/g, "<br>"));
+    //    };
+    //});
 
 
 })();
