@@ -143,6 +143,9 @@
     <Folder Include="models\" />
     <Folder Include="api\" />
     <Folder Include="mails\" />
+    <Folder Include="project\concept\Mockups PNG\" />
+    <Folder Include="project\documentation\Pictures\" />
+    <Folder Include="project\documentation\Pictures\Mobile view\" />
     <Folder Include="project\translation\" />
     <Folder Include="public\images\favicon\" />
     <Folder Include="public\translations\" />
