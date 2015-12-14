@@ -4,30 +4,23 @@
         <p>{{'StoryList.IntroductionText' | translate}}</p>
     </div><br />
     <div class="list-group">
-            <a href="/story-detail/{{story.id}}" class="list-group-item" ng-repeat="story in vm.stories">
-                <h4 class="list-group-item-heading">{{story.title}} <span class="badge">{{story.cyclecount}} {{'StoryList.CycleCount' | translate}}</span></h4>
-                <p class="list-group-item-text">by {{story.username}}, {{story.date | date: 'dd.MM.yyyy HH:mm'}}</p>
-            </a>
-            <!--<div class="panel panel-default">
-            <div class="panel-heading">{{story.title}} <span class="badge">{{StoryList.Cyclecount}}</span></div>
-                <div class="panel-body"><!--{{story.cycles[0].text}}...<br />...{{story.cycles[vm.story.cycles.length - 1].text}}--</div>
-            <div class="panel-footer clearfix">
-                <div class="pull-right">
-                    <a href="#" class="btn btn-primary" ng-show="vm.story.islocked">saycle!</a>
-                    <a href="/story-detail/{{story.id}}" class="btn btn-default">full story</a>
-                </div>
-            </div>
-            </div>-->
-        </div>
+        <a href="/story-detail/{{story.id}}" class="list-group-item" ng-repeat="story in vm.stories">
+            <h4 class="list-group-item-heading">{{story.title}} <span class="badge">{{story.cyclecount}} {{'StoryList.CycleCount' | translate}}</span></h4>
+            <p class="list-group-item-text">by {{story.username}}, {{story.date | date: 'dd.MM.yyyy HH:mm'}}</p>
+        </a>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{'StoryList.AddStoryTitle' | translate}}</h3>
-    </div>
+        </div>
         <div class="panel-body">
             <input placeholder="{{'StoryList.AddStoryBody' | translate}}" class="form-control" type="text" ng-model="vm.newStoryTitle" />
         </div>
         <div class="panel-footer">
-            <button class="btn btn-primary" ng-click="vm.addStory()" ng-disabled="vm.newStoryTitle == '' || vm.newStoryTitle == null">{{'StoryList.AddStoryButton' | translate}}</button>
+            <button class="btn btn-primary" ng-click="vm.addStory(false)" ng-disabled="vm.newStoryTitle == '' || vm.newStoryTitle == null">{{'StoryList.AddStoryButton' | translate}}</button>
+            <div class="checkbox">
+                <label><input type="checkbox" ng-model="vm.showStoryOptions" name="showStoryOptions">{{'StoryList.ShowStoryOptions' | translate}}</label>
+            </div>
         </div>
     </div>
 </article>
