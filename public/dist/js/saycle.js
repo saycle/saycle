@@ -526,6 +526,9 @@ function openLogin() {
                 return $http.post('/api/stories/addstory', story).then(function () {
                     toastr.success($translate.instant('Toastr.StoryAdded'), $translate.instant('Toastr.Done'));
                     waitinfo.hide();
+                }, function () {
+                    toastr.error($translate.instant('Toastr.StoryAddFailed'), $translate.instant('Toastr.Error'));
+                    waitinfo.hide();
                 });
             },
             lock: function (story) {
