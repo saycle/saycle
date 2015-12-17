@@ -16,7 +16,9 @@
     "ButtonSaveText": "Speichern",
     "ButtonEditText": "Bearbeiten",
     "StoryIsLockedText": "Die Story wird momentan von {{isLockedBy}} bearbeitet",
-    "StoryDeactivated": "Die Geschichte ist deaktiviert."
+    "StoryDeactivated": "Die Geschichte ist deaktiviert.",
+    "BackToStoryList": "Übersicht",
+    "CancelEdit": "Abbrechen"
   },
 
   "Toastr": {
