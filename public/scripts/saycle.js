@@ -42,7 +42,7 @@
 
     var globalToastr = null;
     var globalTranslate = null;
-    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr) {
+    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, timeAgo) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
         vm.changeLanguage = function (key) {
@@ -59,6 +59,10 @@
                 vm.activetab = next.$$route.activetab;
             }
         });
+
+        // After 24 hours, display the date normally.
+        var oneDay = 60 * 60 * 24;
+        timeAgo.settings.fullDateAfterSeconds = oneDay;
     });
 
     // register the interceptor as a service
@@ -114,5 +118,6 @@
             positionClass: 'toast-bottom-right'
         });
     });
+
 
 })();
