@@ -2,6 +2,9 @@
 
 class User {
     constructor(userObj: any) {
+        if (userObj == null)
+            return;
+
         this.name = userObj.name;
         this.password = userObj.password;
         this.verified = userObj.verified;

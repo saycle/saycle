@@ -23,7 +23,9 @@ class UserController {
 
     static getUserByMail(email: string): Q.Promise<User> {
         return RunQuery.runQuery("SELECT * FROM users WHERE email = $1", [email]).then(function (user) {
-            return new User(user.rows[0]);
+            if(user.rows.length > 0)
+                return new User(user.rows[0]);
+            return null;
         });
     };
 
