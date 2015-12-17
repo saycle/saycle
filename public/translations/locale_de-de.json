@@ -28,7 +28,7 @@
     "Done": "Ok",
     "StoryAdded": "Deine Story wurde hinzugefügt.",
     "LoginError": {
-      "LoginFirst":  "Melde dich an um etwas beizutragen",
+      "LoginFirst":  "Melde dich an, um etwas beizutragen",
       "LoginDefault": "Melde dich als Administrator an",      
       "Login":  "Bitte melde dich an"
     },

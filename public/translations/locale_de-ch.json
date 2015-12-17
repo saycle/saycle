@@ -1,10 +1,10 @@
 ﻿{
   "StoryList": {
     "AllStories": "Ali Gschichte",
-    "AddStoryTitle": "Füg e eigeni Gschichte dezue",
+    "AddStoryTitle": "Füeg e eigeni Gschichte dezue",
     "AddStoryBody": "Gib de Titel vode Gschicht i",
     "AddStoryButton": "Gschicht hinzuefüege",
-    "IntroductionText": "Saycle isch e Plattform uf dere verschiedene Benutzer zäme e Gschicht chönd schribe. Das isch e Liste vo allne begonnene Gschichte a dene witergschribe werde chöned. Du chasch au e neui Gschicht hinzuefüege. Viel Spass!",
+    "IntroductionText": "Saycle isch e Plattform wo verschiedene Benutzer zäme e Gschicht chönd schribe. Das isch e Liste vo allne agfangene Gschichte, a dene cha witergschribe werde. Du chasch au e neui Gschicht hinzuefüege. Viel Spass!",
      "CycleCount": "Saycles",
     "ShowStoryOptions": "Optionä azeige"
 
@@ -28,13 +28,13 @@
     "Done": "Okei",
     "StoryAdded": "Dinie Gschicht isch hinzuegfüegt worde",
     "LoginError": {
-      "LoginFirst":  "Meld dich a um öpis bizträge",
+      "LoginFirst":  "Meld dich bitte a zum Öpis biträge",
       "LoginDefault": "Meld di als Admin a du Horst",      
       "Login":  "Bitte meld dich a"
     },
     "StoryError": {
       "StoryLockedTitle": "Gsperrt",
-      "StoryLockedText": "Tschuldigung en Andere isch schneller gsi..."
+      "StoryLockedText": "Exgüsi, en Andere isch schneller gsi..."
     },
     "Sent": "Gsendet",
     "SentError": "Sende fehlgschlage"
