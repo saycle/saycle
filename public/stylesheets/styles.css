@@ -48,10 +48,10 @@ textarea.form-control {
 }
 
 .navbar a.btn {
-    margin: 0 15px 20px 15px;
-    border-top-right-radius: 0px;
+    /*margin: 0 15px 20px 15px;*/
+    /*border-top-right-radius: 0px;
     border-top-left-radius: 0px;
-    border-top: none;
+    border-top: none;*/
 }
 
 .glyphicon {
@@ -189,14 +189,20 @@ article {
     }
 
     .navbar a.btn {
-        margin: 10px 15px 20px 15px;
+        /*margin: 10px 15px 20px 15px;
         border-top: solid 1px rgb(204, 204, 204);
         border-top-right-radius: 4px;
-        border-top-left-radius: 4px;
+        border-top-left-radius: 4px;*/
     }
 
     #addStoryButton {
         margin-top: 10px;
+    }
+
+
+    .btn-facebook {
+        float: right;
+        margin-top: 0 !important;
     }
 }
 
@@ -475,4 +481,12 @@ a.cycle-item {
     100% {
         color: rgb(255,255,255);
     }
+}
+
+.btn-facebook {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: rgba(0,0,0,0.2);
+    margin-top: 8px;
+    font-size: inherit !important;
 }

@@ -3,6 +3,9 @@
 
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
         $httpProvider.interceptors.push('loginInterceptor');
 
         $locationProvider.html5Mode(true);
@@ -30,8 +33,6 @@
         })
         .otherwise({ redirectTo: '/' });;
     });
-
-
 
     app.config(function ($translateProvider) {
 

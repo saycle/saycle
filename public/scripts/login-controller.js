@@ -9,10 +9,8 @@
         vm.login = function () {
             vm.submitDisabled = true;
             vm.submitted = true;
-            loginService.login(vm.formData).then(function () {
+            loginService.login(vm.formData).then(function() {
                 vm.submitDisabled = false;
-            }).error(function(result) {
-                console.log("Test");
             });
             vm.submitDisabled = false;
         };

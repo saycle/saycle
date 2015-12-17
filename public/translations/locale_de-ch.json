@@ -56,7 +56,8 @@
   "Login": {
     "Email": "E-Mail Adrässe",
     "Password": "Passwort",
-    "Login": "Amelde"
+    "Login": "Amelde",
+    "LoginFacebook": "Mit Facebook ilogge"
   },
 
   "Register": {

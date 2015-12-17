@@ -56,7 +56,8 @@
   "Login": {
     "Email": "E-Mail Adresse",
     "Password": "Password",
-    "Login": "Anmelden"
+    "Login": "Anmelden",
+    "LoginFacebook": "Mit Facebook anmelden"
   },
 
   "Register": {

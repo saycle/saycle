@@ -112,10 +112,8 @@ function openLogin() {
         vm.login = function () {
             vm.submitDisabled = true;
             vm.submitted = true;
-            loginService.login(vm.formData).then(function () {
+            loginService.login(vm.formData).then(function() {
                 vm.submitDisabled = false;
-            }).error(function(result) {
-                console.log("Test");
             });
             vm.submitDisabled = false;
         };
@@ -242,6 +240,9 @@ function openLogin() {
 
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
         $httpProvider.interceptors.push('loginInterceptor');
 
         $locationProvider.html5Mode(true);
@@ -269,8 +270,6 @@ function openLogin() {
         })
         .otherwise({ redirectTo: '/' });;
     });
-
-
 
     app.config(function ($translateProvider) {
 
