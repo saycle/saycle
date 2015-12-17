@@ -34,8 +34,8 @@ class Authentication {
         passport.use(new FacebookStrategy.Strategy({
 
             // pull in our app id and secret from our auth.js file
-            clientID: '936486686439960',
-            clientSecret: 'a9385b21b072c868f4e3851251277f9d',
+            clientID: process.env.FACEBOOK_APP_ID,
+            clientSecret: process.env.FACEBOOK_APP_SECRET,
             callbackURL: '/loginfacebook/callback'
 
         },
