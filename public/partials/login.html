@@ -1,15 +1,16 @@
 ﻿<div ng-controller="loginCtrl as vm">
     <form id="login-form" name="loginform" role="form" ng-submit="loginform.$valid && vm.login()">
         <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && loginform.email.$invalid }">
-            <label for="login-email">E-Mail Adresse</label>
+            <label for="login-email">{{'Login.Email' | translate}}</label>
             <input ng-model="vm.formData.email" name="email" type="email" class="form-control" id="login-email">
         </div>
         <div class="form-group" ng-class="{ 'has-error': vm.formSubmitted && loginform.password.$invalid }">
-            <label for="login-password">Passwort</label>
-            <input ng-model="vm.formData.password" name="password" type="password" class="form-control" id="login-password" required></div>
+            <label for="login-password">{{'Login.Password' | translate}}</label>
+            <input ng-model="vm.formData.password" name="password" type="password" class="form-control" id="login-password" required>
+        </div>
         <!--<div class="checkbox">
             <label><input type="checkbox">Eingeloggt bleiben</label>
         </div>-->
-        <button ng-disabled="vm.submitDisabled || loginform.$invalid" type="submit" class="btn btn-default">Anmelden</button>
+        <button ng-disabled="vm.submitDisabled || loginform.$invalid" type="submit" class="btn btn-default">{{'Login.Login' | translate}}</button>
     </form>
 </div>

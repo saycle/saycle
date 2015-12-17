@@ -51,15 +51,16 @@
             return vm.auth.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.auth.currentUser.name;
         };
 
-        vm.saveStory = function (e) {
-            storyService.addCycle({
-                story: vm.id,
-                index: vm.story.cycles.length,
-                text: vm.contribution
-            });
-            vm.contribution = "";
-        };
-
+        vm.saveStory = function(e) {
+            if (story.active) {
+                storyService.addCycle({
+                    story: vm.id,
+                    index: vm.story.cycles.length,
+                    text: vm.contribution
+                });
+                vm.contribution = "";
+            };
+        }
     });
 
     app.filter('breakFilter', function ($sce) {

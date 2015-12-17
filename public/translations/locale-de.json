@@ -1,26 +1,70 @@
 ﻿{
-    "StoryList": {
-    "AllStories": "Alle Geschichten",
-    "AddStoryTitle": "Füge deine eigene Geschichte hinzu",
-    "AddStoryBody": "Gib hier den Titel der Geschichte ein",
-    "AddStoryButton": "Story hinzufügen",
+  "StoryList": {
+    "AllStories": "Ali Gschichte",
+    "AddStoryTitle": "Füg e eigeni Gschichte dezue",
+    "AddStoryBody": "Gib de Titel vode Gschicht i",
+    "AddStoryButton": "Gschicht hinzuefüege",
     "IntroductionText": "Saycle ist eine Plattform, auf der verschiedene Benutzer zusammen Geschichten schreiben können. Dies ist die Liste aller begonnenen Geschichten, an denen weitergearbeitet werden kann. Du kannst auch einen neue Geschichte hinzufügen. Viel Spass!",
-    "CycleCount": "Saycles"
-    },
+    "CycleCount": "Saycles",
+    "ShowStoryOptions": "Optionen anzeigen"
+
+  },
 
   "StoryDetail": {
     "Author": "Autor",
     "DateOfCreationText": "Erstelldatum",
     "ButtonSaveText": "Speichern",
     "ButtonEditText": "Bearbeiten",
-    "StoryIsLockedText": "Die Story wird momentan von {{isLockedBy}} bearbeitet"
+    "StoryIsLockedText": "Die Story wird momentan von {{isLockedBy}} bearbeitet",
+    "StoryDeactivated": "Die Geschichte ist deaktiviert."
   },
 
-    "Toastr": {
+  "Toastr": {
     "Success": "Erfolgreich",
-      "Error": "Fehler",
-      "CycleAdded": "Cycle wurde hinzugefügt",
-      "Done": "Ok",
-      "StoryAdded": "Deine Story wurde hinzugefügt."
+    "Error": "Fehler",
+    "CycleAdded": "Cycle wurde hinzugefügt",
+    "Done": "Ok",
+    "StoryAdded": "Deine Story wurde hinzugefügt."
+  },
+
+  "Navigation": {
+    "Stories": "Geschichten",
+    "Ranking": "Rangliste",
+    "Contact": "Kontakt",
+    "Imprint": "Impressum",
+    "Logout": "Abmelden",
+    "Register": "Registrieren",
+    "Login": "Anmelden",
+    "Swiss": "Schweizerdeutsch",
+    "German": "Deutsch",
+    "English": "Englisch"
+  },
+
+  "Login": {
+    "Email": "E-Mail Adresse",
+    "Password": "Password",
+    "Login": "Anmelden"
+  },
+
+  "Register": {
+    "Username": "Benutzername",
+    "Email": "E-Mail Adresse",
+    "Password": "Passwort",
+    "PasswordConfirm": "Passwort bestätigen",
+    "Register": "Anmelden"
+  },
+
+  "Contact": {
+    "Title": "Kontakt",
+    "Name": "Name",
+    "Email": "E-Mail Adresse",
+    "Reason": "Grund",
+    "Subject": "Betreff",
+    "Message": "Nachricht",
+    "Send": "Abschicken"
+  },
+
+  "Imprint": {
+    "Title": "Impressum"
   }
 }

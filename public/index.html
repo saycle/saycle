@@ -57,26 +57,27 @@
                 </div>
                 <div class="collapse navbar-collapse no-transition" id="navigation">
                     <ul class="nav navbar-nav">
-                        <li ng-class="{active: vm.activetab == 'home'}"><a data-closeaction="true" href="/">{{'Stories' | translate}}</a></li>
-                        <li ng-class="{active: vm.activetab == 'ranking'}"><a data-closeaction="true" href="/ranking">Ranking</a></li>
-                        <li ng-class="{active: vm.activetab == 'contact'}"><a data-closeaction="true" href="/contact">Kontakt</a></li>
-                        <li ng-class="{active: vm.activetab == 'imprint'}"><a data-closeaction="true" href="/imprint">Impressum</a></li>
+                        <li ng-class="{active: vm.activetab == 'home'}"><a data-closeaction="true" href="/">{{'Navigation.Stories' | translate}}</a></li>
+                        <li ng-class="{active: vm.activetab == 'ranking'}"><a data-closeaction="true" href="/ranking">{{'Navigation.Ranking' | translate}}</a></li>
+                        <li ng-class="{active: vm.activetab == 'contact'}"><a data-closeaction="true" href="/contact">{{'Navigation.Contact' | translate}}</a></li>
+                        <li ng-class="{active: vm.activetab == 'imprint'}"><a data-closeaction="true" href="/imprint">{{'Navigation.Imprint' | translate}}</a></li>
                     </ul>
                     <div class="languages pull-right">
-                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de') }" ng-click="vm.changeLanguage('de')"><img src="http://www.geonames.org/flags/x/de.gif" alt="DE" width="40" /></a>
-                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('en') }" ng-click="vm.changeLanguage('en')"><img src="http://www.geonames.org/flags/x/gb.gif" alt="EN" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('ch') }" ng-click="vm.changeLanguage('ch')"><img src="/public/images/languages/ch.svg" alt="DE" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de') }" ng-click="vm.changeLanguage('de')"><img src="/public/images/languages/de.svg" alt="DE" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('en') }" ng-click="vm.changeLanguage('en')"><img src="/public/images/languages/en.svg" alt="EN" width="40" /></a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-if="vm.authInfo.currentUser != null">
                             <a style="pointer-events: none; cursor: default;">&#9787; Hallo {{vm.authInfo.currentUser.name}}</a>
                         </li>
                         <li ng-if="vm.authInfo.currentUser != null">
-                            <a data-closeaction="true" ng-controller="loginCtrl as vmLogin" ng-click="vmLogin.logout()" type="button" class="btn btn-default">Logout</a>
+                            <a data-closeaction="true" ng-controller="loginCtrl as vmLogin" ng-click="vmLogin.logout()" type="button" class="btn btn-default">{{'Navigation.Logout' | translate}}</a>
                         </li>
                         <li ng-if="vm.authInfo.currentUser == null">
                             <a href="#" id="register" class="dropdown-toggle dropdown-toggle-custom" onclick="dropdownToggle(this)">
                                 <span class="glyphicon glyphicon-user"></span>
-                                Registrieren
+                                {{'Navigation.Register' | translate}}
                             </a>
                             <div id="register-dropdown" class="dropdown-menu dropdown-menu-custom" ng-include="'/public/partials/register.html'">
                             </div>
@@ -84,7 +85,7 @@
                         <li ng-if="vm.authInfo.currentUser == null">
                             <a href="#" id="login" class="dropdown-toggle dropdown-toggle-custom" onclick="dropdownToggle(this)">
                                 <span class="glyphicon glyphicon-log-in"></span>
-                                Anmelden
+                                {{'Navigation.Login' | translate}}
                             </a>
                             <div id="login-dropdown" class="dropdown-menu dropdown-menu-custom" ng-include="'/public/partials/login.html'">
                             </div>

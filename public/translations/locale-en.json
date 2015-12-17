@@ -2,10 +2,11 @@
   "StoryList": {
     "AllStories": "View all stories",
     "AddStoryTitle": "Add your own story",
-    "AddStoryBody": "Enter your storytitle",
-    "AddStoryButton": "Add Story",
+    "AddStoryBody": "Enter your title",
+    "AddStoryButton": "Add story",
     "IntroductionText": "Saycle is a platform on which diffrent users can write stories together. This is the list with all started stories, on which you can write further. Shurely you can start your own story.",
-    "CycleCount": "Saycles"
+    "CycleCount": "Saycles",
+    "ShowStoryOptions": "Show options"
   },
 
   "StoryDetail": {
@@ -13,7 +14,8 @@
     "DateOfCreationText": "Date of creation",
     "ButtonSaveText": "Save",
     "ButtonEditText": "Edit",
-    "StoryIsLockedText": "The story ist edited by {{isLockedBy}} at the moment"
+    "StoryIsLockedText": "The story is being edited by {{isLockedBy}}",
+    "StoryDeactivated": "The story is deactivated."
   },
 
   "Toastr": {
@@ -22,5 +24,47 @@
     "CycleAdded": "Cycle has been added",
     "Done": "Done",
     "StoryAdded": "Your story has been added."
+  },
+
+  "Navigation": {
+    "Stories": "Stories",
+    "Ranking": "Ranking",
+    "Contact": "Contact",
+    "Imprint": "Imprint",
+    "Logout": "Logout",
+    "Register": "Register",
+    "Login": "Login",
+    "Swiss": "Swiss",
+    "German": "German",
+    "English": "English"
+  },
+
+  "Login": {
+    "Email": "E-Mail Address",
+    "Password": "Password",
+    "Login": "Login"
+  },
+
+  "Register": {
+    "Username": "Username",
+    "Email": "E-Mail Address",
+    "Password": "Password",
+    "PasswordConfirm": "Confirm password",
+    "Register": "Register"
+  },
+
+  "Contact": {
+    "Title": "Contact",
+    "Name": "Name",
+    "Email": "E-Mail Address",
+    "Reason": "Reason",
+    "Subject": "Subject",
+    "Message": "Message",
+    "Send": "Send"
+  },
+
+  "Imprint": {
+    "Title": "Imprint"
   }
+
 }

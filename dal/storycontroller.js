@@ -4,14 +4,14 @@ var StoryController = (function () {
     function StoryController() {
     }
     StoryController.getStories = function () {
-        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = id) AS cyclecount, id, title, username, date FROM stories", []).then(function (result) {
+        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = id) AS cyclecount, id, title, username, date FROM stories ORDER BY date ASC", []).then(function (result) {
             return result.rows;
         });
     };
     ;
     StoryController.getStoryById = function (id) {
         var _this = this;
-        return RunQuery.runQuery("SELECT * FROM stories WHERE id = $1", [id]).then(function (result) {
+        return RunQuery.runQuery("SELECT id, title, username, date, active, password FROM stories WHERE id = $1", [id]).then(function (result) {
             return _this.getCycles(id).then(function (cycles) {
                 var story = result.rows[0];
                 story.cycles = cycles;
@@ -26,7 +26,7 @@ var StoryController = (function () {
     };
     ;
     StoryController.getCycles = function (storyId) {
-        return RunQuery.runQuery("SELECT * FROM cycles WHERE story = $1", [storyId]).then(function (result) {
+        return RunQuery.runQuery("SELECT story, index, text, username, date FROM cycles WHERE story = $1 ORDER BY index ASC", [storyId]).then(function (result) {
             return result.rows;
         });
     };

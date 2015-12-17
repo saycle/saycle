@@ -7,13 +7,13 @@ import Q = require('q');
 class StoryController {
 
     static getStories(): Q.Promise<Story[]> {
-        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = id) AS cyclecount, id, title, username, date FROM stories", []).then((result) => {
+        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = id) AS cyclecount, id, title, username, date FROM stories ORDER BY date ASC", []).then((result) => {
             return result.rows;
         });
     };
 
     static getStoryById(id: string): Q.Promise<Story> {
-        return RunQuery.runQuery("SELECT * FROM stories WHERE id = $1", [id]).then((result) => {
+        return RunQuery.runQuery("SELECT id, title, username, date, active, password FROM stories WHERE id = $1", [id]).then((result) => {
             return this.getCycles(id).then((cycles) => {
                 var story: Story = result.rows[0];
                 story.cycles = cycles;
@@ -29,7 +29,7 @@ class StoryController {
     };
 
     static getCycles(storyId: string): Q.Promise<Cycle[]> {
-        return RunQuery.runQuery("SELECT * FROM cycles WHERE story = $1", [storyId]).then((result) => {
+        return RunQuery.runQuery("SELECT story, index, text, username, date FROM cycles WHERE story = $1 ORDER BY index ASC", [storyId]).then((result) => {
             return result.rows;
         });
     };
