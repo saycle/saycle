@@ -17,6 +17,11 @@
             </div>
             <div class="panel-footer clearfix">
                 <div class="pull-right">
+                    <div id="social-share">
+                        <div class="md-12">
+                            <div data-href="{{vm.currentUrl}}" data-layout="button" class="btn facebook fb-share-button" ></div>
+                        </div>
+                    </div>
                     <div ng-if="vm.story.active == true">
                         <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-primary" ng-click="vm.editStory(this)">{{'StoryDetail.ButtonEditText' | translate}}</button>
                         <button ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-default" ng-click="vm.cancelEdit()">{{'StoryDetail.CancelEdit' | translate}}</button>

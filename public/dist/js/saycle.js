@@ -382,8 +382,9 @@ function openLogin() {
     var app = angular.module('saycle');
 
 
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, storyService, socketService, loginService, toastr) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, $location, storyService, socketService, loginService, toastr) {
         var vm = this;
+        vm.currentUrl = $location.absUrl();
         vm.id = $routeParams["id"];
         vm.auth = loginService.getAuthInfo();
         vm.story = null;

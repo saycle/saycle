@@ -79,5 +79,11 @@
 
   "Imprint": {
     "Title": "Impressum"
+  },
+
+  "SocialShare": {
+    "Facebook": {
+      "Story": "Teile d Gschicht uf Gsichtsbuech"
+    }
   }
 }
