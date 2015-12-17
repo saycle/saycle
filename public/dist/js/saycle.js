@@ -270,13 +270,21 @@ function openLogin() {
         .otherwise({ redirectTo: '/' });;
     });
 
+
+
     app.config(function ($translateProvider) {
+
+        var defaultLanguage = 'en-gb';
+        if (window.location.href.indexOf('?lang') != -1) {
+            defaultLanguage = (new RegExp('lang=([^&]+)')).exec(window.location.href)[1];
+        }
+
         $translateProvider
         .useStaticFilesLoader({
             prefix: '/public/translations/locale_',
             suffix: '.json'
         })
-        .preferredLanguage('en-gb');
+        .preferredLanguage(defaultLanguage);
     });
 
     var globalToastr = null;

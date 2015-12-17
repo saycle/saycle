@@ -16,7 +16,9 @@
     "ButtonSaveText": "Speichere",
     "ButtonEditText": "Bearbeite",
     "StoryIsLockedText": "D Gschicht wird momentan vom {{isLockedBy}} bearbeitet",
-    "StoryDeactivated": "D Gschicht isch deaktiviert."
+    "StoryDeactivated": "D Gschicht isch deaktiviert.",
+    "BackToStoryList": "Übersicht",
+    "CancelEdit": "Abbreche"
   },
 
   "Toastr": {
