@@ -66,9 +66,9 @@
                         <li ng-class="{active: vm.activetab == 'imprint'}"><a data-closeaction="true" href="/imprint">{{'Navigation.Imprint' | translate}}</a></li>
                     </ul>
                     <div class="languages pull-right">
-                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de-ch') }" ng-click="vm.changeLanguage('de-ch')"><img src="/public/images/languages/ch.svg" alt="DE" width="40" /></a>
-                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de-de') }" ng-click="vm.changeLanguage('de-de')"><img src="/public/images/languages/de.svg" alt="DE" width="40" /></a>
-                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('en-gb') }" ng-click="vm.changeLanguage('en-gb')"><img src="/public/images/languages/en.svg" alt="EN" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de-ch') }" ng-click="vm.changeLanguage('de-ch')"><img src="/public/images/languages/de-ch.png" alt="{{'Navigation.Swiss' | translate}}" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de-de') }" ng-click="vm.changeLanguage('de-de')"><img src="/public/images/languages/de-de.png" alt="{{'Navigation.German' | translate}}" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('en-gb') }" ng-click="vm.changeLanguage('en-gb')"><img src="/public/images/languages/en-gb.png" alt="{{'Navigation.English' | translate}}" width="40" /></a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-if="vm.authInfo.currentUser != null">
