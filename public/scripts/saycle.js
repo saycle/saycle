@@ -50,11 +50,12 @@
 
     var globalToastr = null;
     var globalTranslate = null;
-    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, timeAgo) {
+    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, amMoment) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
         vm.changeLanguage = function (key) {
             $translate.use(key);
+            amMoment.changeLocale(key.split(['-'][0]));
         };
         vm.isCurrentLanguage = function (key) {
             return $translate.use() == key
@@ -68,9 +69,7 @@
             }
         });
 
-        // After 24 hours, display the date normally.
-        var oneDay = 60 * 60 * 24;
-        timeAgo.settings.fullDateAfterSeconds = oneDay;
+        amMoment.changeLocale($translate.proposedLanguage());
     });
 
     // register the interceptor as a service
