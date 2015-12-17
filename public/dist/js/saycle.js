@@ -277,8 +277,6 @@ function openLogin() {
         var defaultLanguage = 'en-gb';
         if (window.location.href.indexOf('?lang') != -1) {
             defaultLanguage = (new RegExp('lang=([^&]+)')).exec(window.location.href)[1];
-            console.log("hier bin ich");
-            console.log(defaultLanguage);
         }
 
         $translateProvider
