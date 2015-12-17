@@ -1,9 +1,12 @@
 var Context = require('../dal/context');
 var PassportLocal = require('passport-local');
+var FacebookStrategy = require('passport-facebook');
+var User = require('../models/user');
 var Authentication = (function () {
     function Authentication() {
     }
     Authentication.configure = function (app, passport) {
+        // Local Authentication
         passport.use('local-login', new PassportLocal.Strategy({
             usernameField: 'email',
             passwordField: 'password'
@@ -21,6 +24,34 @@ var Authentication = (function () {
                 done(err);
             });
         }));
+        // Facebook Authentication
+        passport.use(new FacebookStrategy.Strategy({
+            // pull in our app id and secret from our auth.js file
+            clientID: '936486686439960',
+            clientSecret: 'a9385b21b072c868f4e3851251277f9d',
+            callbackURL: '/loginfacebook/callback'
+        }, 
+        // facebook will send back the token and profile
+        // facebook will send back the token and profile
+        function (token, refreshToken, profile, done) {
+            // asynchronous
+            process.nextTick(function () {
+                // find the user in the database based on their facebook id
+                Context.Users.getUserByMail(profile.id).then(function (user) {
+                    if (user)
+                        return done(null, user);
+                    else {
+                        // if there is no user found with that facebook id, create it
+                        var user = new User({});
+                        user.email = profile.id;
+                        user.name = profile.displayName;
+                        Context.Users.addUser(user).then(function () { return done(null, user); }, function (err) { throw err; });
+                    }
+                }, function (err) {
+                    return done(err);
+                });
+            });
+        }));
         passport.serializeUser(function (user, done) {
             done(null, user.email);
         });
@@ -32,12 +63,19 @@ var Authentication = (function () {
                 done(err, null);
             });
         });
-        // process the login form
+        // process the local login form
         app.post('/login', passport.authenticate('local-login'), function (req, res) {
             // If this function gets called, authentication was successful.
             // `req.user` contains the authenticated user.
             res.redirect('/success');
         });
+        // process the facebook 
+        app.get('/loginfacebook', passport.authenticate('facebook', { scope: 'email' }));
+        // handle the callback after facebook has authenticated the user
+        app.get('/loginfacebook/callback', passport.authenticate('facebook', {
+            successRedirect: '/',
+            failureRedirect: '/'
+        }));
         // process the logout
         app.get('/logout', function (req, res) {
             req.logout();

@@ -8,3 +8,4 @@
 /// <reference path="q/Q.d.ts" />
 /// <reference path="stylus/stylus.d.ts" />
 /// <reference path="sendgrid/sendgrid.d.ts" />
+/// <reference path="passport-facebook/passport-facebook.d.ts" />

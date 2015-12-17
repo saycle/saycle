@@ -1,6 +1,8 @@
 var bcrypt = require('bcrypt-node');
 var User = (function () {
     function User(userObj) {
+        if (userObj == null)
+            return;
         this.name = userObj.name;
         this.password = userObj.password;
         this.verified = userObj.verified;
