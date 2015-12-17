@@ -437,7 +437,7 @@ function openLogin() {
         };
 
         vm.saveStory = function(e) {
-            if (story.active) {
+            if (vm.story.active) {
                 storyService.addCycle({
                     story: vm.id,
                     index: vm.story.cycles.length,
