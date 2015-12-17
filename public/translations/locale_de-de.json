@@ -1,9 +1,9 @@
 ﻿{
   "StoryList": {
-    "AllStories": "Ali Gschichte",
-    "AddStoryTitle": "Füg e eigeni Gschichte dezue",
-    "AddStoryBody": "Gib de Titel vode Gschicht i",
-    "AddStoryButton": "Gschicht hinzuefüege",
+    "AllStories": "Alle Geschichten",
+    "AddStoryTitle": "Füge deine eigene Geschichte hinzu",
+    "AddStoryBody": "Gib hier den Titel der Geschichte ein",
+    "AddStoryButton": "Geschichte hinzufügen",
     "IntroductionText": "Saycle ist eine Plattform, auf der verschiedene Benutzer zusammen Geschichten schreiben können. Dies ist die Liste aller begonnenen Geschichten, an denen weitergearbeitet werden kann. Du kannst auch einen neue Geschichte hinzufügen. Viel Spass!",
     "CycleCount": "Saycles",
     "ShowStoryOptions": "Optionen anzeigen"
@@ -16,7 +16,9 @@
     "ButtonSaveText": "Speichern",
     "ButtonEditText": "Bearbeiten",
     "StoryIsLockedText": "Die Story wird momentan von {{isLockedBy}} bearbeitet",
-    "StoryDeactivated": "Die Geschichte ist deaktiviert."
+    "StoryDeactivated": "Die Geschichte ist deaktiviert.",
+    "BackToStoryList": "Übersicht",
+    "CancelEdit": "Abbrechen"
   },
 
   "Toastr": {
@@ -24,7 +26,18 @@
     "Error": "Fehler",
     "CycleAdded": "Cycle wurde hinzugefügt",
     "Done": "Ok",
-    "StoryAdded": "Deine Story wurde hinzugefügt."
+    "StoryAdded": "Deine Story wurde hinzugefügt.",
+    "LoginError": {
+      "LoginFirst":  "Melde dich an um etwas beizutragen",
+      "LoginDefault": "Melde dich als Administrator an",      
+      "Login":  "Bitte melde dich an"
+    },
+    "StoryError": {
+      "StoryLockedTitle":  "Gesperrt",
+      "StoryLockedText":  "Sorry, ein anderer Benutzer war schneller..."
+    },
+    "Sent": "Gesendet",
+    "SentError": "Senden fehlgeschlagen"
   },
 
   "Navigation": {

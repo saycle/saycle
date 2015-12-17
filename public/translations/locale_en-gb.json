@@ -15,7 +15,9 @@
     "ButtonSaveText": "Save",
     "ButtonEditText": "Edit",
     "StoryIsLockedText": "The story is being edited by {{isLockedBy}}",
-    "StoryDeactivated": "The story is deactivated."
+    "StoryDeactivated": "The story is deactivated.",
+    "BackToStoryList": "Overview",
+    "CancelEdit": "Cancel"
   },
 
   "Toastr": {
@@ -23,7 +25,18 @@
     "Error": "Error",
     "CycleAdded": "Cycle has been added",
     "Done": "Done",
-    "StoryAdded": "Your story has been added."
+    "StoryAdded": "Your story has been added.",
+    "LoginError": {
+      "LoginFirst":  "Please login to contribute something",
+      "LoginDefault": "Please login as administrator",      
+      "Login":  "Please login"
+    },
+    "StoryError": {
+      "StoryLockedTitle":  "Locked",
+      "StoryLockedText":  "Sorry, another user was faster..."
+    },
+    "Sent": "Sent",
+    "SentError": "Sending failed"
   },
 
   "Navigation": {

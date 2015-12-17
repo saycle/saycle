@@ -55,6 +55,11 @@ app.post('/lock', auth.isAuthenticated, function (req, res) {
         res.send(200, 'soryLockedSuccess');
     }
 });
+app.post('/canceledit', auth.isAuthenticated, function (req, res) {
+    delete lockedStories[req.body.id];
+    res.send(200, 'cancelled edit');
+    socket.getIO().sockets.emit('refreshStory', { id: req.body.id });
+});
 setTimeout(function () {
     socket.getIO().sockets.on('connection', function (client) {
         client.on('draftChanged', function (draft) {

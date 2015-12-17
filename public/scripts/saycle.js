@@ -1,46 +1,47 @@
 ﻿(function () {
     var app = angular.module('saycle');
-    
+
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
         $httpProvider.interceptors.push('loginInterceptor');
 
         $locationProvider.html5Mode(true);
-        
+
         $routeProvider
             .when('/', {
-            templateUrl: '/public/views/story-list.html',
-            activetab: 'home'
-        })
+                templateUrl: '/public/views/story-list.html',
+                activetab: 'home'
+            })
         .when('/ranking', {
-            templateUrl : '/public/views/ranking.html',
+            templateUrl: '/public/views/ranking.html',
             activetab: 'ranking'
         })
         .when('/contact', {
-            templateUrl : '/public/views/contact.html',
+            templateUrl: '/public/views/contact.html',
             activetab: 'contact'
         })
         .when('/imprint', {
-            templateUrl : '/public/views/imprint.html',
+            templateUrl: '/public/views/imprint.html',
             activetab: 'imprint'
         })
         .when('/story-detail/:id', {
-            templateUrl : '/public/views/story-detail.html',
+            templateUrl: '/public/views/story-detail.html',
             activetab: 'home'
         })
         .otherwise({ redirectTo: '/' });;
     });
-    
+
     app.config(function ($translateProvider) {
         $translateProvider
         .useStaticFilesLoader({
-            prefix: '/public/translations/locale-',
+            prefix: '/public/translations/locale_',
             suffix: '.json'
         })
-        .preferredLanguage('en');
+        .preferredLanguage('en-gb');
     });
 
     var globalToastr = null;
+    var globalTranslate = null;
     app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
@@ -52,32 +53,33 @@
         };
 
         globalToastr = toastr;
+        globalTranslate = $translate;
         $scope.$on('$routeChangeStart', function (current, next) {
             if (next.$$route) {
                 vm.activetab = next.$$route.activetab;
             }
         });
     });
-    
+
     // register the interceptor as a service
     app.factory('loginInterceptor', function ($q) {
         return {
             // optional method
             'responseError': function (rejection) {
                 if (rejection.status == 401) {
-                    switch(rejection.data) {
+                    switch (rejection.data) {
                         case "Unauthorized":
                             break;
                         case "LoginFirst":
-                            globalToastr.warning('Please log in before you write something.');
+                            globalToastr.warning(globalTranslate.instant('Toastr.LoginError.LoginFirst'));
                             openLogin();
                             break;
                         case "LoginAdmin":
-                            globalToastr.warning('Please log in as admin.');
+                            globalToastr.warning(globalTranslate.instant('Toastr.LoginError.LoginDefault'));
                             openLogin();
                             break;
                         default:
-                            globalToastr.warning('Please log in.');
+                            globalToastr.warning(globalTranslate.instant('Toastr.LoginError.Login'));
                             break;
                     }
                 }

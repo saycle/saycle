@@ -4,17 +4,18 @@
 (function () {
     var app = angular.module('saycle');
 
-    app.service('contactService', function ($http, waitinfo, toastr) {
+    app.service('contactService', function ($http, $translate, waitinfo, toastr) {
 
         return {
             send: function (formData) {
                 waitinfo.show();
                 return $http.post('/api/contact/send', formData).then(function (result) {
                     waitinfo.hide();
-                    toastr.success('Form sent', 'Success');
+                    toastr.success($translate.instant('Toastr.Sent'), $translate.instant('Toastr.Success'));
+                    
                     return result.data;
                 }, function () {
-                    toastr.error('Sending failed', 'Error');
+                    toastr.error($translate.instant('Toastr.SentError'), $translate.instant('Toastr.Error'));
                 });
             }
         };
@@ -238,47 +239,48 @@ function openLogin() {
 })();
 (function () {
     var app = angular.module('saycle');
-    
+
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
         $httpProvider.interceptors.push('loginInterceptor');
 
         $locationProvider.html5Mode(true);
-        
+
         $routeProvider
             .when('/', {
-            templateUrl: '/public/views/story-list.html',
-            activetab: 'home'
-        })
+                templateUrl: '/public/views/story-list.html',
+                activetab: 'home'
+            })
         .when('/ranking', {
-            templateUrl : '/public/views/ranking.html',
+            templateUrl: '/public/views/ranking.html',
             activetab: 'ranking'
         })
         .when('/contact', {
-            templateUrl : '/public/views/contact.html',
+            templateUrl: '/public/views/contact.html',
             activetab: 'contact'
         })
         .when('/imprint', {
-            templateUrl : '/public/views/imprint.html',
+            templateUrl: '/public/views/imprint.html',
             activetab: 'imprint'
         })
         .when('/story-detail/:id', {
-            templateUrl : '/public/views/story-detail.html',
+            templateUrl: '/public/views/story-detail.html',
             activetab: 'home'
         })
         .otherwise({ redirectTo: '/' });;
     });
-    
+
     app.config(function ($translateProvider) {
         $translateProvider
         .useStaticFilesLoader({
-            prefix: '/public/translations/locale-',
+            prefix: '/public/translations/locale_',
             suffix: '.json'
         })
-        .preferredLanguage('en');
+        .preferredLanguage('en-gb');
     });
 
     var globalToastr = null;
+    var globalTranslate = null;
     app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
@@ -290,32 +292,33 @@ function openLogin() {
         };
 
         globalToastr = toastr;
+        globalTranslate = $translate;
         $scope.$on('$routeChangeStart', function (current, next) {
             if (next.$$route) {
                 vm.activetab = next.$$route.activetab;
             }
         });
     });
-    
+
     // register the interceptor as a service
     app.factory('loginInterceptor', function ($q) {
         return {
             // optional method
             'responseError': function (rejection) {
                 if (rejection.status == 401) {
-                    switch(rejection.data) {
+                    switch (rejection.data) {
                         case "Unauthorized":
                             break;
                         case "LoginFirst":
-                            globalToastr.warning('Please log in before you write something.');
+                            globalToastr.warning(globalTranslate.instant('Toastr.LoginError.LoginFirst'));
                             openLogin();
                             break;
                         case "LoginAdmin":
-                            globalToastr.warning('Please log in as admin.');
+                            globalToastr.warning(globalTranslate.instant('Toastr.LoginError.LoginDefault'));
                             openLogin();
                             break;
                         default:
-                            globalToastr.warning('Please log in.');
+                            globalToastr.warning(globalTranslate.instant('Toastr.LoginError.Login'));
                             break;
                     }
                 }
@@ -367,7 +370,7 @@ function openLogin() {
     var app = angular.module('saycle');
 
 
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, storyService, socketService, loginService, toastr) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, storyService, socketService, loginService, toastr) {
         var vm = this;
         vm.id = $routeParams["id"];
         vm.auth = loginService.getAuthInfo();
@@ -405,11 +408,16 @@ function openLogin() {
                     case 401:
                         break;
                     case 500:
-                        toastr.warning('Sorry, another user was faster...', 'Locked');
+                        toastr.warning($translate.instant('Toastr.StoryError.StoryLockedText'), $translate.instant('Toastr.StoryError.StoryLockedTitle'));
                         break;
                 }
             });
-        }
+        };
+
+        vm.cancelEdit = function () {
+            storyService.cancelEdit(vm.story);
+            vm.contribution = "";
+        };
 
         vm.isEditing = function () {
             return vm.auth.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.auth.currentUser.name;
@@ -510,6 +518,9 @@ function openLogin() {
             },
             lock: function (story) {
                 return $http.post('/api/stories/lock', story);
+            },
+            cancelEdit: function (story) {
+                return $http.post('/api/stories/canceledit', story);
             }
         };
 
