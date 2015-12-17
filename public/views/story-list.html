@@ -6,7 +6,7 @@
     <div class="list-group">
         <a href="/story-detail/{{story.id}}" class="list-group-item" ng-repeat="story in vm.stories">
             <h4 class="list-group-item-heading">{{story.title}} <span class="badge">{{story.cyclecount}} {{'StoryList.CycleCount' | translate}}</span></h4>
-            <p class="list-group-item-text">by {{story.username}}, {{story.date | date: 'dd.MM.yyyy HH:mm'}}</p>
+            <p class="list-group-item-text">by {{story.username}}, <span am-time-ago="story.date"></span></p>
         </a>
     </div>
     <div class="panel panel-default">

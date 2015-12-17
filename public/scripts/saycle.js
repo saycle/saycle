@@ -50,11 +50,12 @@
 
     var globalToastr = null;
     var globalTranslate = null;
-    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr) {
+    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, amMoment) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
         vm.changeLanguage = function (key) {
             $translate.use(key);
+            amMoment.changeLocale(key.split(['-'][0]));
         };
         vm.isCurrentLanguage = function (key) {
             return $translate.use() == key
@@ -67,6 +68,8 @@
                 vm.activetab = next.$$route.activetab;
             }
         });
+
+        amMoment.changeLocale($translate.proposedLanguage());
     });
 
     // register the interceptor as a service
@@ -122,5 +125,6 @@
             positionClass: 'toast-bottom-right'
         });
     });
+
 
 })();

@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate', 'monospaced.elastic', 'btford.markdown' ]);
+    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate', 'monospaced.elastic', 'btford.markdown', 'angularMoment']);
 })();
 (function () {
     var app = angular.module('saycle');
@@ -289,11 +289,12 @@ function openLogin() {
 
     var globalToastr = null;
     var globalTranslate = null;
-    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr) {
+    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, amMoment) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
         vm.changeLanguage = function (key) {
             $translate.use(key);
+            amMoment.changeLocale(key.split(['-'][0]));
         };
         vm.isCurrentLanguage = function (key) {
             return $translate.use() == key
@@ -306,6 +307,8 @@ function openLogin() {
                 vm.activetab = next.$$route.activetab;
             }
         });
+
+        amMoment.changeLocale($translate.proposedLanguage());
     });
 
     // register the interceptor as a service
@@ -361,6 +364,7 @@ function openLogin() {
             positionClass: 'toast-bottom-right'
         });
     });
+
 
 })();
 (function () {
@@ -432,7 +436,7 @@ function openLogin() {
         };
 
         vm.saveStory = function(e) {
-            if (story.active) {
+            if (vm.story.active) {
                 storyService.addCycle({
                     story: vm.id,
                     index: vm.story.cycles.length,
