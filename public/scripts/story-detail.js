@@ -3,7 +3,7 @@
     var app = angular.module('saycle');
 
 
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, storyService, socketService, loginService, toastr) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, storyService, socketService, loginService, toastr) {
         var vm = this;
         vm.id = $routeParams["id"];
         vm.auth = loginService.getAuthInfo();
@@ -41,7 +41,7 @@
                     case 401:
                         break;
                     case 500:
-                        toastr.warning('Sorry, another user was faster...', 'Locked');
+                        toastr.warning($translate.instant('Toastr.StoryError.StoryLockedText'), $translate.instant('Toastr.StoryError.StoryLockedTitle'));
                         break;
                 }
             });

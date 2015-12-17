@@ -1,0 +1,81 @@
+﻿{
+  "StoryList": {
+    "AllStories": "Ali Gschichte",
+    "AddStoryTitle": "Füg e eigeni Gschichte dezue",
+    "AddStoryBody": "Gib de Titel vode Gschicht i",
+    "AddStoryButton": "Gschicht hinzuefüege",
+    "IntroductionText": "Saycle isch e Plattform uf dere verschiedene Benutzer zäme e Gschicht chönd schribe. Das isch e Liste vo allne begonnene Gschichte a dene witergschribe werde chöned. Du chasch au e neui Gschicht hinzuefüege. Viel Spass!",
+     "CycleCount": "Saycles",
+    "ShowStoryOptions": "Optionä azeige"
+
+  },
+
+  "StoryDetail": {
+    "Author": "Autor",
+    "DateOfCreationText": "Erstelligsdatum",
+    "ButtonSaveText": "Speichere",
+    "ButtonEditText": "Bearbeite",
+    "StoryIsLockedText": "D Gschicht wird momentan vom {{isLockedBy}} bearbeitet",
+    "StoryDeactivated": "D Gschicht isch deaktiviert."
+  },
+
+  "Toastr": {
+    "Success": "Erfolgrich",
+    "Error": "Fehler",
+    "CycleAdded": "Saycle isch hinzuegfüegt worde",
+    "Done": "Okei",
+    "StoryAdded": "Dinie Gschicht isch hinzuegfüegt worde",
+    "LoginError": {
+      "LoginFirst":  "Meld dich a um öpis bizträge",
+      "LoginDefault": "Meld di als Admin a du Horst",      
+      "Login":  "Bitte meld dich a"
+    },
+    "StoryError": {
+      "StoryLockedTitle": "Gsperrt",
+      "StoryLockedText": "Tschuldigung en Andere isch schneller gsi..."
+    },
+    "Sent": "Gsendet",
+    "SentError": "Sende fehlgschlage"
+  },
+
+  "Navigation": {
+    "Stories": "Gschichte",
+    "Ranking": "Ranglischte",
+    "Contact": "Kontakt",
+    "Imprint": "Impressum",
+    "Logout": "Abmelde",
+    "Register": "Registriere",
+    "Login": "Amelde",      
+    "Swiss": "Schwizerdütsch", 
+    "German": "Dütsch",    
+    "English": "Änglisch"
+  },
+
+  "Login": {
+    "Email": "E-Mail Adrässe",
+    "Password": "Passwort",
+    "Login": "Amelde"
+  },
+
+  "Register": {
+    "Username": "Benutzername",
+    "Email": "E-Mail Adrässe",
+    "Password": "Passwort",
+    "PasswordConfirm": "Passwort bestätige",
+    "Register": "Amelde"
+  },
+
+  "Contact": {
+    "Title": "Kontakt",
+    "Name": "Namä",
+    "Email": "E-Mail Adrässe",
+    "Reason": "Grund",
+    "Subject": "Beträff",
+    "Message": "Nochricht",
+    "Send": "Abschicke"
+  },
+
+  "Imprint": {
+    "Title": "Impressum"
+  }
+}
