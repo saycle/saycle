@@ -80,7 +80,7 @@
     <Content Include="public\scripts\socket-service.js" />
     <Content Include="public\scripts\story-service.js" />
     <Content Include="public\scripts\ranking.js" />
-    <Content Include="public\translations\locale-ch.json" />
+    <Content Include="public\translations\locale_de-ch.json" />
     <Content Include="tsd.json" />
     <TypeScriptCompile Include="api\authentication.ts" />
     <TypeScriptCompile Include="api\contact.ts" />
@@ -119,8 +119,8 @@
     <Content Include="public\scripts\register-controller.js" />
     <Content Include="public\scripts\login-service.js" />
     <Content Include="public\stylesheets\styles.css" />
-    <Content Include="public\translations\locale-de.json" />
-    <Content Include="public\translations\locale-en.json" />
+    <Content Include="public\translations\locale_de-de.json" />
+    <Content Include="public\translations\locale_en-gb.json" />
     <Content Include="public\views\ranking.html" />
     <Content Include="public\views\contact.html" />
     <Content Include="public\views\imprint.html" />

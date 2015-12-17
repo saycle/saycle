@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" onkeypress="htmlKeypress(event)">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="57x57" href="/public/images/favicon/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/public/images/favicon/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/public/images/favicon/apple-touch-icon-72x72.png">
@@ -41,7 +41,7 @@
     <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="/bower_components/angular-translate/angular-translate.min.js"></script>
     <script src="/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-    <title>Saycle</title>
+    <title>saycle</title>
 </head>
 <body ng-app="saycle" ng-controller="saycleCtrl as vm">
     <base href="/">
@@ -66,9 +66,9 @@
                         <li ng-class="{active: vm.activetab == 'imprint'}"><a data-closeaction="true" href="/imprint">{{'Navigation.Imprint' | translate}}</a></li>
                     </ul>
                     <div class="languages pull-right">
-                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('ch') }" ng-click="vm.changeLanguage('ch')"><img src="/public/images/languages/ch.svg" alt="DE" width="40" /></a>
-                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de') }" ng-click="vm.changeLanguage('de')"><img src="/public/images/languages/de.svg" alt="DE" width="40" /></a>
-                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('en') }" ng-click="vm.changeLanguage('en')"><img src="/public/images/languages/en.svg" alt="EN" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de-ch') }" ng-click="vm.changeLanguage('de-ch')"><img src="/public/images/languages/ch.svg" alt="DE" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('de-de') }" ng-click="vm.changeLanguage('de-de')"><img src="/public/images/languages/de.svg" alt="DE" width="40" /></a>
+                        <a data-closeaction="true" ng-class="{active: vm.isCurrentLanguage('en-gb') }" ng-click="vm.changeLanguage('en-gb')"><img src="/public/images/languages/en.svg" alt="EN" width="40" /></a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-if="vm.authInfo.currentUser != null">
@@ -93,7 +93,7 @@
                             <div id="login-dropdown" class="dropdown-menu dropdown-menu-custom" ng-include="'/public/partials/login.html'">
                             </div>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>

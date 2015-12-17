@@ -23,7 +23,18 @@
     "Error": "Error",
     "CycleAdded": "Cycle has been added",
     "Done": "Done",
-    "StoryAdded": "Your story has been added."
+    "StoryAdded": "Your story has been added.",
+    "LoginError": {
+      "LoginFirst":  "Please login to contribute something",
+      "LoginDefault": "Please login as administrator",      
+      "Login":  "Please login"
+    },
+    "StoryError": {
+      "StoryLockedTitle":  "Locked",
+      "StoryLockedText":  "Sorry, another user was faster..."
+    },
+    "Sent": "Sent",
+    "SentError": "Sending failed"
   },
 
   "Navigation": {
