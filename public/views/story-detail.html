@@ -13,7 +13,7 @@
                     </a>
                 </span>
                 <i><span ng-bind-html="vm.contribution | breakFilter"></span></i>
-                <textarea class="form-control msd-elastic" style="margin-top:20px;" ng-show="vm.isEditing()" ng-model="vm.contribution" placeholder="Füge hier deine spannende Erweiterung an."></textarea>
+                <textarea class="form-control msd-elastic" style="margin-top:20px;" ng-show="vm.isEditing()" ng-trim="false" ng-model="vm.contribution" placeholder="Füge hier deine spannende Erweiterung an."></textarea>
             </div>
             <div class="panel-footer clearfix">
                 <div class="pull-right">
