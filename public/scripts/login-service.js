@@ -8,7 +8,6 @@
         
         var refreshAuthInfo = function () {
             $http.get('/api/getcurrentuser').then(function (result) {
-                console.log("Refreshing auth info...");
                 authInfo.currentUser = result.data === "" ? null : result.data;
             });
         };
@@ -23,7 +22,7 @@
                     refreshAuthInfo();
                     toastr.success('You are logged in.', 'Success');
                     hideNavigation();
-                }).error(function(result) {
+                }, function(result) {
                     waitinfo.hide();
                     toastr.error('Sorry, login failed.', 'Error');
                 });
