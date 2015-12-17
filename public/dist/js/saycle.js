@@ -416,6 +416,7 @@ function openLogin() {
 
         vm.cancelEdit = function () {
             storyService.cancelEdit(vm.story);
+            vm.contribution = "";
         };
 
         vm.isEditing = function () {
