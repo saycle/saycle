@@ -22,17 +22,12 @@ app.get('/getstorybyid', function (req, res) {
 });
 app.post('/addstory', auth.isAuthenticated, function (req, res) {
     var story = req.body;
-    if (story.active) {
-        story.username = req.user.name;
-        context.Stories.addStory(req.body).then(function () {
-            res.send(200, 'added story');
-        }, function (reason) {
-            res.send(500, { mesage: 'addStoryError', error: reason });
-        });
-    }
-    else {
-        res.send(500, { mesage: 'storyLockedError' });
-    }
+    story.username = req.user.name;
+    context.Stories.addStory(req.body).then(function () {
+        res.send(200, 'added story');
+    }, function (reason) {
+        res.send(500, { mesage: 'addStoryError', error: reason });
+    });
 });
 app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     var cycle = req.body;
@@ -44,6 +39,7 @@ app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     }, function (reason) {
         res.send(500, { message: 'addCycleError', error: reason });
     });
+    res.send(500, { mesage: 'storyLockedError' });
 });
 var lockedStories = {};
 app.post('/lock', auth.isAuthenticated, function (req, res) {
