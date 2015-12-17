@@ -45,7 +45,11 @@
                         break;
                 }
             });
-        }
+        };
+
+        vm.cancelEdit = function () {
+            storyService.cancelEdit(vm.story);
+        };
 
         vm.isEditing = function () {
             return vm.auth.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.auth.currentUser.name;

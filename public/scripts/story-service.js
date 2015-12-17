@@ -30,6 +30,9 @@
             },
             lock: function (story) {
                 return $http.post('/api/stories/lock', story);
+            },
+            cancelEdit: function (story) {
+                return $http.post('/api/stories/canceledit', story);
             }
         };
 

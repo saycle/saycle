@@ -409,7 +409,11 @@ function openLogin() {
                         break;
                 }
             });
-        }
+        };
+
+        vm.cancelEdit = function () {
+            storyService.cancelEdit(vm.story);
+        };
 
         vm.isEditing = function () {
             return vm.auth.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.auth.currentUser.name;
@@ -510,6 +514,9 @@ function openLogin() {
             },
             lock: function (story) {
                 return $http.post('/api/stories/lock', story);
+            },
+            cancelEdit: function (story) {
+                return $http.post('/api/stories/canceledit', story);
             }
         };
 
