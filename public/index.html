@@ -78,7 +78,7 @@
                             <a style="pointer-events: none; cursor: default;">&#9787; Hallo {{vm.authInfo.currentUser.name}}</a>
                         </li>
                         <li ng-if="vm.authInfo.currentUser != null">
-                            <a data-closeaction="true" ng-controller="loginCtrl as vmLogin" ng-click="vmLogin.logout()" type="button" class="btn btn-default">{{'Navigation.Logout' | translate}}</a>
+                            <a id="logout-button" data-closeaction="true" ng-controller="loginCtrl as vmLogin" ng-click="vmLogin.logout()" type="button" class="btn btn-default">{{'Navigation.Logout' | translate}}</a>
                         </li>
                         <li ng-if="vm.authInfo.currentUser == null">
                             <a href="#" id="register" class="dropdown-toggle dropdown-toggle-custom" onclick="dropdownToggle(this)">

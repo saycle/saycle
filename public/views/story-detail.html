@@ -16,27 +16,28 @@
                 <textarea class="form-control msd-elastic" style="margin-top:20px;" ng-show="vm.isEditing()" ng-trim="false" ng-model="vm.contribution" placeholder="Füge hier deine spannende Erweiterung an."></textarea>
             </div>
             <div class="panel-footer clearfix">
-                <div class="pull-right">
+                <div class="pull-left">
                     <div id="social-share">
-                        <div class="md-12">
-                            <div class="fb-share-button" data-href="http://localhost:1337/story-detail/495ded94-c4d4-454e-ad7e-0dd1df90fd70" data-layout="button"></div>
-                        </div>
-                        <div ng-if="vm.story.active == true">
-                            <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-primary" ng-click="vm.editStory(this)">{{'StoryDetail.ButtonEditText' | translate}}</button>
-                            <button ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-default" ng-click="vm.cancelEdit()">{{'StoryDetail.CancelEdit' | translate}}</button>
-                            <button ng-disabled="vm.contribution.text == ''" ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-primary" ng-click="vm.saveStory(this)">{{'StoryDetail.ButtonSaveText' | translate}}</button>
-                            <p id="inTurnFadingTextG" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">
-                                <span>{{'StoryDetail.StoryIsLockedText' | translate: vm.story }}</span>
-                                <span id="inTurnFadingTextG_1" class="inTurnFadingTextG">.</span>
-                                <span id="inTurnFadingTextG_2" class="inTurnFadingTextG">.</span>
-                                <span id="inTurnFadingTextG_3" class="inTurnFadingTextG">.</span>
-                            </p>
-                        </div>
-                        <div ng-if="vm.story.active == false">
-                            <p class="storyInactive">{{'StoryDetail.StoryDeactivated' | translate }}</p>
-                        </div>
+                        <div class="fb-share-button" data-href="{{vm.currentPath}}story-detail/5cc1f4c7-470e-4fe3-b12e-c900ee6262da" data-layout="button"></div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <div ng-if="vm.story.active == true">
+                        <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-primary" ng-click="vm.editStory(this)">{{'StoryDetail.ButtonEditText' | translate}}</button>
+                        <button ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-default" ng-click="vm.cancelEdit()">{{'StoryDetail.CancelEdit' | translate}}</button>
+                        <button ng-disabled="vm.contribution.text == ''" ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-primary" ng-click="vm.saveStory(this)">{{'StoryDetail.ButtonSaveText' | translate}}</button>
+                        <p id="inTurnFadingTextG" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">
+                            <span>{{'StoryDetail.StoryIsLockedText' | translate: vm.story }}</span>
+                            <span id="inTurnFadingTextG_1" class="inTurnFadingTextG">.</span>
+                            <span id="inTurnFadingTextG_2" class="inTurnFadingTextG">.</span>
+                            <span id="inTurnFadingTextG_3" class="inTurnFadingTextG">.</span>
+                        </p>
+                    </div>
+                    <div ng-if="vm.story.active == false">
+                        <p class="storyInactive">{{'StoryDetail.StoryDeactivated' | translate }}</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </article>

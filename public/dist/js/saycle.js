@@ -383,7 +383,8 @@ function openLogin() {
 
     app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, $location, storyService, socketService, loginService, toastr) {
         var vm = this;
-        vm.currentUrl = $location.absUrl();
+        vm.currentAbsUrl = $location.absUrl();
+        vm.currentPath = $location.path();
         vm.id = $routeParams["id"];
         vm.auth = loginService.getAuthInfo();
         vm.story = null;
