@@ -26,6 +26,7 @@
     "CycleAdded": "Cycle has been added",
     "Done": "Done",
     "StoryAdded": "Your story has been added.",
+    "StoryAddFailed":  "An error has occurred. Please try it again.",
     "LoginError": {
       "LoginFirst": "Please login to contribute something",
       "LoginDefault": "Please login as administrator",

@@ -46,7 +46,6 @@ app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     }, (reason) => {
         res.send(500, { message: 'addCycleError', error: reason });
     });
-    res.send(500, { mesage: 'storyLockedError' });
 });
 
 var lockedStories = {};
