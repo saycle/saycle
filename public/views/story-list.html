@@ -12,6 +12,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">{{'StoryList.AddStoryTitle' | translate}}</h3>
+            <div ng-if="vm.auth.user.isadmin" class="pull-right">
+                <i class="glyphicon glyphicon-remove"></i>
+            </div>
         </div>
         <div class="panel-body">
             <input placeholder="{{'StoryList.AddStoryBody' | translate}}" class="form-control" type="text" ng-model="vm.newStoryTitle" />
