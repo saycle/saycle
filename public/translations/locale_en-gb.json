@@ -41,6 +41,7 @@
   },
 
   "Navigation": {
+    "Hello": "Hello",
     "Stories": "Stories",
     "Ranking": "Ranking",
     "Contact": "Contact",
