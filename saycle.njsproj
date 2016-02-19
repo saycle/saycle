@@ -21,7 +21,7 @@
     <OutputPath>.</OutputPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <NodejsPort>1337</NodejsPort>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
@@ -36,6 +36,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Gruntfile.js" />
+    <Content Include="public\images\languages\de-ch.png" />
+    <Content Include="public\images\languages\de-ch.png" />
+    <Content Include="public\images\languages\de-de.png" />
+    <Content Include="public\images\languages\de-de.png" />
+    <Content Include="public\images\languages\en-gb.png" />
+    <Content Include="public\images\languages\en-gb.png" />
+    <Content Include="public\images\portraits\portrait-david.png" />
+    <Content Include="public\images\portraits\david_saycle.png" />
+    <Content Include="public\images\portraits\portrait-raphael.png" />
+    <Content Include="public\images\portraits\raphael_saycle.png" />
+    <Content Include="public\images\portraits\portrait-sebastian.png" />
+    <Content Include="public\images\portraits\sebastian_saycle.png" />
     <Content Include="public\partials\facebook-sdk.html" />
     <Content Include="public\partials\storyoptions-modal.html" />
     <Content Include="public\scripts\_saycle-app.js" />
@@ -151,6 +163,8 @@
     <Folder Include="project\documentation\Pictures\Mobile view\" />
     <Folder Include="project\translation\" />
     <Folder Include="public\images\favicon\" />
+    <Folder Include="public\images\languages\" />
+    <Folder Include="public\images\portraits\" />
     <Folder Include="public\translations\" />
     <Folder Include="socket\" />
     <Folder Include="project\" />

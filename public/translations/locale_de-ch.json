@@ -81,7 +81,14 @@
   },
 
   "Imprint": {
-    "Title": "Impressum"
+    "Title": "Impressum",
+    "Authors": "Wer häts erfunde?",
+    "SpeechDavid": "Sali...",
+    "SpeechRaphael": "Hä?",
+    "SpeechSebastian": "S'Geilst",
+    "About": "Über saycle",
+    "AboutText": "Mir sind Studente. Eine vo üs isch vegetarier.",
+    "ExtendedImprint": "Ufblosenes Impressum"
   },
 
   "SocialShare": {

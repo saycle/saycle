@@ -81,7 +81,14 @@
   },
 
   "Imprint": {
-    "Title": "Impressum"
+    "Title": "Impressum",
+    "Authors": "Die Autoren",
+    "SpeechDavid": "Willkommen!",
+    "SpeechRaphael": "...",
+    "SpeechSebastian": "Halts Maul",
+    "About": "Über saycle",
+    "AboutText": "Wir sind Studenten. Einer von uns ist vegetarier.",
+    "ExtendedImprint": "Erweitertes Impressum"
   },
 
   "SocialShare": {

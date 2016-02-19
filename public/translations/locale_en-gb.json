@@ -80,7 +80,14 @@
   },
 
   "Imprint": {
-    "Title": "Imprint"
+    "Title": "Imprint",
+    "Authors": "Team",
+    "SpeechDavid": "saycle rocks!",
+    "SpeechRaphael": "var x = 2;",
+    "SpeechSebastian": "What?",
+    "About": "About saycle",
+    "AboutText": "We are students. One of us is vegetarian.",
+    "ExtendedImprint": "Extended imprint"
   },
 
   "SocialShare": {
