@@ -1,5 +1,5 @@
 ﻿<article ng-controller="rankingCtrl as vm">
-    <h1>Ranking</h1>
+    <h1>{{ 'Ranking.title' | translate}}</h1>
     <div id="podest" class="row">
         <div id="podest-2" class="podest-block-wrapper col-xs-4">
             <div class="podest-user">{{vm.users[1].username}}</div>
@@ -20,9 +20,9 @@
             <table class="table table-hover table-stripped">
                 <thead>
                     <tr>
-                        <th>Benutzername</th>
-                        <th>Anzahl Zeichen</th>
-                        <th>Letzter Eintrag</th>
+                        <th>{{ 'Ranking.username' | translate}}</th>
+                        <th>{{ 'Ranking.charCounter' | translate}}</th>
+                        <th>{{ 'Ranking.lastInput' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>

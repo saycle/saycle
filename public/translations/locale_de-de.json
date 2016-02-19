@@ -27,15 +27,15 @@
     "CycleAdded": "Cycle wurde hinzugefügt",
     "Done": "Ok",
     "StoryAdded": "Deine Story wurde hinzugefügt.",
-    "StoryAddFailed":  "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+    "StoryAddFailed": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
     "LoginError": {
-      "LoginFirst":  "Melde dich an, um etwas beizutragen",
-      "LoginDefault": "Melde dich als Administrator an",      
-      "Login":  "Bitte melde dich an"
+      "LoginFirst": "Melde dich an, um etwas beizutragen",
+      "LoginDefault": "Melde dich als Administrator an",
+      "Login": "Bitte melde dich an"
     },
     "StoryError": {
-      "StoryLockedTitle":  "Gesperrt",
-      "StoryLockedText":  "Sorry, ein anderer Benutzer war schneller..."
+      "StoryLockedTitle": "Gesperrt",
+      "StoryLockedText": "Sorry, ein anderer Benutzer war schneller..."
     },
     "Sent": "Gesendet",
     "SentError": "Senden fehlgeschlagen"
@@ -95,5 +95,12 @@
     "Facebook": {
       "Story": "Teile die Geschichte auf Facebook"
     }
+  },
+
+  "Ranking": {
+    "title":  "Rangliste",
+    "username": "Benutzername",
+    "charCounter": "Anzahl Zeichen",
+    "lastInput": "Letzter Eintrag"
   }
 }

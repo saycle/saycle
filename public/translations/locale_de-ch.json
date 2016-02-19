@@ -5,7 +5,7 @@
     "AddStoryBody": "Gib de Titel vode Gschicht i",
     "AddStoryButton": "Gschicht hinzuefüege",
     "IntroductionText": "Saycle isch e Plattform wo verschiedene Benutzer zäme e Gschicht chönd schribe. Das isch e Liste vo allne agfangene Gschichte, a dene cha witergschribe werde. Du chasch au e neui Gschicht hinzuefüege. Viel Spass!",
-     "CycleCount": "Saycles",
+    "CycleCount": "Saycles",
     "ShowStoryOptions": "Optionä azeige"
 
   },
@@ -27,11 +27,11 @@
     "CycleAdded": "Saycle isch hinzuegfüegt worde",
     "Done": "Okei",
     "StoryAdded": "Dinie Gschicht isch hinzuegfüegt worde",
-    "StoryAddFailed":  "Es isch öppis schlimms passiert. Bitte probiers nomol.",
+    "StoryAddFailed": "Es isch öppis schlimms passiert. Bitte probiers nomol.",
     "LoginError": {
-      "LoginFirst":  "Meld dich bitte a zum Öpis biträge",
-      "LoginDefault": "Meld di als Admin a du Horst",      
-      "Login":  "Bitte meld dich a"
+      "LoginFirst": "Meld dich bitte a zum Öpis biträge",
+      "LoginDefault": "Meld di als Admin a du Horst",
+      "Login": "Bitte meld dich a"
     },
     "StoryError": {
       "StoryLockedTitle": "Gsperrt",
@@ -49,9 +49,9 @@
     "Imprint": "Impressum",
     "Logout": "Abmelde",
     "Register": "Registriere",
-    "Login": "Amelde",      
-    "Swiss": "Schwizerdütsch", 
-    "German": "Dütsch",    
+    "Login": "Amelde",
+    "Swiss": "Schwizerdütsch",
+    "German": "Dütsch",
     "English": "Änglisch"
   },
 
@@ -95,5 +95,12 @@
     "Facebook": {
       "Story": "Teile d Gschicht uf Gsichtsbuech"
     }
+  },
+
+  "Ranking": {
+    "title":  "Ranglischte",
+    "username": "Benutzername",
+    "charCounter": "Azahl Zeiche",
+    "lastInput": "Letschte Iitrag"
   }
 }
