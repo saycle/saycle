@@ -43,11 +43,8 @@
     <Content Include="public\images\languages\en-gb.png" />
     <Content Include="public\images\languages\en-gb.png" />
     <Content Include="public\images\portraits\portrait-david.png" />
-    <Content Include="public\images\portraits\david_saycle.png" />
     <Content Include="public\images\portraits\portrait-raphael.png" />
-    <Content Include="public\images\portraits\raphael_saycle.png" />
     <Content Include="public\images\portraits\portrait-sebastian.png" />
-    <Content Include="public\images\portraits\sebastian_saycle.png" />
     <Content Include="public\partials\facebook-sdk.html" />
     <Content Include="public\partials\storyoptions-modal.html" />
     <Content Include="public\scripts\_saycle-app.js" />
