@@ -13,16 +13,17 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6",
-    "angular": "~1.4.8",
-    "angular-route": "~1.4.8",
-    "angular-bootstrap": "~0.14.3",
-    "angular-toastr": "~1.6.0",
-    "angular-animate": "~1.4.8",
-    "angular-translate": "~2.8.1",
-    "angular-translate-loader-static-files": "~2.8.1",
-    "angular-elastic": "~2.5.1",
-    "angular-markdown-directive": "~0.3.1",
-    "angular-moment": "~0.10.3"
+    "bootstrap": "3.3.6",
+    "angular": "1.4.8",
+    "angular-route": "1.4.8",
+    "angular-bootstrap": "0.14.3",
+    "angular-toastr": "1.6.0",
+    "angular-animate": "1.4.8",
+    "angular-translate": "2.8.1",
+    "angular-translate-loader-static-files": "2.8.1",
+    "angular-elastic": "2.5.1",
+    "angular-markdown-directive": "0.3.1",
+    "angular-moment": "0.10.3",
+    "angular-sanitize": "1.4.8"
   }
 }
