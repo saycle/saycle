@@ -7,7 +7,7 @@ import Q = require('q');
 class StoryController {
 
     static getStories(): Q.Promise<Story[]> {
-        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = id) AS cyclecount, id, title, username, date FROM stories ORDER BY (SELECT MAX(date) FROM cycles GROUP BY storyid WHERE storyid = stories.id)", []).then((result) => {
+        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = stories.id) AS cyclecount, id, title, username, date FROM stories ORDER BY (SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id GROUP BY story)", []).then((result) => {
             return result.rows;
         });
     };
