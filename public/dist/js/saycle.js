@@ -1,54 +1,6 @@
 (function () {
     var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate', 'monospaced.elastic', 'btford.markdown', 'angularMoment']);
 })();
-(function () {
-    var app = angular.module('saycle');
-
-    app.service('contactService', function ($http, $translate, waitinfo, toastr) {
-
-        return {
-            send: function (formData) {
-                waitinfo.show();
-                return $http.post('/api/contact/send', formData).then(function (result) {
-                    waitinfo.hide();
-                    toastr.success($translate.instant('Toastr.Sent'), $translate.instant('Toastr.Success'));
-                    
-                    return result.data;
-                }, function () {
-                    toastr.error($translate.instant('Toastr.SentError'), $translate.instant('Toastr.Error'));
-                });
-            }
-        };
-
-    });
-})();
-//This is the js which represents the contact
-(function () {
-    var app = angular.module('saycle');
-
-
-    app.controller('contactCtrl', function ($scope, contactService, $route, $translate) {
-        var vm = this;
-        vm.result = {
-            class: 'hidden',
-            message: ''
-        };
-        vm.formData = {};
-        vm.submitDisabled = false;
-        vm.submitted = false;
-        vm.submit = function () {
-            vm.submitted = true;
-            vm.submitDisabled = true;
-            contactService.send(vm.formData).then(function () {
-                vm.submitDisabled = false;
-                vm.formData = {};
-            });
-            return false;
-        }
-
-    });
-
-})();
 function dropdownToggle(e) {
     $(e).parent().toggleClass("open");
     $(".dropdown-toggle-custom").each(function() {
@@ -91,6 +43,33 @@ function openLogin() {
     openNavigation();
     $("#login").parent().addClass("open");
 }
+//This is the js which represents the contact
+(function () {
+    var app = angular.module('saycle');
+
+
+    app.controller('contactCtrl', function ($scope, contactService, $route, $translate) {
+        var vm = this;
+        vm.result = {
+            class: 'hidden',
+            message: ''
+        };
+        vm.formData = {};
+        vm.submitDisabled = false;
+        vm.submitted = false;
+        vm.submit = function () {
+            vm.submitted = true;
+            vm.submitDisabled = true;
+            contactService.send(vm.formData).then(function () {
+                vm.submitDisabled = false;
+                vm.formData = {};
+            });
+            return false;
+        }
+
+    });
+
+})();
 //This is the js which represents the imprint
 (function () {
     var app = angular.module('saycle');
@@ -123,61 +102,6 @@ function openLogin() {
         };
         
         return vm;
-    });
-})();
-(function () {
-    var app = angular.module('saycle');
-    
-    app.service('loginService', function ($http, toastr, waitinfo) {
-        var authInfo = {
-            currentUser: null
-        };
-        
-        var refreshAuthInfo = function () {
-            $http.get('/api/getcurrentuser').then(function (result) {
-                authInfo.currentUser = result.data === "" ? null : result.data;
-            });
-        };
-
-        refreshAuthInfo();
-        
-        return {
-            login: function (loginInfo) {
-                waitinfo.show();
-                return $http.post('/login', loginInfo).success(function () {
-                    waitinfo.hide();
-                    refreshAuthInfo();
-                    toastr.success('You are logged in.', 'Success');
-                    hideNavigation();
-                }, function(result) {
-                    waitinfo.hide();
-                    toastr.error('Sorry, login failed.', 'Error');
-                });
-            },
-            getAuthInfo: function () {
-                return authInfo;
-            },
-            logout: function () {
-                return $http.get('/logout').then(function () {
-                    location.reload();
-                });
-            }
-        };
-    });
-})();
-(function () {
-    var app = angular.module('saycle');
-
-    app.service('rankingService', function ($http) {
-
-        return {
-            getRankedUsers: function () {
-                return $http.get('/api/getrankedusers').then(function (result) {
-                    return result.data;
-                });
-            }
-        };
-
     });
 })();
 //This is the js which represents the imprint
@@ -214,25 +138,6 @@ function openLogin() {
             }
             vm.submitDisabled = false;
         }
-    });
-})();
-(function () {
-    var app = angular.module('saycle');
-
-    app.service('registerService', function ($http, toastr, waitinfo) {
-
-        return {
-            register: function (registerInfo) {
-                waitinfo.show();
-                return $http.post('/api/register', registerInfo).success(function () {
-                    waitinfo.hide();
-                    toastr.success('Your user has been registered. You can login now.', 'Success');
-                }).error(function (result) {
-                    waitinfo.hide();
-                    toastr.error('Registering failed', 'Error');
-                });
-            }
-        };
     });
 })();
 (function () {
@@ -280,7 +185,7 @@ function openLogin() {
 
         $translateProvider
         .useStaticFilesLoader({
-            prefix: '/public/translations/locale_',
+            prefix: '/public/content/translations/locale_',
             suffix: '.json'
         })
         .preferredLanguage(defaultLanguage);
@@ -366,16 +271,6 @@ function openLogin() {
 
 
 })();
-(function () {
-    var app = angular.module('saycle');
-    
-    app.service('socketService', function () {
-        var socket = io();
-        // socket.emit, socket.on can be called on the socket object
-        return socket;
-    });
-})();
-
 //This is the js which represents the detail-view
 (function () {
     var app = angular.module('saycle');
@@ -498,6 +393,111 @@ function openLogin() {
 
 
 
+
+(function () {
+    var app = angular.module('saycle');
+
+    app.service('contactService', function ($http, $translate, waitinfo, toastr) {
+
+        return {
+            send: function (formData) {
+                waitinfo.show();
+                return $http.post('/api/contact/send', formData).then(function (result) {
+                    waitinfo.hide();
+                    toastr.success($translate.instant('Toastr.Sent'), $translate.instant('Toastr.Success'));
+                    
+                    return result.data;
+                }, function () {
+                    toastr.error($translate.instant('Toastr.SentError'), $translate.instant('Toastr.Error'));
+                });
+            }
+        };
+
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+    
+    app.service('loginService', function ($http, toastr, waitinfo) {
+        var authInfo = {
+            currentUser: null
+        };
+        
+        var refreshAuthInfo = function () {
+            $http.get('/api/getcurrentuser').then(function (result) {
+                authInfo.currentUser = result.data === "" ? null : result.data;
+            });
+        };
+
+        refreshAuthInfo();
+        
+        return {
+            login: function (loginInfo) {
+                waitinfo.show();
+                return $http.post('/login', loginInfo).success(function () {
+                    waitinfo.hide();
+                    refreshAuthInfo();
+                    toastr.success('You are logged in.', 'Success');
+                    hideNavigation();
+                }, function(result) {
+                    waitinfo.hide();
+                    toastr.error('Sorry, login failed.', 'Error');
+                });
+            },
+            getAuthInfo: function () {
+                return authInfo;
+            },
+            logout: function () {
+                return $http.get('/logout').then(function () {
+                    location.reload();
+                });
+            }
+        };
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+
+    app.service('rankingService', function ($http) {
+
+        return {
+            getRankedUsers: function () {
+                return $http.get('/api/getrankedusers').then(function (result) {
+                    return result.data;
+                });
+            }
+        };
+
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+
+    app.service('registerService', function ($http, toastr, waitinfo) {
+
+        return {
+            register: function (registerInfo) {
+                waitinfo.show();
+                return $http.post('/api/register', registerInfo).success(function () {
+                    waitinfo.hide();
+                    toastr.success('Your user has been registered. You can login now.', 'Success');
+                }).error(function (result) {
+                    waitinfo.hide();
+                    toastr.error('Registering failed', 'Error');
+                });
+            }
+        };
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+    
+    app.service('socketService', function () {
+        var socket = io();
+        // socket.emit, socket.on can be called on the socket object
+        return socket;
+    });
+})();
 
 (function () {
     var app = angular.module('saycle');
