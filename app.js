@@ -22,13 +22,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-var authentication = require('./api/authentication');
+var authentication = require('./server/api/authentication');
 authentication.configure(app, passport);
-var usersApi = require('./api/users');
+var usersApi = require('./server/api/users');
 app.use('/api', usersApi);
-var contactApi = require('./api/contact');
+var contactApi = require('./server/api/contact');
 app.use('/api/contact', contactApi);
-var storiesApi = require('./api/stories');
+var storiesApi = require('./server/api/stories');
 app.use('/api/stories', storiesApi);
 app.get(/^((?!\/api).)*$/, function (req, res) {
     res.sendfile('index.html', { root: publicFolder });
@@ -44,7 +44,7 @@ if ('development' == app.get('env')) {
 var server = http.createServer(app);
 // Socket.io server listens to our app
 var io = require('socket.io').listen(server);
-require('./socket/socket.js').init(io);
+require('./server/socket/socket.js').init(io);
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });

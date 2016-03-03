@@ -6,13 +6,13 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         concat_sourcemap: {
             js: {
-                src: ['public/scripts/*.js'],
+                src: ['public/scripts/*.js', 'public/viewmodels/*.js', 'public/services/*.js'],
                 dest: 'public/dist/js/saycle.js'
             }
         },
         watch: {
             scripts: {
-                files: 'public/scripts/**/*.js',
+                files: ['public/scripts/*.js', 'public/viewmodels/*.js', 'public/services/*.js'],
                 tasks: ['concat_sourcemap'],
                 options: {
                     interrupt: true,
