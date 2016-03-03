@@ -43,7 +43,7 @@
 
         $translateProvider
         .useStaticFilesLoader({
-            prefix: '/public/translations/locale_',
+            prefix: '/public/content/translations/locale_',
             suffix: '.json'
         })
         .preferredLanguage(defaultLanguage);

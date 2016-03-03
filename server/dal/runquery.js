@@ -1,3 +1,4 @@
+"use strict";
 var pg = require('pg');
 var Q = require('q');
 var RunQuery = (function () {
@@ -22,6 +23,6 @@ var RunQuery = (function () {
     };
     RunQuery.conString = process.env.DATABASE_URL;
     return RunQuery;
-})();
+}());
 module.exports = RunQuery;
 //# sourceMappingURL=runquery.js.map

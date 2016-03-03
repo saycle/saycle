@@ -1,3 +1,4 @@
+"use strict";
 var UserController = require('./usercontroller');
 var StoryController = require('./storycontroller');
 module.exports = {

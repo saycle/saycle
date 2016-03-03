@@ -1,3 +1,4 @@
+"use strict";
 var Sendgrid = require('sendgrid');
 var Q = require('q');
 var sendgrid = Sendgrid(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
@@ -16,6 +17,6 @@ var Mails = (function () {
         return deferred.promise;
     };
     return Mails;
-})();
+}());
 module.exports = Mails;
 //# sourceMappingURL=mails.js.map

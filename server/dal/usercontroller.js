@@ -1,3 +1,4 @@
+"use strict";
 var User = require('../models/user');
 var RunQuery = require('./runquery');
 var UserController = (function () {
@@ -38,6 +39,6 @@ var UserController = (function () {
     };
     ;
     return UserController;
-})();
+}());
 module.exports = UserController;
 //# sourceMappingURL=usercontroller.js.map

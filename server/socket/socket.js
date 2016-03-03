@@ -1,3 +1,4 @@
+"use strict";
 var io = null;
 var socket = {
     init: function (xio) {

@@ -1,3 +1,4 @@
+"use strict";
 var RunQuery = require('./runquery');
 var Guid = require('./guid');
 var StoryController = (function () {
@@ -36,6 +37,6 @@ var StoryController = (function () {
     };
     ;
     return StoryController;
-})();
+}());
 module.exports = StoryController;
 //# sourceMappingURL=storycontroller.js.map

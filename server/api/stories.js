@@ -1,3 +1,4 @@
+"use strict";
 var express = require('express');
 var context = require('../dal/context');
 var auth = require('./authentication');

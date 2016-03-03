@@ -1,3 +1,4 @@
+"use strict";
 var RankedUser = (function () {
     function RankedUser(rankedUserObj) {
         this.username = rankedUserObj.username;
@@ -6,6 +7,6 @@ var RankedUser = (function () {
         this.recentStoryTitle = rankedUserObj.email;
     }
     return RankedUser;
-})();
+}());
 module.exports = RankedUser;
 //# sourceMappingURL=rankeduser.js.map

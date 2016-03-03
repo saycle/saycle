@@ -1,3 +1,4 @@
+"use strict";
 var Context = require('../dal/context');
 var PassportLocal = require('passport-local');
 var FacebookStrategy = require('passport-facebook');
@@ -97,6 +98,6 @@ var Authentication = (function () {
     };
     ;
     return Authentication;
-})();
+}());
 module.exports = Authentication;
 //# sourceMappingURL=authentication.js.map

@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Include="Gruntfile.js" />
     <Content Include="public\content\images\languages\de-ch.png" />
-    <Content Include="public\images\languages\de-ch.png" />
     <Content Include="public\content\images\languages\de-de.png" />
     <Content Include="public\images\languages\de-de.png" />
     <Content Include="public\content\images\languages\en-gb.png" />

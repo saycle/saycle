@@ -1,3 +1,4 @@
+"use strict";
 var bcrypt = require('bcrypt-node');
 var User = (function () {
     function User(userObj) {
@@ -18,6 +19,6 @@ var User = (function () {
     };
     ;
     return User;
-})();
+}());
 module.exports = User;
 //# sourceMappingURL=user.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var Guid = (function () {
     function Guid() {
     }
@@ -8,6 +9,6 @@ var Guid = (function () {
         });
     };
     return Guid;
-})();
+}());
 module.exports = Guid;
 //# sourceMappingURL=guid.js.map
