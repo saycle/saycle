@@ -5,7 +5,7 @@ var StoryController = (function () {
     function StoryController() {
     }
     StoryController.getStories = function () {
-        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = id) AS cyclecount, id, title, username, date FROM stories ORDER BY (SELECT MAX(date) FROM cycles GROUP BY storyid WHERE storyid = stories.id)", []).then(function (result) {
+        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = stories.id) AS cyclecount, id, title, username, date FROM stories ORDER BY (SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id GROUP BY story)", []).then(function (result) {
             return result.rows;
         });
     };
