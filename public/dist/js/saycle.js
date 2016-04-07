@@ -1,27 +1,52 @@
 (function () {
-    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate', 'monospaced.elastic', 'btford.markdown', 'angularMoment']);
+    var app = angular.module('saycle', ['ngAnimate', 'ngRoute', 'ui.bootstrap', 'toastr', 'pascalprecht.translate', 'monospaced.elastic', 'btford.markdown', 'angularMoment', 'angularModalService', 'ngCookies']);
 })();
-(function () {
-    var app = angular.module('saycle');
-
-    app.service('contactService', function ($http, $translate, waitinfo, toastr) {
-
-        return {
-            send: function (formData) {
-                waitinfo.show();
-                return $http.post('/api/contact/send', formData).then(function (result) {
-                    waitinfo.hide();
-                    toastr.success($translate.instant('Toastr.Sent'), $translate.instant('Toastr.Success'));
-                    
-                    return result.data;
-                }, function () {
-                    toastr.error($translate.instant('Toastr.SentError'), $translate.instant('Toastr.Error'));
-                });
-            }
-        };
-
+function dropdownToggle(e) {
+    $(e).parent().toggleClass("open");
+    $(".dropdown-toggle-custom").each(function() {
+        if (!$(this).is(e)) {
+            $(this).parent().removeClass("open");
+        }
     });
-})();
+}
+
+$(document).on('click', function (e) {
+    if (!$(".dropdown-menu-custom").is(e.target)
+            && $(".dropdown-menu-custom").has(e.target).length === 0
+            && $(".open").has(e.target).length === 0
+    ) {
+        $(".dropdown-toggle-custom").parent().removeClass("open");
+    }
+    if ($(e.target).data("closeaction") || (!$("#navigation").is(e.target)
+            && $("#navigation").has(e.target).length === 0
+            && $(".in").has(e.target).length === 0
+)) {
+        hideNavigation();
+    }
+});
+
+$('.btn-toggle').click(function () {
+    $(this).find('.btn').toggleClass('active');
+});
+
+function htmlKeypress(e, func) {
+    if (e.keyCode == 2 && e.ctrlKey) {
+        $("#easteregg-ctrlb").modal();
+    }
+}
+
+function hideNavigation() {
+    $("#navigation").removeClass("in");
+}
+
+function openNavigation() {
+    $("#navigation").addClass("in");
+}
+
+function openLogin() {
+    openNavigation();
+    $("#login").parent().addClass("open");
+}
 //This is the js which represents the contact
 (function () {
     var app = angular.module('saycle');
@@ -49,48 +74,26 @@
     });
 
 })();
-function dropdownToggle(e) {
-    $(e).parent().toggleClass("open");
-    $(".dropdown-toggle-custom").each(function() {
-        if (!$(this).is(e)) {
-            $(this).parent().removeClass("open");
-        }
-    });
-}
+var app = angular.module('saycle');
 
-$(document).on('click', function (e) {
-    if (!$(".dropdown-menu-custom").is(e.target)
-            && $(".dropdown-menu-custom").has(e.target).length === 0
-            && $(".open").has(e.target).length === 0
-    ) {
-        $(".dropdown-toggle-custom").parent().removeClass("open");
-    }
-    if ($(e.target).data("closeaction") || (!$("#navigation").is(e.target)
-            && $("#navigation").has(e.target).length === 0
-            && $(".in").has(e.target).length === 0
-)) {
-        hideNavigation();
-    }
-});
+app.controller('createStoryCtrl', [
+  '$scope', '$element', 'title', 'close',
+  function ($scope, $element, title, close) {
+      $scope.title = title;
+      //$scope.story.title = title;
+      $scope.close = function() {
+          close({
 
-function htmlKeypress(e, func) {
-    if (e.keyCode == 2 && e.ctrlKey) {
-        $("#easteregg-ctrlb").modal();
-    }
-}
+          }, 500);
+      };
+      $scope.cancel = function () {
+          $element.modal('hide');
+          close({
 
-function hideNavigation() {
-    $("#navigation").removeClass("in");
-}
+          }, 500);
+      };
 
-function openNavigation() {
-    $("#navigation").addClass("in");
-}
-
-function openLogin() {
-    openNavigation();
-    $("#login").parent().addClass("open");
-}
+  }]);
 //This is the js which represents the imprint
 (function () {
     var app = angular.module('saycle');
@@ -123,61 +126,6 @@ function openLogin() {
         };
         
         return vm;
-    });
-})();
-(function () {
-    var app = angular.module('saycle');
-    
-    app.service('loginService', function ($http, toastr, waitinfo) {
-        var authInfo = {
-            currentUser: null
-        };
-        
-        var refreshAuthInfo = function () {
-            $http.get('/api/getcurrentuser').then(function (result) {
-                authInfo.currentUser = result.data === "" ? null : result.data;
-            });
-        };
-
-        refreshAuthInfo();
-        
-        return {
-            login: function (loginInfo) {
-                waitinfo.show();
-                return $http.post('/login', loginInfo).success(function () {
-                    waitinfo.hide();
-                    refreshAuthInfo();
-                    toastr.success('You are logged in.', 'Success');
-                    hideNavigation();
-                }, function(result) {
-                    waitinfo.hide();
-                    toastr.error('Sorry, login failed.', 'Error');
-                });
-            },
-            getAuthInfo: function () {
-                return authInfo;
-            },
-            logout: function () {
-                return $http.get('/logout').then(function () {
-                    location.reload();
-                });
-            }
-        };
-    });
-})();
-(function () {
-    var app = angular.module('saycle');
-
-    app.service('rankingService', function ($http) {
-
-        return {
-            getRankedUsers: function () {
-                return $http.get('/api/getrankedusers').then(function (result) {
-                    return result.data;
-                });
-            }
-        };
-
     });
 })();
 //This is the js which represents the imprint
@@ -218,40 +166,21 @@ function openLogin() {
 })();
 (function () {
     var app = angular.module('saycle');
-
-    app.service('registerService', function ($http, toastr, waitinfo) {
-
-        return {
-            register: function (registerInfo) {
-                waitinfo.show();
-                return $http.post('/api/register', registerInfo).success(function () {
-                    waitinfo.hide();
-                    toastr.success('Your user has been registered. You can login now.', 'Success');
-                }).error(function (result) {
-                    waitinfo.hide();
-                    toastr.error('Registering failed', 'Error');
-                });
-            }
-        };
-    });
-})();
-(function () {
-    var app = angular.module('saycle');
-
+    
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+        
         $httpProvider.interceptors.push('loginInterceptor');
-
+        
         $locationProvider.html5Mode(true);
-
+        
         $routeProvider
             .when('/', {
-                templateUrl: '/public/views/story-list.html',
-                activetab: 'home'
-            })
+            templateUrl: '/public/views/story-list.html',
+            activetab: 'home'
+        })
         .when('/ranking', {
             templateUrl: '/public/views/ranking.html',
             activetab: 'ranking'
@@ -270,35 +199,60 @@ function openLogin() {
         })
         .otherwise({ redirectTo: '/' });;
     });
-
+    
     app.config(function ($translateProvider) {
+        var $cookies;
+        angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies_) {
+            $cookies = _$cookies_;
+        }]);
 
-        var defaultLanguage = 'en-gb';
-        if (window.location.href.indexOf('?lang') != -1) {
-            defaultLanguage = (new RegExp('lang=([^&]+)')).exec(window.location.href)[1];
-        }
-
-        $translateProvider
-        .useStaticFilesLoader({
-            prefix: '/public/translations/locale_',
+        var lang = false;
+        var langFileConvention = {
+            prefix: '/public/content/translations/locale_',
             suffix: '.json'
-        })
-        .preferredLanguage(defaultLanguage);
-    });
+        };
+        if (window.location.href.indexOf('?lang') != -1) {
+            lang = (new RegExp('lang=([^&]+)')).exec(window.location.href)[1];
+            $cookies.put('lang', lang);
+        } else {
+            lang = $cookies.get('lang');
+        }
+        if(lang) {
+            $translateProvider
+                .useStaticFilesLoader(langFileConvention)
+                .preferredLanguage(lang);
+        } else {
+            $translateProvider
+                .useStaticFilesLoader(langFileConvention)
+                .registerAvailableLanguageKeys(['en', 'de-ch', 'de-de'], {
+                     'en_*': 'en',
+                     'de-ch*': 'de-ch',
+                     'de_ch': 'de-ch',
+                     'de-*': 'de-de',
+                     'de_*': 'de-de',
+                     '*': 'en'
+                 })
+                .determinePreferredLanguage()
+                .fallbackLanguage(['en-gb']);
+        }
+        
 
+    });
+    
     var globalToastr = null;
     var globalTranslate = null;
-    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, amMoment) {
+    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, amMoment, $cookies) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
         vm.changeLanguage = function (key) {
             $translate.use(key);
             amMoment.changeLocale(key.split(['-'][0]));
+            $cookies.put('lang', key);
         };
         vm.isCurrentLanguage = function (key) {
             return $translate.use() == key
         };
-
+        
         globalToastr = toastr;
         globalTranslate = $translate;
         $scope.$on('$routeChangeStart', function (current, next) {
@@ -306,10 +260,9 @@ function openLogin() {
                 vm.activetab = next.$$route.activetab;
             }
         });
-
         amMoment.changeLocale($translate.proposedLanguage());
     });
-
+    
     // register the interceptor as a service
     app.factory('loginInterceptor', function ($q) {
         return {
@@ -336,7 +289,7 @@ function openLogin() {
             }
         };
     });
-
+    
     app.service('waitinfo', function (toastr) {
         var showWait = 0;
         var toast = null;
@@ -357,7 +310,7 @@ function openLogin() {
             }
         };
     });
-
+    
     app.config(function (toastrConfig) {
         angular.extend(toastrConfig, {
             positionClass: 'toast-bottom-right'
@@ -366,16 +319,6 @@ function openLogin() {
 
 
 })();
-(function () {
-    var app = angular.module('saycle');
-    
-    app.service('socketService', function () {
-        var socket = io();
-        // socket.emit, socket.on can be called on the socket object
-        return socket;
-    });
-})();
-
 //This is the js which represents the detail-view
 (function () {
     var app = angular.module('saycle');
@@ -465,7 +408,7 @@ function openLogin() {
     var app = angular.module('saycle');
 
 
-    app.controller('storyListCtrl', function ($scope, $modal, storyService, $location, $interval) {
+    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval, ModalService) {
         var vm = this;
         vm.showStoryOptions = false;
         var refresh = function () {
@@ -482,15 +425,19 @@ function openLogin() {
             $interval.cancel(refreshInterval);
         });
 
-        vm.addStory = function (force) {
-            if (!vm.showStoryOptions || force) {
-                storyService.addStory({ title: vm.newStoryTitle }).then(function () {
-                    vm.newStoryTitle = "";
-                    refresh();
-                });;
-            } else {
-                $modal.dialog({}).open('/partials/storyoptions-modal.html');
-            }
+        vm.addStory = function () {
+            ModalService.showModal({
+                templateUrl: "/public/views/partials/createstory.html",
+                controller: "createStoryCtrl",
+                    inputs: {
+                        title: vm.newStoryTitle
+                    }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    console.log(result);
+                });
+            });
         };
     });
 
@@ -498,6 +445,111 @@ function openLogin() {
 
 
 
+
+(function () {
+    var app = angular.module('saycle');
+
+    app.service('contactService', function ($http, $translate, waitinfo, toastr) {
+
+        return {
+            send: function (formData) {
+                waitinfo.show();
+                return $http.post('/api/contact/send', formData).then(function (result) {
+                    waitinfo.hide();
+                    toastr.success($translate.instant('Toastr.Sent'), $translate.instant('Toastr.Success'));
+                    
+                    return result.data;
+                }, function () {
+                    toastr.error($translate.instant('Toastr.SentError'), $translate.instant('Toastr.Error'));
+                });
+            }
+        };
+
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+    
+    app.service('loginService', function ($http, toastr, waitinfo) {
+        var authInfo = {
+            currentUser: null
+        };
+        
+        var refreshAuthInfo = function () {
+            $http.get('/api/getcurrentuser').then(function (result) {
+                authInfo.currentUser = result.data === "" ? null : result.data;
+            });
+        };
+
+        refreshAuthInfo();
+        
+        return {
+            login: function (loginInfo) {
+                waitinfo.show();
+                return $http.post('/login', loginInfo).success(function () {
+                    waitinfo.hide();
+                    refreshAuthInfo();
+                    toastr.success('You are logged in.', 'Success');
+                    hideNavigation();
+                }, function(result) {
+                    waitinfo.hide();
+                    toastr.error('Sorry, login failed.', 'Error');
+                });
+            },
+            getAuthInfo: function () {
+                return authInfo;
+            },
+            logout: function () {
+                return $http.get('/logout').then(function () {
+                    location.reload();
+                });
+            }
+        };
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+
+    app.service('rankingService', function ($http) {
+
+        return {
+            getRankedUsers: function () {
+                return $http.get('/api/getrankedusers').then(function (result) {
+                    return result.data;
+                });
+            }
+        };
+
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+
+    app.service('registerService', function ($http, toastr, waitinfo) {
+
+        return {
+            register: function (registerInfo) {
+                waitinfo.show();
+                return $http.post('/api/register', registerInfo).success(function () {
+                    waitinfo.hide();
+                    toastr.success('Your user has been registered. You can login now.', 'Success');
+                }).error(function (result) {
+                    waitinfo.hide();
+                    toastr.error('Registering failed', 'Error');
+                });
+            }
+        };
+    });
+})();
+(function () {
+    var app = angular.module('saycle');
+    
+    app.service('socketService', function () {
+        var socket = io();
+        // socket.emit, socket.on can be called on the socket object
+        return socket;
+    });
+})();
 
 (function () {
     var app = angular.module('saycle');

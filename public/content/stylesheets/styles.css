@@ -62,6 +62,10 @@ textarea.form-control {
     margin-right: 10px;
 }
 
+.badge {
+    float: right;
+}
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
     color: #FFFFFF;
     background-color: #384952;
@@ -550,4 +554,8 @@ p.speech {
         top: 64px;
         border: 15px solid;
         border-color: #fff transparent transparent #fff;
+    }
+
+    .modal-body {
+        padding: 20px 50px;
     }

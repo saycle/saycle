@@ -22,6 +22,10 @@ $(document).on('click', function (e) {
     }
 });
 
+$('.btn-toggle').click(function () {
+    $(this).find('.btn').toggleClass('active');
+});
+
 function htmlKeypress(e, func) {
     if (e.keyCode == 2 && e.ctrlKey) {
         $("#easteregg-ctrlb").modal();

@@ -1,20 +1,20 @@
 ﻿(function () {
     var app = angular.module('saycle');
-
+    
     // configure routes
     app.config(function ($locationProvider, $routeProvider, $httpProvider) {
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+        
         $httpProvider.interceptors.push('loginInterceptor');
-
+        
         $locationProvider.html5Mode(true);
-
+        
         $routeProvider
             .when('/', {
-                templateUrl: '/public/views/story-list.html',
-                activetab: 'home'
-            })
+            templateUrl: '/public/views/story-list.html',
+            activetab: 'home'
+        })
         .when('/ranking', {
             templateUrl: '/public/views/ranking.html',
             activetab: 'ranking'
@@ -33,35 +33,60 @@
         })
         .otherwise({ redirectTo: '/' });;
     });
-
+    
     app.config(function ($translateProvider) {
+        var $cookies;
+        angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies_) {
+            $cookies = _$cookies_;
+        }]);
 
-        var defaultLanguage = 'en-gb';
-        if (window.location.href.indexOf('?lang') != -1) {
-            defaultLanguage = (new RegExp('lang=([^&]+)')).exec(window.location.href)[1];
-        }
-
-        $translateProvider
-        .useStaticFilesLoader({
+        var lang = false;
+        var langFileConvention = {
             prefix: '/public/content/translations/locale_',
             suffix: '.json'
-        })
-        .preferredLanguage(defaultLanguage);
-    });
+        };
+        if (window.location.href.indexOf('?lang') != -1) {
+            lang = (new RegExp('lang=([^&]+)')).exec(window.location.href)[1];
+            $cookies.put('lang', lang);
+        } else {
+            lang = $cookies.get('lang');
+        }
+        if(lang) {
+            $translateProvider
+                .useStaticFilesLoader(langFileConvention)
+                .preferredLanguage(lang);
+        } else {
+            $translateProvider
+                .useStaticFilesLoader(langFileConvention)
+                .registerAvailableLanguageKeys(['en', 'de-ch', 'de-de'], {
+                     'en_*': 'en',
+                     'de-ch*': 'de-ch',
+                     'de_ch': 'de-ch',
+                     'de-*': 'de-de',
+                     'de_*': 'de-de',
+                     '*': 'en'
+                 })
+                .determinePreferredLanguage()
+                .fallbackLanguage(['en-gb']);
+        }
+        
 
+    });
+    
     var globalToastr = null;
     var globalTranslate = null;
-    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, amMoment) {
+    app.controller('saycleCtrl', function (loginService, $scope, $translate, toastr, amMoment, $cookies) {
         var vm = this;
         vm.authInfo = loginService.getAuthInfo();
         vm.changeLanguage = function (key) {
             $translate.use(key);
             amMoment.changeLocale(key.split(['-'][0]));
+            $cookies.put('lang', key);
         };
         vm.isCurrentLanguage = function (key) {
             return $translate.use() == key
         };
-
+        
         globalToastr = toastr;
         globalTranslate = $translate;
         $scope.$on('$routeChangeStart', function (current, next) {
@@ -69,10 +94,9 @@
                 vm.activetab = next.$$route.activetab;
             }
         });
-
         amMoment.changeLocale($translate.proposedLanguage());
     });
-
+    
     // register the interceptor as a service
     app.factory('loginInterceptor', function ($q) {
         return {
@@ -99,7 +123,7 @@
             }
         };
     });
-
+    
     app.service('waitinfo', function (toastr) {
         var showWait = 0;
         var toast = null;
@@ -120,7 +144,7 @@
             }
         };
     });
-
+    
     app.config(function (toastrConfig) {
         angular.extend(toastrConfig, {
             positionClass: 'toast-bottom-right'
