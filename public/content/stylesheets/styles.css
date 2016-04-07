@@ -85,6 +85,18 @@ textarea.form-control {
     overflow: hidden !important;
 }
 
+#banner {
+    position: fixed;
+    font-size: 40px;
+    float: right;
+    -ms-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+    top: 35px;
+    left: 30px;
+    text-shadow: 2px 2px 10px rgb(56, 73, 82);
+    color: #ffffff;
+}
 
 .dropdown-menu {
     width: 100%;

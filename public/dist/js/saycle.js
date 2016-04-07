@@ -193,7 +193,7 @@ function openLogin() {
         };
         if (window.location.href.indexOf('?lang') != -1) {
             lang = (new RegExp('lang=([^&]+)')).exec(window.location.href)[1];
-            $cookies.put('lang', lang);
+            setLangCookie($cookies, lang);
         } else {
             lang = $cookies.get('lang');
         }
@@ -227,7 +227,7 @@ function openLogin() {
         vm.changeLanguage = function (key) {
             $translate.use(key);
             amMoment.changeLocale(key.split(['-'][0]));
-            $cookies.put('lang', key);
+            setLangCookie($cookies, key);
         };
         vm.isCurrentLanguage = function (key) {
             return $translate.use() == key
@@ -297,6 +297,12 @@ function openLogin() {
         });
     });
 
+
+    function setLangCookie($cookies, lang) {
+        var expires = new Date();
+        expires.setTime(expires.getTime() + 31536000000);
+        $cookies.put('lang', lang, { 'expires': expires.toUTCString() });
+    }
 
 })();
 //This is the js which represents the detail-view
