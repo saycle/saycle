@@ -37,7 +37,9 @@
       "StoryLockedText": "Sorry, another user was faster..."
     },
     "Sent": "Sent",
-    "SentError": "Sending failed"
+    "SentError": "Sending failed",
+    "PleaseWait": "Please wait",
+    "Working": "Working..."
   },
 
   "Navigation": {
@@ -87,7 +89,7 @@
     "SpeechSebastian": "What?",
     "About": "About saycle",
     "AboutText": "We are students. One of us is vegetarian.",
-    "ExtendedImprint": "Extended imprint"
+    "ExtendedImprint": "legal disclaimer"
   },
 
   "SocialShare": {

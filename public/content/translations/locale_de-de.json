@@ -38,7 +38,9 @@
       "StoryLockedText": "Sorry, ein anderer Benutzer war schneller..."
     },
     "Sent": "Gesendet",
-    "SentError": "Senden fehlgeschlagen"
+    "SentError": "Senden fehlgeschlagen",
+    "PleaseWait": "Bitte warten",
+    "Working": "Arbeite..."
   },
 
   "Navigation": {
@@ -88,7 +90,7 @@
     "SpeechSebastian": "Halts Maul",
     "About": "Über saycle",
     "AboutText": "Wir sind Studenten. Einer von uns ist vegetarier.",
-    "ExtendedImprint": "Erweitertes Impressum"
+    "ExtendedImprint": "Rechtliches Impressum"
   },
 
   "SocialShare": {

@@ -5,6 +5,8 @@
     
     app.controller('imprintCtrl', function ($scope, $route) {
         var vm = this;
+        var today = new Date();
+        vm.year = today.getFullYear();
     });
 
 })();

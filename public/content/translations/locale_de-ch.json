@@ -38,7 +38,9 @@
       "StoryLockedText": "Exgüsi, en Andere isch schneller gsi..."
     },
     "Sent": "Gsendet",
-    "SentError": "Sende fehlgschlage"
+    "SentError": "Sende fehlgschlage",
+    "PleaseWait": "Heb Geduld",
+    "Working": "Bin am schaffe..."
   },
 
   "Navigation": {
@@ -88,7 +90,7 @@
     "SpeechSebastian": "S'Geilst",
     "About": "Über saycle",
     "AboutText": "Mir sind Studente. Eine vo üs isch vegetarier.",
-    "ExtendedImprint": "Ufblosenes Impressum"
+    "ExtendedImprint": "Rechtliches Impressum"
   },
 
   "SocialShare": {

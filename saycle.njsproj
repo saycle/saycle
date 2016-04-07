@@ -45,7 +45,6 @@
     <Content Include="public\content\images\portraits\portrait-raphael.png" />
     <Content Include="public\content\images\portraits\portrait-sebastian.png" />
     <Content Include="public\views\partials\facebook-sdk.html" />
-    <Content Include="public\views\partials\createstory.html" />
     <Content Include="public\scripts\_saycle-app.js" />
     <Content Include="public\services\register-service.js" />
     <Content Include="public\services\contact-service.js" />

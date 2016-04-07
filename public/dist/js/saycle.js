@@ -81,6 +81,8 @@ function openLogin() {
     
     app.controller('imprintCtrl', function ($scope, $route) {
         var vm = this;
+        var today = new Date();
+        vm.year = today.getFullYear();
     });
 
 })();
@@ -277,7 +279,7 @@ function openLogin() {
             if (showWait <= 0 && toast != null && toast.isOpened)
                 toastr.clear(toast);
             if (showWait > 0 && (!toast || !toast.isOpened))
-                toast = toastr.info('Please wait...', 'Working', { timeOut: 0, extendedTimeOut: 1, autoDismiss: true });
+                toast = toastr.info(globalTranslate.instant('Toastr.PleaseWait'), globalTranslate.instant('Toastr.Working'), { timeOut: 0, extendedTimeOut: 1, autoDismiss: true });
         };
         return {
             show: function () {
@@ -394,7 +396,7 @@ function openLogin() {
     var app = angular.module('saycle');
 
 
-    app.controller('storyListCtrl', function ($scope, $modal, storyService, $location, $interval) {
+    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval, ModalService) {
         var vm = this;
         vm.showStoryOptions = false;
         var refresh = function () {
@@ -411,15 +413,19 @@ function openLogin() {
             $interval.cancel(refreshInterval);
         });
 
-        vm.addStory = function (force) {
-            if (!vm.showStoryOptions || force) {
-                storyService.addStory({ title: vm.newStoryTitle }).then(function () {
-                    vm.newStoryTitle = "";
-                    refresh();
-                });;
-            } else {
-                $modal.dialog({}).open('/partials/storyoptions-modal.html');
-            }
+        vm.addStory = function () {
+            ModalService.showModal({
+                templateUrl: "/public/views/partials/createstory.html",
+                controller: "createStoryCtrl",
+                    inputs: {
+                        title: vm.newStoryTitle
+                    }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    console.log(result);
+                });
+            });
         };
     });
 

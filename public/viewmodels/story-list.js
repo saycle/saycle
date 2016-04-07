@@ -3,7 +3,7 @@
     var app = angular.module('saycle');
 
 
-    app.controller('storyListCtrl', function ($scope, $modal, storyService, $location, $interval) {
+    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval, ModalService) {
         var vm = this;
         vm.showStoryOptions = false;
         var refresh = function () {
@@ -20,15 +20,19 @@
             $interval.cancel(refreshInterval);
         });
 
-        vm.addStory = function (force) {
-            if (!vm.showStoryOptions || force) {
-                storyService.addStory({ title: vm.newStoryTitle }).then(function () {
-                    vm.newStoryTitle = "";
-                    refresh();
-                });;
-            } else {
-                $modal.dialog({}).open('/partials/storyoptions-modal.html');
-            }
+        vm.addStory = function () {
+            ModalService.showModal({
+                templateUrl: "/public/views/partials/createstory.html",
+                controller: "createStoryCtrl",
+                    inputs: {
+                        title: vm.newStoryTitle
+                    }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    console.log(result);
+                });
+            });
         };
     });
 
