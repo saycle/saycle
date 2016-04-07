@@ -74,26 +74,6 @@ function openLogin() {
     });
 
 })();
-var app = angular.module('saycle');
-
-app.controller('createStoryCtrl', [
-  '$scope', '$element', 'title', 'close',
-  function ($scope, $element, title, close) {
-      $scope.title = title;
-      //$scope.story.title = title;
-      $scope.close = function() {
-          close({
-
-          }, 500);
-      };
-      $scope.cancel = function () {
-          $element.modal('hide');
-          close({
-
-          }, 500);
-      };
-
-  }]);
 //This is the js which represents the imprint
 (function () {
     var app = angular.module('saycle');
@@ -408,7 +388,7 @@ app.controller('createStoryCtrl', [
     var app = angular.module('saycle');
 
 
-    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval, ModalService) {
+    app.controller('storyListCtrl', function ($scope, $modal, storyService, $location, $interval) {
         var vm = this;
         vm.showStoryOptions = false;
         var refresh = function () {
@@ -425,19 +405,15 @@ app.controller('createStoryCtrl', [
             $interval.cancel(refreshInterval);
         });
 
-        vm.addStory = function () {
-            ModalService.showModal({
-                templateUrl: "/public/views/partials/createstory.html",
-                controller: "createStoryCtrl",
-                    inputs: {
-                        title: vm.newStoryTitle
-                    }
-            }).then(function (modal) {
-                modal.element.modal();
-                modal.close.then(function (result) {
-                    console.log(result);
-                });
-            });
+        vm.addStory = function (force) {
+            if (!vm.showStoryOptions || force) {
+                storyService.addStory({ title: vm.newStoryTitle }).then(function () {
+                    vm.newStoryTitle = "";
+                    refresh();
+                });;
+            } else {
+                $modal.dialog({}).open('/partials/storyoptions-modal.html');
+            }
         };
     });
 
