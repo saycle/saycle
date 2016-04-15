@@ -74,6 +74,26 @@ function openLogin() {
     });
 
 })();
+var app = angular.module('saycle');
+
+app.controller('createStoryCtrl', [
+  '$scope', '$element', 'title', 'close',
+  function ($scope, $element, title, close) {
+      $scope.title = title;
+      //$scope.story.title = title;
+      $scope.close = function() {
+          close({
+
+          }, 500);
+      };
+      $scope.cancel = function () {
+          $element.modal('hide');
+          close({
+
+          }, 500);
+      };
+
+  }]);
 //This is the js which represents the imprint
 (function () {
     var app = angular.module('saycle');

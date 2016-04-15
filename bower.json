@@ -26,7 +26,8 @@
     "angular-moment": "0.10.3",
     "angular-sanitize": "1.4.8",
     "angular-modal-service": "0.9.10",
-    "angular-cookies": "^1.5.3"
+    "angular-cookies": "^1.5.3",
+    "bootstrap-select": "^1.10.0"
   },
   "resolutions": {
     "angular": "1.5.3"

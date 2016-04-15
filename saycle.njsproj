@@ -44,6 +44,7 @@
     <Content Include="public\content\images\portraits\portrait-david.png" />
     <Content Include="public\content\images\portraits\portrait-raphael.png" />
     <Content Include="public\content\images\portraits\portrait-sebastian.png" />
+    <Content Include="public\views\partials\createstory.html" />
     <Content Include="public\views\partials\facebook-sdk.html" />
     <Content Include="public\scripts\_saycle-app.js" />
     <Content Include="public\services\register-service.js" />
@@ -89,6 +90,7 @@
     <Content Include="public\services\story-service.js" />
     <Content Include="public\viewmodels\ranking.js" />
     <Content Include="public\content\translations\locale_de-ch.json" />
+    <Content Include="public\views\partials\storyoptions-modal.html" />
     <Content Include="tsd.json" />
     <TypeScriptCompile Include="server\api\authentication.ts" />
     <TypeScriptCompile Include="server\api\contact.ts" />
