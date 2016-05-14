@@ -20,7 +20,11 @@
             <input placeholder="{{'StoryList.AddStoryBody' | translate}}" class="form-control" type="text" ng-model="vm.newStoryTitle" />
         </div>
         <div class="panel-footer">
-            <button class="btn btn-primary" ng-click="vm.addStory(false)" ng-disabled="vm.newStoryTitle == '' || vm.newStoryTitle == null">{{'StoryList.AddStoryButton' | translate}}</button>
+            <!--<button class="btn btn-primary" ng-click="vm.addStory(false)" ng-disabled="vm.newStoryTitle == '' || vm.newStoryTitle == null">{{'StoryList.AddStoryButton' | translate}}</button>-->
+            <button class="btn btn-primary" ng-click="vm.addStory()">{{'StoryList.AddStoryButton' | translate}}</button>
+            <!--<div class="checkbox">
+                <label><input type="checkbox" ng-model="vm.showStoryOptions" name="showStoryOptions">{{'StoryList.ShowStoryOptions' | translate}}</label>
+            </div>-->
         </div>
     </div>
 </article>

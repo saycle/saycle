@@ -86,7 +86,7 @@ textarea.form-control {
 }
 
 #banner {
-    position: fixed;
+    position: absolute;
     font-size: 40px;
     float: right;
     -ms-transform: rotate(-10deg);
