@@ -24,6 +24,7 @@
   "Toastr": {
     "Success": "Erfolgrich",
     "Error": "Fehler",
+    "Welcome": "Willomme",
     "CycleAdded": "Saycle isch hinzuegfüegt worde",
     "Done": "Okei",
     "StoryAdded": "Dinie Gschicht isch hinzuegfüegt worde",
@@ -31,7 +32,8 @@
     "LoginError": {
       "LoginFirst": "Meld dich bitte a zum Öpis biträge",
       "LoginDefault": "Meld di als Admin a du Horst",
-      "Login": "Bitte meld dich a"
+      "Login": "Bitte meld dich a",
+      "Fail": "Äxsgüsi, s Amelde isch fehlgschlage..."
     },
     "StoryError": {
       "StoryLockedTitle": "Gsperrt",
@@ -40,7 +42,8 @@
     "Sent": "Gsendet",
     "SentError": "Sende fehlgschlage",
     "PleaseWait": "Heb Geduld",
-    "Working": "Bin am schaffe..."
+    "Working": "Bin am schaffe...",
+    "LoginSuccess": "Du bisch agmeldet."
   },
 
   "Navigation": {

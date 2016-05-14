@@ -202,7 +202,8 @@ function openLogin() {
         if(lang) {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
-                .preferredLanguage(lang);
+                .preferredLanguage(lang)
+                .useSanitizeValueStrategy('escaped');
         } else {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
@@ -215,7 +216,8 @@ function openLogin() {
                      '*': 'en'
                  })
                 .determinePreferredLanguage()
-                .fallbackLanguage(['en-gb']);
+                .fallbackLanguage(['en-gb'])
+                .useSanitizeValueStrategy('escaped');
         }
         
 
@@ -396,7 +398,7 @@ function openLogin() {
     var app = angular.module('saycle');
 
 
-    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval, ModalService) {
+    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval) {
         var vm = this;
         vm.showStoryOptions = false;
         var refresh = function () {
@@ -414,18 +416,10 @@ function openLogin() {
         });
 
         vm.addStory = function () {
-            ModalService.showModal({
-                templateUrl: "/public/views/partials/createstory.html",
-                controller: "createStoryCtrl",
-                    inputs: {
-                        title: vm.newStoryTitle
-                    }
-            }).then(function (modal) {
-                modal.element.modal();
-                modal.close.then(function (result) {
-                    console.log(result);
-                });
-            });
+            storyService.addStory({ title: vm.newStoryTitle }).then(function () {
+                vm.newStoryTitle = "";
+                refresh();
+            });;
         };
     });
 
@@ -458,7 +452,7 @@ function openLogin() {
 (function () {
     var app = angular.module('saycle');
     
-    app.service('loginService', function ($http, toastr, waitinfo) {
+    app.service('loginService', function ($http, $translate, toastr, waitinfo) {
         var authInfo = {
             currentUser: null
         };
@@ -476,12 +470,12 @@ function openLogin() {
                 waitinfo.show();
                 return $http.post('/login', loginInfo).success(function () {
                     waitinfo.hide();
-                    refreshAuthInfo();
-                    toastr.success('You are logged in.', 'Success');
+                    refreshAuthInfo(); 
+                    toastr.success($translate.instant('Toastr.LoginSuccess'), $translate.instant('Toastr.Welcome'));
                     hideNavigation();
                 }, function(result) {
                     waitinfo.hide();
-                    toastr.error('Sorry, login failed.', 'Error');
+                    toastr.error($translate.instant('Toastr.LoginError.Fail'), $translate.instant('Toastr.Error'));
                 });
             },
             getAuthInfo: function () {

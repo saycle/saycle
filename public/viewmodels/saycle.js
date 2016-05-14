@@ -54,7 +54,8 @@
         if(lang) {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
-                .preferredLanguage(lang);
+                .preferredLanguage(lang)
+                .useSanitizeValueStrategy('escaped');
         } else {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
@@ -67,7 +68,8 @@
                      '*': 'en'
                  })
                 .determinePreferredLanguage()
-                .fallbackLanguage(['en-gb']);
+                .fallbackLanguage(['en-gb'])
+                .useSanitizeValueStrategy('escaped');
         }
         
 

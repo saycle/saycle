@@ -1,7 +1,7 @@
 ﻿(function () {
     var app = angular.module('saycle');
     
-    app.service('loginService', function ($http, toastr, waitinfo) {
+    app.service('loginService', function ($http, $translate, toastr, waitinfo) {
         var authInfo = {
             currentUser: null
         };
@@ -19,12 +19,12 @@
                 waitinfo.show();
                 return $http.post('/login', loginInfo).success(function () {
                     waitinfo.hide();
-                    refreshAuthInfo();
-                    toastr.success('You are logged in.', 'Success');
+                    refreshAuthInfo(); 
+                    toastr.success($translate.instant('Toastr.LoginSuccess'), $translate.instant('Toastr.Welcome'));
                     hideNavigation();
                 }, function(result) {
                     waitinfo.hide();
-                    toastr.error('Sorry, login failed.', 'Error');
+                    toastr.error($translate.instant('Toastr.LoginError.Fail'), $translate.instant('Toastr.Error'));
                 });
             },
             getAuthInfo: function () {

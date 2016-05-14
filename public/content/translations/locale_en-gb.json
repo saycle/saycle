@@ -23,6 +23,7 @@
   "Toastr": {
     "Success": "Success",
     "Error": "Error",
+    "Welcome": "Welcome",
     "CycleAdded": "Cycle has been added",
     "Done": "Done",
     "StoryAdded": "Your story has been added.",
@@ -30,7 +31,8 @@
     "LoginError": {
       "LoginFirst": "Please login to contribute something",
       "LoginDefault": "Please login as administrator",
-      "Login": "Please login"
+      "Login": "Please login",
+      "Fail": "Sorry, login failed..."
     },
     "StoryError": {
       "StoryLockedTitle": "Locked",
@@ -39,7 +41,8 @@
     "Sent": "Sent",
     "SentError": "Sending failed",
     "PleaseWait": "Please wait",
-    "Working": "Working..."
+    "Working": "Working...",
+    "LoginSuccess": "You are logged in."
   },
 
   "Navigation": {
@@ -99,7 +102,7 @@
   },
 
   "Ranking": {
-    "title":  "Ranking",
+    "title": "Ranking",
     "username": "Username",
     "charCounter": "Number of chars",
     "lastInput": "Last input"

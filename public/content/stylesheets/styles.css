@@ -231,6 +231,7 @@ article {
     .btn-facebook {
         float: right;
         margin-top: 0 !important;
+        line-height: 2px;
     }
 }
 
@@ -519,9 +520,17 @@ a.cycle-item {
     font-size: inherit !important;
 }
 
-#david:hover .speech-container { visibility: visible; }
-#raphael:hover .speech-container { visibility: visible; }
-#sebastian:hover .speech-container { visibility: visible; }
+#david:hover .speech-container {
+    visibility: visible;
+}
+
+#raphael:hover .speech-container {
+    visibility: visible;
+}
+
+#sebastian:hover .speech-container {
+    visibility: visible;
+}
 
 .speech-container {
     position: absolute;
@@ -568,6 +577,6 @@ p.speech {
         border-color: #fff transparent transparent #fff;
     }
 
-    .modal-body {
-        padding: 20px 50px;
-    }
+.modal-body {
+    padding: 20px 50px;
+}
