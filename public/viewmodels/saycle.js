@@ -37,9 +37,9 @@
     app.config(function ($translateProvider) {
         var $cookies;
         angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies_) {
-            $cookies = _$cookies_;
-        }]);
-
+                $cookies = _$cookies_;
+            }]);
+        
         var lang = false;
         var langFileConvention = {
             prefix: '/public/content/translations/locale_',
@@ -51,23 +51,25 @@
         } else {
             lang = $cookies.get('lang');
         }
-        if(lang) {
+        if (lang) {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
-                .preferredLanguage(lang);
+                .preferredLanguage(lang)
+                .useSanitizeValueStrategy('escape');
         } else {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
                 .registerAvailableLanguageKeys(['en', 'de-ch', 'de-de'], {
-                     'en_*': 'en',
-                     'de-ch*': 'de-ch',
-                     'de_ch': 'de-ch',
-                     'de-*': 'de-de',
-                     'de_*': 'de-de',
-                     '*': 'en'
-                 })
+                'en_*': 'en',
+                'de-ch*': 'de-ch',
+                'de_ch': 'de-ch',
+                'de-*': 'de-de',
+                'de_*': 'de-de',
+                '*': 'en'
+            })
                 .determinePreferredLanguage()
-                .fallbackLanguage(['en-gb']);
+                .fallbackLanguage(['en-gb'])
+                .useSanitizeValueStrategy('escape');
         }
         
 
@@ -150,8 +152,8 @@
             positionClass: 'toast-bottom-right'
         });
     });
-
-
+    
+    
     function setLangCookie($cookies, lang) {
         var expires = new Date();
         expires.setTime(expires.getTime() + 31536000000);

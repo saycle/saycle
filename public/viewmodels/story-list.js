@@ -21,18 +21,10 @@
         });
 
         vm.addStory = function () {
-            ModalService.showModal({
-                templateUrl: "/public/views/partials/createstory.html",
-                controller: "createStoryCtrl",
-                    inputs: {
-                        title: vm.newStoryTitle
-                    }
-            }).then(function (modal) {
-                modal.element.modal();
-                modal.close.then(function (result) {
-                    console.log(result);
-                });
-            });
+            storyService.addStory({ title: vm.newStoryTitle }).then(function () {
+                vm.newStoryTitle = "";
+                refresh();
+            });;
         };
     });
 
