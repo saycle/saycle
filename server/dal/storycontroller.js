@@ -5,14 +5,14 @@ var StoryController = (function () {
     function StoryController() {
     }
     StoryController.getStories = function () {
-        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = stories.id) AS cyclecount, id, title, username, date FROM stories ORDER BY (SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id GROUP BY story)", []).then(function (result) {
+        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = stories.id) AS cyclecount, id, title, username, date, deleted FROM stories ORDER BY (SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id GROUP BY story)", []).then(function (result) {
             return result.rows;
         });
     };
     ;
     StoryController.getStoryById = function (id) {
         var _this = this;
-        return RunQuery.runQuery("SELECT id, title, username, date, active, password FROM stories WHERE id = $1", [id]).then(function (result) {
+        return RunQuery.runQuery("SELECT id, title, username, date, active, password,deleted FROM stories WHERE id = $1", [id]).then(function (result) {
             return _this.getCycles(id).then(function (cycles) {
                 var story = result.rows[0];
                 story.cycles = cycles;
@@ -24,6 +24,14 @@ var StoryController = (function () {
     StoryController.addStory = function (story) {
         story.id = Guid.newGuid();
         return RunQuery.runQuery("INSERT INTO stories (id, title, username, date) VALUES ($1, $2, $3, $4)", [story.id, story.title, story.username, new Date()]);
+    };
+    ;
+    StoryController.deleteStory = function (story) {
+        return RunQuery.runQuery("UPDATE Stories SET deleted = true WHERE id = $1", [story.id]);
+    };
+    ;
+    StoryController.undeleteStory = function (story) {
+        return RunQuery.runQuery("UPDATE Stories SET deleted = false WHERE id = $1", [story.id]);
     };
     ;
     StoryController.getCycles = function (storyId) {

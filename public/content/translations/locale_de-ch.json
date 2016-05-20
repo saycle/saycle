@@ -29,6 +29,10 @@
     "Done": "Okei",
     "StoryAdded": "Dinie Gschicht isch hinzuegfüegt worde",
     "StoryAddFailed": "Es isch öppis schlimms passiert. Bitte probiers nomol.",
+    "StoryDeleted": "Gschicht glöscht, etz hesch de Salot.",
+    "StoryDeleteFailed": "Es isch öppis schlimms passiert. Bitte probiers nomol.",
+    "StoryUndeleted": "Gschicht wiederdo, gerngscheh.",
+    "StoryUndeleteFailed": "Es isch öppis schlimms passiert. Bitte probiers nomol.",
     "LoginError": {
       "LoginFirst": "Meld dich bitte a zum Öpis biträge",
       "LoginDefault": "Meld di als Admin a du Horst",

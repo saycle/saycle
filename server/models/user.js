@@ -8,7 +8,7 @@ var User = (function () {
         this.password = userObj.password;
         this.verified = userObj.verified;
         this.email = userObj.email;
-        this.isadmin = userObj.isadmin;
+        this.isAdmin = userObj.isAdmin;
     }
     User.prototype.validPassword = function (password) {
         return bcrypt.compareSync(password, this.password);

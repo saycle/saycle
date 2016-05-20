@@ -29,6 +29,10 @@
     "Done": "Ok",
     "StoryAdded": "Deine Story wurde hinzugefügt.",
     "StoryAddFailed": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+    "StoryDeleted": "Die Story wurde gelöscht.",
+    "StoryDeleteFailed": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+    "StoryUndeleted": "Die Story wurde wiederhergestellt.",
+    "StoryUndeleteFailed": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
     "LoginError": {
       "LoginFirst": "Melde dich an, um etwas beizutragen",
       "LoginDefault": "Melde dich als Administrator an",

@@ -398,16 +398,17 @@ function openLogin() {
     var app = angular.module('saycle');
 
 
-    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval) {
+    app.controller('storyListCtrl', function ($scope, storyService, loginService, $location, $interval) {
         var vm = this;
         vm.showStoryOptions = false;
+        vm.authInfo = loginService.getAuthInfo();
         var refresh = function () {
             storyService.getStories().then(function (stories) {
                 vm.stories = stories;
             });
         };
-
         refresh();
+
 
         // Refresh stories every 10 seconds
         var refreshInterval = $interval(refresh, 10000);
@@ -421,12 +422,26 @@ function openLogin() {
                 refresh();
             });;
         };
+
+        vm.deleteStory = function (storyId) {
+            storyService.deleteStory({ id: storyId }).then(function () {
+                refresh();
+            });;
+        };
+
+        vm.undeleteStory = function (storyId) {
+            storyService.undeleteStory({ id: storyId }).then(function () {
+                refresh();
+            });;
+        };
+
+        vm.isAdmin = function () {
+            return vm.authInfo.currentUser != null && vm.authInfo.currentUser.isAdmin;
+        };
+
     });
 
 })();
-
-
-
 
 (function () {
     var app = angular.module('saycle');
@@ -451,12 +466,12 @@ function openLogin() {
 })();
 (function () {
     var app = angular.module('saycle');
-    
+
     app.service('loginService', function ($http, $translate, toastr, waitinfo) {
         var authInfo = {
             currentUser: null
         };
-        
+
         var refreshAuthInfo = function () {
             $http.get('/api/getcurrentuser').then(function (result) {
                 authInfo.currentUser = result.data === "" ? null : result.data;
@@ -464,22 +479,29 @@ function openLogin() {
         };
 
         refreshAuthInfo();
-        
+
         return {
             login: function (loginInfo) {
                 waitinfo.show();
                 return $http.post('/login', loginInfo).success(function () {
                     waitinfo.hide();
-                    refreshAuthInfo(); 
+                    refreshAuthInfo();
                     toastr.success($translate.instant('Toastr.LoginSuccess'), $translate.instant('Toastr.Welcome'));
                     hideNavigation();
-                }, function(result) {
+                }, function (result) {
                     waitinfo.hide();
                     toastr.error($translate.instant('Toastr.LoginError.Fail'), $translate.instant('Toastr.Error'));
                 });
             },
             getAuthInfo: function () {
+                refreshAuthInfo();
                 return authInfo;
+            },
+            isAdmin: function () {
+                return $http.get('/isAdmin').then(function () {
+                    refreshAuthInfo();
+                    return authInfo.isAdmin;
+                });
             },
             logout: function () {
                 return $http.get('/logout').then(function () {
@@ -563,6 +585,26 @@ function openLogin() {
                     waitinfo.hide();
                 }, function () {
                     toastr.error($translate.instant('Toastr.StoryAddFailed'), $translate.instant('Toastr.Error'));
+                    waitinfo.hide();
+                });
+            },
+            deleteStory: function (story) {
+                waitinfo.show();
+                return $http.post('/api/stories/deletestory', story).then(function () {
+                    toastr.success($translate.instant('Toastr.StoryDeleted'), $translate.instant('Toastr.Done'));
+                    waitinfo.hide();
+                }, function () {
+                    toastr.error($translate.instant('Toastr.StoryDeleteFailed'), $translate.instant('Toastr.Error'));
+                    waitinfo.hide();
+                });
+            },
+            undeleteStory: function (story) {
+                waitinfo.show();
+                return $http.post('/api/stories/undeletestory', story).then(function () {
+                    toastr.success($translate.instant('Toastr.StoryUndeleted'), $translate.instant('Toastr.Done'));
+                    waitinfo.hide();
+                }, function () {
+                    toastr.error($translate.instant('Toastr.StoryUndeleteFailed'), $translate.instant('Toastr.Error'));
                     waitinfo.hide();
                 });
             },

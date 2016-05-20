@@ -10,6 +10,7 @@ class Story {
     cyclecount: number;
     date: Date;
     isLockedBy: string;
+    deleted: boolean;
 }
 
 export = Story;

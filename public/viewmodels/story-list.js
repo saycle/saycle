@@ -3,16 +3,17 @@
     var app = angular.module('saycle');
 
 
-    app.controller('storyListCtrl', function ($scope, storyService, $location, $interval) {
+    app.controller('storyListCtrl', function ($scope, storyService, loginService, $location, $interval) {
         var vm = this;
         vm.showStoryOptions = false;
+        vm.authInfo = loginService.getAuthInfo();
         var refresh = function () {
             storyService.getStories().then(function (stories) {
                 vm.stories = stories;
             });
         };
-
         refresh();
+
 
         // Refresh stories every 10 seconds
         var refreshInterval = $interval(refresh, 10000);
@@ -26,9 +27,23 @@
                 refresh();
             });;
         };
+
+        vm.deleteStory = function (storyId) {
+            storyService.deleteStory({ id: storyId }).then(function () {
+                refresh();
+            });;
+        };
+
+        vm.undeleteStory = function (storyId) {
+            storyService.undeleteStory({ id: storyId }).then(function () {
+                refresh();
+            });;
+        };
+
+        vm.isAdmin = function () {
+            return vm.authInfo.currentUser != null && vm.authInfo.currentUser.isAdmin;
+        };
+
     });
 
 })();
-
-
-

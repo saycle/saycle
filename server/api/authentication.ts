@@ -127,7 +127,7 @@ class Authentication {
     };
 
     static isAdmin(req, res, next) {
-        if (req.isAuthenticated() && req.user.isadmin)
+        if (req.isAuthenticated() && req.user.isAdmin)
             return next();
         res.send(401, 'LoginAdmin');
     };

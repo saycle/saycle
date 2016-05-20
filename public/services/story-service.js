@@ -31,6 +31,26 @@
                     waitinfo.hide();
                 });
             },
+            deleteStory: function (story) {
+                waitinfo.show();
+                return $http.post('/api/stories/deletestory', story).then(function () {
+                    toastr.success($translate.instant('Toastr.StoryDeleted'), $translate.instant('Toastr.Done'));
+                    waitinfo.hide();
+                }, function () {
+                    toastr.error($translate.instant('Toastr.StoryDeleteFailed'), $translate.instant('Toastr.Error'));
+                    waitinfo.hide();
+                });
+            },
+            undeleteStory: function (story) {
+                waitinfo.show();
+                return $http.post('/api/stories/undeletestory', story).then(function () {
+                    toastr.success($translate.instant('Toastr.StoryUndeleted'), $translate.instant('Toastr.Done'));
+                    waitinfo.hide();
+                }, function () {
+                    toastr.error($translate.instant('Toastr.StoryUndeleteFailed'), $translate.instant('Toastr.Error'));
+                    waitinfo.hide();
+                });
+            },
             lock: function (story) {
                 return $http.post('/api/stories/lock', story);
             },

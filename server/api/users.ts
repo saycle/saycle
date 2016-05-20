@@ -7,7 +7,7 @@ var app = express();
 
 app.get('/getcurrentuser', function (req, res) {
     if (req.user)
-        res.json({ name: req.user.name, email: req.user.email });
+        res.json({ name: req.user.name, email: req.user.email, isAdmin: req.user.isAdmin });
     else
         res.json(null);
 });

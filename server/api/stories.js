@@ -17,17 +17,36 @@ app.get('/getstories', function (req, res) {
 });
 app.get('/getstorybyid', function (req, res) {
     context.Stories.getStoryById(req.query.id).then(function (story) {
-        story.isLockedBy = lockedStories[story.id] ? lockedStories[story.id].user : null;
-        res.json(story);
+        if (story.deleted) {
+            res.send(500, { message: 'storyDeletedError' });
+        }
+        else {
+            story.isLockedBy = lockedStories[story.id] ? lockedStories[story.id].user : null;
+            res.json(story);
+        }
     });
 });
 app.post('/addstory', auth.isAuthenticated, function (req, res) {
     var story = req.body;
     story.username = req.user.name;
-    context.Stories.addStory(req.body).then(function () {
+    context.Stories.addStory(story).then(function () {
         res.send(200, 'added story');
     }, function (reason) {
         res.send(500, { mesage: 'addStoryError', error: reason });
+    });
+});
+app.post('/deletestory', auth.isAdmin, function (req, res) {
+    context.Stories.deleteStory(req.body).then(function () {
+        res.send(200, 'deleted story');
+    }, function (reason) {
+        res.send(500, { mesage: 'deleteStoryError', error: reason });
+    });
+});
+app.post('/undeletestory', auth.isAdmin, function (req, res) {
+    context.Stories.undeleteStory(req.body).then(function () {
+        res.send(200, 'undeleted story');
+    }, function (reason) {
+        res.send(500, { mesage: 'undeleteStoryError', error: reason });
     });
 });
 app.post('/addcycle', auth.isAuthenticated, function (req, res) {
@@ -48,7 +67,7 @@ app.post('/lock', auth.isAuthenticated, function (req, res) {
     else {
         lockedStories[req.body.id] = { user: req.user.name };
         socket.getIO().sockets.emit('refreshStory', { id: req.body.id });
-        res.send(200, 'soryLockedSuccess');
+        res.send(200, 'storyLockedSuccess');
     }
 });
 app.post('/canceledit', auth.isAuthenticated, function (req, res) {

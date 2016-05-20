@@ -63,7 +63,6 @@ textarea.form-control {
 }
 
 .badge {
-    float: right;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
@@ -142,6 +141,10 @@ main {
 
 article {
     margin: 5% 0;
+}
+
+.admin-story-option {
+    vertical-align: middle;
 }
 
 .languages {
@@ -232,6 +235,7 @@ article {
         float: right;
         margin-top: 0 !important;
         line-height: 2px;
+        max-width: 100%;
     }
 }
 
@@ -518,6 +522,7 @@ a.cycle-item {
     border-color: rgba(0,0,0,0.2);
     margin-top: 8px;
     font-size: inherit !important;
+    max-width: 100%;
 }
 
 #david:hover .speech-container {
@@ -579,4 +584,9 @@ p.speech {
 
 .modal-body {
     padding: 20px 50px;
+}
+
+.list-group-item.deleted {
+    -ms-opacity: 0.4;
+    opacity: 0.4;
 }
