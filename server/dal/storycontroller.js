@@ -34,6 +34,12 @@ var StoryController = (function () {
         return RunQuery.runQuery("UPDATE Stories SET deleted = false WHERE id = $1", [story.id]);
     };
     ;
+    StoryController.finalDeleteStory = function (story) {
+        return RunQuery.runQuery("DELETE FROM Cycles WHERE story = $1", [story.id]).then(function () {
+            return RunQuery.runQuery("DELETE FROM Stories WHERE id = $1", [story.id]);
+        });
+    };
+    ;
     StoryController.getCycles = function (storyId) {
         return RunQuery.runQuery("SELECT story, index, text, username, date FROM cycles WHERE story = $1 ORDER BY index ASC", [storyId]).then(function (result) {
             return result.rows;

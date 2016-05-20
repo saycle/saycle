@@ -38,6 +38,12 @@ class StoryController {
             [story.id]);
     };
 
+    static finalDeleteStory(story: Story): Q.Promise<any> {
+        return RunQuery.runQuery("DELETE FROM Cycles WHERE story = $1", [story.id]).then(() => {
+	        return RunQuery.runQuery("DELETE FROM Stories WHERE id = $1", [story.id]);
+        });
+    };
+
     static getCycles(storyId: string): Q.Promise<Cycle[]> {
         return RunQuery.runQuery("SELECT story, index, text, username, date FROM cycles WHERE story = $1 ORDER BY index ASC", [storyId]).then((result) => {
             return result.rows;

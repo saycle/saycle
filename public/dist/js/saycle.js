@@ -435,6 +435,12 @@ function openLogin() {
             });;
         };
 
+        vm.finalDeleteStory = function (storyId) {
+            storyService.finalDeleteStory({ id: storyId }).then(function () {
+                refresh();
+            });;
+        };
+
         vm.isAdmin = function () {
             return vm.authInfo.currentUser != null && vm.authInfo.currentUser.isAdmin;
         };
@@ -605,6 +611,16 @@ function openLogin() {
                     waitinfo.hide();
                 }, function () {
                     toastr.error($translate.instant('Toastr.StoryUndeleteFailed'), $translate.instant('Toastr.Error'));
+                    waitinfo.hide();
+                });
+            },
+            finalDeleteStory: function (story) {
+                waitinfo.show();
+                return $http.post('/api/stories/finaldeletestory', story).then(function () {
+                    toastr.success($translate.instant('Toastr.StoryDeleted'), $translate.instant('Toastr.Done'));
+                    waitinfo.hide();
+                }, function () {
+                    toastr.error($translate.instant('Toastr.StoryDeleteFailed'), $translate.instant('Toastr.Error'));
                     waitinfo.hide();
                 });
             },

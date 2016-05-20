@@ -56,6 +56,14 @@ app.post('/undeletestory', auth.isAdmin, function (req, res) {
     });
 });
 
+app.post('/finaldeletestory', auth.isAdmin, function (req, res) {
+    context.Stories.finalDeleteStory(req.body).then(() => {
+        res.send(200, 'final deleted story');
+    }, (reason) => {
+        res.send(500, { mesage: 'finalDeleteStoryError', error: reason });
+    });
+});
+
 app.post('/addcycle', auth.isAuthenticated, function (req, res) {
     var cycle = req.body;
     cycle.username = req.user.name;

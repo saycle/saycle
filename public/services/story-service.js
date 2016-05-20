@@ -51,6 +51,16 @@
                     waitinfo.hide();
                 });
             },
+            finalDeleteStory: function (story) {
+                waitinfo.show();
+                return $http.post('/api/stories/finaldeletestory', story).then(function () {
+                    toastr.success($translate.instant('Toastr.StoryDeleted'), $translate.instant('Toastr.Done'));
+                    waitinfo.hide();
+                }, function () {
+                    toastr.error($translate.instant('Toastr.StoryDeleteFailed'), $translate.instant('Toastr.Error'));
+                    waitinfo.hide();
+                });
+            },
             lock: function (story) {
                 return $http.post('/api/stories/lock', story);
             },

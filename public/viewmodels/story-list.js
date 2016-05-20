@@ -40,6 +40,12 @@
             });;
         };
 
+        vm.finalDeleteStory = function (storyId) {
+            storyService.finalDeleteStory({ id: storyId }).then(function () {
+                refresh();
+            });;
+        };
+
         vm.isAdmin = function () {
             return vm.authInfo.currentUser != null && vm.authInfo.currentUser.isAdmin;
         };
