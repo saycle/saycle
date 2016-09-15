@@ -10,6 +10,7 @@
                 <span id="story-content" ng-repeat="cycle in vm.story.cycles">
                     <a href="#" class="cycle-item" tooltip-placement="bottom" uib-tooltip="{{'StoryDetail.Author' | translate}}: {{cycle.username}} ({{cycle.date | amTimeAgo}})">
                         <span ng-bind-html="cycle.text | breakFilter"></span>
+                        <span ng-if="vm.isAdmin() && !vm.isEditing()" class="edit-cycle" ng-click="$event.preventDefault(); vm.editCycle(cycle)"><i class="glyphicon glyphicon-edit"></i></span>
                     </a>
                 </span>
                 <i><span ng-bind-html="vm.contribution | breakFilter"></span></i>
@@ -23,10 +24,11 @@
                 </div>
                 <div class="pull-right">
                     <div ng-if="vm.story.active == true">
-                        <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-primary" ng-click="vm.editStory(this)">{{'StoryDetail.ButtonEditText' | translate}}</button>
+                        <button ng-if="vm.cycleEditing != null" id="cycle-delete-button" class="btn btn-danger" ng-click="vm.deleteCycle()">{{'StoryDetail.ButtonDeleteCycleText' | translate}}</button>
+                        <button ng-if="(vm.story.isLockedBy == null)" id="cycleEditButton" class="btn btn-primary" ng-click="vm.editStory()">{{'StoryDetail.ButtonEditText' | translate}}</button>
                         <button ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-default" ng-click="vm.cancelEdit()">{{'StoryDetail.CancelEdit' | translate}}</button>
                         <button ng-disabled="vm.contribution.text == ''" ng-if="vm.isEditing()" id="cycleSaveButton" class="btn btn-primary" ng-click="vm.saveStory(this)">{{'StoryDetail.ButtonSaveText' | translate}}</button>
-                        <p id="inTurnFadingTextG" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.auth.currentUser.name">
+                        <p id="inTurnFadingTextG" ng-if="vm.story.isLockedBy != null && vm.story.isLockedBy != vm.authInfo.currentUser.name">
                             <span>{{'StoryDetail.StoryIsLockedText' | translate: vm.story }}</span>
                             <span id="inTurnFadingTextG_1" class="inTurnFadingTextG">.</span>
                             <span id="inTurnFadingTextG_2" class="inTurnFadingTextG">.</span>

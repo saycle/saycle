@@ -319,9 +319,10 @@ function openLogin() {
         vm.currentAbsUrl = $location.absUrl();
         vm.currentPath = $location.path();
         vm.id = $routeParams["id"];
-        vm.auth = loginService.getAuthInfo();
+        vm.authInfo = loginService.getAuthInfo();
         vm.story = null;
         vm.contribution = "";
+        vm.cycleEditing = null;
 
         var refreshStory = function () {
             storyService.getStoryById(vm.id).then(function (story) {
@@ -332,12 +333,15 @@ function openLogin() {
         refreshStory();
 
         socketService.on('refreshStory', function (data) {
-            if (vm.id == data.id)
+            if (vm.id == data.id) {
                 refreshStory();
+            }
         });
+
         socketService.on('updateDraft', function (data) {
-            if (!vm.isEditing() && vm.id == data.id)
-                $scope.$apply(function () { vm.contribution = data.text; });
+            if (!vm.isEditing() && vm.id == data.id) {
+                $scope.$apply(function() { vm.contribution = data.text; });
+            }
         });
 
         $scope.$watch('vm.contribution', function () {
@@ -346,9 +350,9 @@ function openLogin() {
             }
         });
 
-        vm.editStory = function (e) {
+        vm.editStory = function (contribution) {
             storyService.lock(vm.story).then(function () {
-                vm.contribution = "";
+                vm.contribution = contribution;
             }, function (err) {
                 switch (err.status) {
                     case 401:
@@ -365,8 +369,13 @@ function openLogin() {
             vm.contribution = "";
         };
 
+        vm.editCycle = function (cycle) {
+            vm.editStory(cycle.text);
+            vm.cycleEditing = cycle.id;
+        }
+
         vm.isEditing = function () {
-            return vm.auth.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.auth.currentUser.name;
+            return vm.authInfo.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.authInfo.currentUser.name;
         };
 
         vm.saveStory = function(e) {
@@ -379,6 +388,10 @@ function openLogin() {
                 vm.contribution = "";
             };
         }
+
+        vm.isAdmin = function () {
+            return vm.authInfo.currentUser != null && vm.authInfo.currentUser.isAdmin;
+        };
     });
 
     app.filter('breakFilter', function () {

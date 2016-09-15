@@ -53,9 +53,7 @@ textarea.form-control {
 }
 
 .navbar a.btn {
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-    border-top: none;
+
 }
 
 .glyphicon {

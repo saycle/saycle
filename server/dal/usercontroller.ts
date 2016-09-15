@@ -11,9 +11,10 @@ class UserController {
 
     static getRankedUsers(): Q.Promise<RankedUser[]> {
         return RunQuery.runQuery('SELECT storymostrecent.name "username", SUM(storylengths.length) "charCount", storymostrecent.story "recentStoryId", stories.title "recentStoryTitle" ' +
-            'FROM (SELECT name, LENGTH(text) "length" FROM users LEFT JOIN cycles ON users.name = cycles.username) AS storylengths ' +
+		    'FROM (SELECT name, LENGTH(text) "length" FROM users LEFT JOIN cycles ON users.name = cycles.username) AS storylengths ' +
             'INNER JOIN (SELECT name, story ' +
-            'FROM users LEFT JOIN cycles ON users.name = cycles.username WHERE cycles.date = (SELECT max(date) FROM cycles WHERE cycles.username = users.name)) AS storymostrecent ' +
+            'FROM users LEFT JOIN cycles ON users.name = cycles.username WHERE cycles.date = (SELECT max(date) FROM cycles WHERE cycles.username = users.name ' +
+            'AND cycles.story NOT IN (SELECT stories.id FROM stories WHERE stories.deleted OR stories.private)))  AS storymostrecent ' +
             'ON storymostrecent.name = storylengths.name ' +
             'INNER JOIN stories ON storymostrecent.story = stories.id ' +
             'GROUP BY storylengths.name, storymostrecent.name, storymostrecent.story, stories.title ORDER BY SUM(storylengths.length) DESC;', []).then((result) => {
