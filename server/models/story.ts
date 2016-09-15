@@ -9,6 +9,7 @@ class Story {
     cycles: Cycle[];
     cyclecount: number;
     date: Date;
+    modified: Date;
     isLockedBy: string;
     deleted: boolean;
 }

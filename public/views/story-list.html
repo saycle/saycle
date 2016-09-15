@@ -20,7 +20,7 @@
                     </span>
                 </span>
             </h4>
-            <p class="list-group-item-text">by {{story.username}}, <span am-time-ago="story.date"></span></p>
+            <p class="list-group-item-text">{{'StoryList.CreatedBy' | translate}} {{story.username}} ({{story.date | date:'dd.MM.yyyy'}}) | {{'StoryList.Modified' | translate}} <span am-time-ago="story.modified"></span></p>
         </a>
     </div>
     <div class="panel panel-default">

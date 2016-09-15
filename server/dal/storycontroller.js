@@ -5,7 +5,14 @@ var StoryController = (function () {
     function StoryController() {
     }
     StoryController.getStories = function () {
-        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = stories.id) AS cyclecount, id, title, username, date, deleted FROM stories ORDER BY (SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id GROUP BY story)", []).then(function (result) {
+        return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = stories.id) AS cyclecount, " +
+            "id, title, username, date, (SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id) modified, deleted FROM stories " +
+            "ORDER BY " +
+            "CASE WHEN stories.id = '495ded94-c4d4-454e-ad7e-0dd1df90fd70' THEN " +
+            "NULL " +
+            "ELSE " +
+            "(SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id) " +
+            "END DESC;", []).then(function (result) {
             return result.rows;
         });
     };

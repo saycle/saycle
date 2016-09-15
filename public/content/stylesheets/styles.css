@@ -141,6 +141,10 @@ article {
     margin: 5% 0;
 }
 
+#story-list > a:first-child {
+    margin-bottom: 25px;
+}
+
 .admin-story-option {
     vertical-align: middle;
 }
