@@ -320,7 +320,7 @@ function openLogin() {
     var app = angular.module('saycle');
 
 
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, $location, storyService, socketService, loginService, toastr) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, $location, $cookies, storyService, socketService, loginService, toastr) {
         var vm = this;
         vm.currentAbsUrl = $location.absUrl();
         vm.currentPath = $location.path();
@@ -330,9 +330,21 @@ function openLogin() {
         vm.contribution = "";
         vm.editor = { inEdit: false };
 
+        var setStoryCookie = function () {
+            var expires = new Date();
+            expires.setTime(expires.getTime() + 31536000000);
+            var visit = {
+                numcycles: vm.story.cycles.length,
+                date: new Date(),
+                username: vm.authInfo.currentUser.name
+            }
+            $cookies.put('storyvisit_' + vm.id, JSON.stringify(visit), { 'expires': expires.toUTCString() });
+        };
+
         var refreshStory = function () {
             storyService.getStoryById(vm.id).then(function (story) {
                 vm.story = story;
+                setStoryCookie();
             }, function () {
             });
         };
@@ -454,17 +466,36 @@ function openLogin() {
     var app = angular.module('saycle');
 
 
-    app.controller('storyListCtrl', function ($scope, storyService, loginService, $location, $interval) {
+    app.controller('storyListCtrl', function ($scope, storyService, loginService, $location, $interval, $cookies) {
         var vm = this;
         vm.showStoryOptions = false;
         vm.authInfo = loginService.getAuthInfo();
+
+        var setUserStories = function () {
+            vm.stories.forEach((story) => {
+                if (story.usercontributed) {
+                    var cookie = $cookies.get('storyvisit_' + story.id);
+                    if (cookie) {
+                        var visit = JSON.parse(cookie);
+                        story.newcycles = (story.cyclecount - visit.numcycles > 0 ? story.cyclecount - visit.numcycles : 0);
+                        story.notvisited = story.modified > visit.date;
+                        if (story.newcycles > 0 || story.notvisited) {
+                            story.userupdated = true;
+                        } else {
+                            story.userupdated = false;
+                        }
+                    }
+                }
+            });
+        }
+
         var refresh = function () {
             storyService.getStories().then(function (stories) {
                 vm.stories = stories;
+                setUserStories();
             });
         };
         refresh();
-
 
         // Refresh stories every 10 seconds
         var refreshInterval = $interval(refresh, 10000);

@@ -12,6 +12,7 @@ class Story {
     modified: Date;
     isLockedBy: string;
     deleted: boolean;
+    usercontributed: boolean;
 }
 
 export = Story;

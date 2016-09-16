@@ -10,7 +10,7 @@ app.all('/*', function (req, res, next) {
     next();
 });
 app.get('/getstories', function (req, res) {
-    context.Stories.getStories().then(function (stories) {
+    context.Stories.getStories((req.user) ? req.user.name : "").then(function (stories) {
         res.json(stories);
     }, function (reason) {
         res.send(500, { message: 'getStoriesError', error: reason });

@@ -14,7 +14,7 @@ app.all('/*', function (req, res, next) {
 });
 
 app.get('/getstories', function (req, res) {
-    context.Stories.getStories().then((stories) => {
+    context.Stories.getStories((req.user) ? req.user.name : "").then((stories) => {
         res.json(stories);
     }, (reason) => {
         res.send(500, { message: 'getStoriesError', error: reason });

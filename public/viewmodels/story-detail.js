@@ -3,7 +3,7 @@
     var app = angular.module('saycle');
 
 
-    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, $location, storyService, socketService, loginService, toastr) {
+    app.controller('storyDetailCtrl', function ($scope, $route, $routeParams, $sce, $translate, $location, $cookies, storyService, socketService, loginService, toastr) {
         var vm = this;
         vm.currentAbsUrl = $location.absUrl();
         vm.currentPath = $location.path();
@@ -13,9 +13,21 @@
         vm.contribution = "";
         vm.editor = { inEdit: false };
 
+        var setStoryCookie = function () {
+            var expires = new Date();
+            expires.setTime(expires.getTime() + 31536000000);
+            var visit = {
+                numcycles: vm.story.cycles.length,
+                date: new Date(),
+                username: vm.authInfo.currentUser.name
+            }
+            $cookies.put('storyvisit_' + vm.id, JSON.stringify(visit), { 'expires': expires.toUTCString() });
+        };
+
         var refreshStory = function () {
             storyService.getStoryById(vm.id).then(function (story) {
                 vm.story = story;
+                setStoryCookie();
             }, function () {
             });
         };

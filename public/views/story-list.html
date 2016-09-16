@@ -8,7 +8,8 @@
             <h4 class="list-group-item-heading">
                 {{story.title}}
                 <span class="float-right">
-                    <span class="badge">{{story.cyclecount}} {{'StoryList.CycleCount' | translate}}</span>
+                    <span class="badge info">{{story.cyclecount}} {{'StoryList.CycleCount' | translate}}</span>
+                    <span ng-if="story.userupdated" class="badge update">{{story.newcycles}}</span>
                     <span ng-if="vm.isAdmin() && !story.deleted" class="admin-story-option" id="delete-story-wrapper" ng-click="$event.preventDefault(); vm.deleteStory(story.id)">
                         <i class="glyphicon glyphicon-trash"></i>
                     </span>

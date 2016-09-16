@@ -6,16 +6,25 @@ import Q = require('q');
 
 class StoryController {
 
-    static getStories(): Q.Promise<Story[]> {
+    static getStories(username: string): Q.Promise<Story[]> {
         return RunQuery.runQuery("SELECT (SELECT COUNT(1) FROM cycles WHERE story = stories.id) AS cyclecount, " +
-            "id, title, username, date, (SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id) modified, deleted FROM stories " +
+            "id, title, username, date, (SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id) modified, deleted, " +
+            "(SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id) modified, " +
+            "(CASE WHEN $1 <> '' AND EXISTS(SELECT 1 FROM cycles WHERE stories.id = cycles.story AND stories.username = $2) THEN " +
+                "True " +
+            "ELSE " +
+                "False " +
+            "END) usercontributed " +
+            "FROM stories " +
             "ORDER BY " +
             "CASE WHEN stories.id = '495ded94-c4d4-454e-ad7e-0dd1df90fd70' THEN " +
                 "NULL " +
             "ELSE " +
                 "(SELECT MAX(date) FROM cycles WHERE cycles.story = stories.id) " +
-            "END DESC;", []).then((result) => {
-            return result.rows;
+            "END DESC;", [username, username]).then((result) => {
+                return result.rows;
+        }, function(error) {
+            error;
         });
     };
 
@@ -58,7 +67,13 @@ class StoryController {
     };
 
     static addCycle(cycle: Cycle): Q.Promise<any> {
-        return RunQuery.runQuery("INSERT INTO cycles (story, username, text, date, index) VALUES ($1, $2, $3, $4, (SELECT MAX(index) + 1 FROM cycles WHERE story = $1))",
+        return RunQuery.runQuery("INSERT INTO cycles (story, username, text, date, index) " +
+            "VALUES ($1, $2, $3, $4, " +
+            "(SELECT CASE WHEN (SELECT COUNT(*) FROM cycles WHERE story = $1) > 0 THEN " +
+                "(SELECT MAX(index) + 1 FROM cycles WHERE story = $1) " +
+            "ELSE " +
+                "0 " +
+            "END))",
             [cycle.story, cycle.username, cycle.text, new Date()]);
     };
 

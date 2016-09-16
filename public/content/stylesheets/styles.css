@@ -62,6 +62,10 @@ textarea.form-control {
 .badge {
 }
 
+.badge.update {
+    background-color: #286090;
+}
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
     color: #FFFFFF;
     background-color: #384952;
