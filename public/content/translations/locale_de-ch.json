@@ -20,14 +20,17 @@
     "StoryIsLockedText": "D Gschicht wird momentan vom {{isLockedBy}} bearbeitet",
     "StoryDeactivated": "D Gschicht isch deaktiviert.",
     "BackToStoryList": "Übersicht",
-    "CancelEdit": "Abbreche"
+    "CancelEdit": "Abbreche",
+    "ButtonDeleteCycleText":  "Cycle löschen" 
   },
 
   "Toastr": {
     "Success": "Erfolgrich",
     "Error": "Fehler",
     "Welcome": "Willomme",
-    "CycleAdded": "Saycle isch hinzuegfüegt worde",
+    "CycleAdded": "Cycle isch hinzuegfüegt worde.",
+    "CycleChanged": "Cycle isch bearbeitet worde.",
+    "CycleDeleted": "Cycle isch glöscht worde.",
     "Done": "Okei",
     "StoryAdded": "Dinie Gschicht isch hinzuegfüegt worde",
     "StoryAddFailed": "Es isch öppis schlimms passiert. Bitte probiers nomol.",
@@ -35,9 +38,10 @@
     "StoryDeleteFailed": "Es isch öppis schlimms passiert. Bitte probiers nomol.",
     "StoryUndeleted": "Gschicht wiederdo, gerngscheh.",
     "StoryUndeleteFailed": "Es isch öppis schlimms passiert. Bitte probiers nomol.",
+    "StoryNotAvailable": "Die Gschichts gits doch gar nöd oder nüm.",
     "LoginError": {
-      "LoginFirst": "Meld dich bitte a zum Öpis biträge",
-      "LoginDefault": "Meld di als Admin a du Horst",
+      "LoginFirst": "Meld dich bitte a zum Öpis biträge.",
+      "LoginDefault": "Meld di als Admin a du Horst.",
       "Login": "Bitte meld dich a",
       "Fail": "Äxsgüsi, s Amelde isch fehlgschlage..."
     },

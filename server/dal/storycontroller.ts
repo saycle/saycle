@@ -58,8 +58,18 @@ class StoryController {
     };
 
     static addCycle(cycle: Cycle): Q.Promise<any> {
-        return RunQuery.runQuery("INSERT INTO cycles (story, index, username, text, date) VALUES ($1, $2, $3, $4, $5)",
-            [cycle.story, cycle.index, cycle.username, cycle.text, new Date()]);
+        return RunQuery.runQuery("INSERT INTO cycles (story, username, text, date, index) VALUES ($1, $2, $3, $4, (SELECT MAX(index) + 1 FROM cycles WHERE story = $1))",
+            [cycle.story, cycle.username, cycle.text, new Date()]);
+    };
+
+    static changeCycle(cycle: Cycle): Q.Promise<any> {
+        return RunQuery.runQuery("UPDATE cycles SET text = $1 WHERE story = $2 AND index = $3",
+            [cycle.text, cycle.story, cycle.index]);
+    };
+
+    static deleteCycle(cycle: Cycle): Q.Promise<any> {
+        return RunQuery.runQuery("DELETE FROM cycles WHERE story = $1 AND index = $2",
+            [cycle.story, cycle.index]);
     };
 
 }

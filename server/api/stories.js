@@ -4,6 +4,7 @@ var context = require('../dal/context');
 var auth = require('./authentication');
 var socket = require('../socket/socket');
 var app = express();
+var lockedStories = {};
 app.all('/*', function (req, res, next) {
     res.setHeader('Cache-Control', 'no-cache');
     next();
@@ -24,6 +25,8 @@ app.get('/getstorybyid', function (req, res) {
             story.isLockedBy = lockedStories[story.id] ? lockedStories[story.id].user : null;
             res.json(story);
         }
+    }, function (reason) {
+        res.send(500, { message: 'getStoriesByIdError', error: reason });
     });
 });
 app.post('/addstory', auth.isAuthenticated, function (req, res) {
@@ -67,7 +70,26 @@ app.post('/addcycle', auth.isAuthenticated, function (req, res) {
         res.send(500, { message: 'addCycleError', error: reason });
     });
 });
-var lockedStories = {};
+app.post('/changecycle', auth.isAuthenticated, function (req, res) {
+    var cycle = req.body;
+    context.Stories.changeCycle(cycle).then(function () {
+        delete lockedStories[cycle.story];
+        res.send(200, 'changed cycle');
+        socket.getIO().sockets.emit('refreshStory', { id: cycle.story });
+    }, function (reason) {
+        res.send(500, { message: 'changeCycleError', error: reason });
+    });
+});
+app.post('/deletecycle', auth.isAuthenticated, function (req, res) {
+    var cycle = req.body;
+    context.Stories.deleteCycle(cycle).then(function () {
+        delete lockedStories[cycle.story];
+        res.send(200, 'deleted cycle');
+        socket.getIO().sockets.emit('refreshStory', { id: cycle.story });
+    }, function (reason) {
+        res.send(500, { message: 'deleteCycleError', error: reason });
+    });
+});
 app.post('/lock', auth.isAuthenticated, function (req, res) {
     if (lockedStories[req.body.id])
         res.send(500, 'storyLockedError');

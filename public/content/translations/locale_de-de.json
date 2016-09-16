@@ -20,14 +20,17 @@
     "StoryIsLockedText": "Die Story wird momentan von {{isLockedBy}} bearbeitet",
     "StoryDeactivated": "Die Geschichte ist deaktiviert.",
     "BackToStoryList": "Übersicht",
-    "CancelEdit": "Abbrechen"
+    "CancelEdit": "Abbrechen",
+    "ButtonDeleteCycleText":  "Cycle lösche" 
   },
 
   "Toastr": {
     "Success": "Erfolgreich",
     "Error": "Fehler",
     "Welcome": "Willkommen",
-    "CycleAdded": "Cycle wurde hinzugefügt",
+    "CycleAdded": "Cycle wurde hinzugefügt.",
+    "CycleChanged": "Cycle wurde bearbeitet.",
+    "CycleDeleted": "Cycle wurde gelöscht.",
     "Done": "Ok",
     "StoryAdded": "Deine Story wurde hinzugefügt.",
     "StoryAddFailed": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
@@ -35,9 +38,10 @@
     "StoryDeleteFailed": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
     "StoryUndeleted": "Die Story wurde wiederhergestellt.",
     "StoryUndeleteFailed": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+    "StoryNotAvailable": "Die Geschichte ist nicht verfügbar.",
     "LoginError": {
-      "LoginFirst": "Melde dich an, um etwas beizutragen",
-      "LoginDefault": "Melde dich als Administrator an",
+      "LoginFirst": "Melde dich an, um etwas beizutragen.",
+      "LoginDefault": "Melde dich als Administrator an.",
       "Login": "Bitte melde dich an",
       "Fail": "Sorry, das hat nicht geklappt..."
     },

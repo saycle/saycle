@@ -11,11 +11,12 @@
         vm.authInfo = loginService.getAuthInfo();
         vm.story = null;
         vm.contribution = "";
-        vm.cycleEditing = null;
+        vm.editor = { inEdit: false };
 
         var refreshStory = function () {
             storyService.getStoryById(vm.id).then(function (story) {
                 vm.story = story;
+            }, function () {
             });
         };
 
@@ -29,7 +30,9 @@
 
         socketService.on('updateDraft', function (data) {
             if (!vm.isEditing() && vm.id == data.id) {
-                $scope.$apply(function() { vm.contribution = data.text; });
+                $scope.$apply(function() {
+                     vm.contribution = data.text;
+                });
             }
         });
 
@@ -54,38 +57,72 @@
         };
 
         vm.cancelEdit = function () {
-            storyService.cancelEdit(vm.story);
-            vm.contribution = "";
+            storyService.cancelEdit(vm.story).then(function () {
+                vm.cancelContribution();
+            });
         };
 
         vm.editCycle = function (cycle) {
             vm.editStory(cycle.text);
-            vm.cycleEditing = cycle.id;
+            vm.editor = {
+                index: cycle.index,
+                story: cycle.story,
+                inEdit: true
+            };
+        }
+
+        vm.deleteCycle = function () {
+            if (vm.editor.inEdit) {
+                storyService.deleteCycle({
+                    story: vm.editor.story,
+                    index: vm.editor.index
+                }).then(function () {
+                    vm.cancelContribution();
+                });
+            }
         }
 
         vm.isEditing = function () {
             return vm.authInfo.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.authInfo.currentUser.name;
         };
 
-        vm.saveStory = function(e) {
+        vm.saveStory = function (e) {
             if (vm.story.active) {
-                storyService.addCycle({
-                    story: vm.id,
-                    index: vm.story.cycles.length,
-                    text: vm.contribution
-                });
-                vm.contribution = "";
+                if (vm.editor.inEdit) {
+                    storyService.changeCycle({
+                        story: vm.editor.story,
+                        index: vm.editor.index,
+                        text: vm.contribution
+                    }).then(function () {
+                        vm.cancelContribution();
+                    });
+                } else {
+                    storyService.addCycle({
+                        story: vm.id,
+                        text: vm.contribution
+                    }).then(function () {
+                        vm.cancelContribution();
+                    });
+                }
             };
         }
 
         vm.isAdmin = function () {
             return vm.authInfo.currentUser != null && vm.authInfo.currentUser.isAdmin;
         };
+
+        vm.cancelContribution = function () {
+            vm.contribution = "";
+            vm.editor = { inEdit: false };
+            
+        }
     });
 
     app.filter('breakFilter', function () {
         return function (text) {
-            return text.replace(/\n/g, "<br>");
+            if (text) {
+                return text.replace(/\n/g, "<br>");
+            }
         };
     });
 

@@ -37,9 +37,9 @@
     app.config(function ($translateProvider) {
         var $cookies;
         angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies_) {
-            $cookies = _$cookies_;
-        }]);
-
+                $cookies = _$cookies_;
+            }]);
+        
         var lang = false;
         var langFileConvention = {
             prefix: '/public/content/translations/locale_',
@@ -51,7 +51,7 @@
         } else {
             lang = $cookies.get('lang');
         }
-        if(lang) {
+        if (lang) {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
                 .preferredLanguage(lang)
@@ -60,13 +60,13 @@
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
                 .registerAvailableLanguageKeys(['en', 'de-ch', 'de-de'], {
-                     'en_*': 'en',
-                     'de-ch*': 'de-ch',
-                     'de_ch': 'de-ch',
-                     'de-*': 'de-de',
-                     'de_*': 'de-de',
-                     '*': 'en'
-                 })
+                'en_*': 'en',
+                'de-ch*': 'de-ch',
+                'de_ch': 'de-ch',
+                'de-*': 'de-de',
+                'de_*': 'de-de',
+                '*': 'en'
+            })
                 .determinePreferredLanguage()
                 .fallbackLanguage(['en-gb'])
                 .useSanitizeValueStrategy('escaped');
@@ -130,10 +130,16 @@
         var showWait = 0;
         var toast = null;
         var refresh = function () {
-            if (showWait <= 0 && toast != null && toast.isOpened)
+            if (showWait <= 0 && toast != null && toast.isOpened) {
                 toastr.clear(toast);
-            if (showWait > 0 && (!toast || !toast.isOpened))
-                toast = toastr.info(globalTranslate.instant('Toastr.PleaseWait'), globalTranslate.instant('Toastr.Working'), { timeOut: 0, extendedTimeOut: 1, autoDismiss: true });
+            }
+            if (showWait > 0 && (!toast || !toast.isOpened)) {
+                toast = toastr.info(globalTranslate.instant('Toastr.PleaseWait'),
+                    globalTranslate.instant('Toastr.Working'),
+                    { timeOut: 2000, extendedTimeOut: 2000, autoDismiss: true });
+                showWait--;
+                setInterval(function () { refresh(); }, 1500);
+            }
         };
         return {
             show: function () {
@@ -152,8 +158,8 @@
             positionClass: 'toast-bottom-right'
         });
     });
-
-
+    
+    
     function setLangCookie($cookies, lang) {
         var expires = new Date();
         expires.setTime(expires.getTime() + 31536000000);

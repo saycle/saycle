@@ -185,9 +185,9 @@ function openLogin() {
     app.config(function ($translateProvider) {
         var $cookies;
         angular.injector(['ngCookies']).invoke(['$cookies', function (_$cookies_) {
-            $cookies = _$cookies_;
-        }]);
-
+                $cookies = _$cookies_;
+            }]);
+        
         var lang = false;
         var langFileConvention = {
             prefix: '/public/content/translations/locale_',
@@ -199,7 +199,7 @@ function openLogin() {
         } else {
             lang = $cookies.get('lang');
         }
-        if(lang) {
+        if (lang) {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
                 .preferredLanguage(lang)
@@ -208,13 +208,13 @@ function openLogin() {
             $translateProvider
                 .useStaticFilesLoader(langFileConvention)
                 .registerAvailableLanguageKeys(['en', 'de-ch', 'de-de'], {
-                     'en_*': 'en',
-                     'de-ch*': 'de-ch',
-                     'de_ch': 'de-ch',
-                     'de-*': 'de-de',
-                     'de_*': 'de-de',
-                     '*': 'en'
-                 })
+                'en_*': 'en',
+                'de-ch*': 'de-ch',
+                'de_ch': 'de-ch',
+                'de-*': 'de-de',
+                'de_*': 'de-de',
+                '*': 'en'
+            })
                 .determinePreferredLanguage()
                 .fallbackLanguage(['en-gb'])
                 .useSanitizeValueStrategy('escaped');
@@ -278,10 +278,16 @@ function openLogin() {
         var showWait = 0;
         var toast = null;
         var refresh = function () {
-            if (showWait <= 0 && toast != null && toast.isOpened)
+            if (showWait <= 0 && toast != null && toast.isOpened) {
                 toastr.clear(toast);
-            if (showWait > 0 && (!toast || !toast.isOpened))
-                toast = toastr.info(globalTranslate.instant('Toastr.PleaseWait'), globalTranslate.instant('Toastr.Working'), { timeOut: 0, extendedTimeOut: 1, autoDismiss: true });
+            }
+            if (showWait > 0 && (!toast || !toast.isOpened)) {
+                toast = toastr.info(globalTranslate.instant('Toastr.PleaseWait'),
+                    globalTranslate.instant('Toastr.Working'),
+                    { timeOut: 2000, extendedTimeOut: 2000, autoDismiss: true });
+                showWait--;
+                setInterval(function () { refresh(); }, 1500);
+            }
         };
         return {
             show: function () {
@@ -300,8 +306,8 @@ function openLogin() {
             positionClass: 'toast-bottom-right'
         });
     });
-
-
+    
+    
     function setLangCookie($cookies, lang) {
         var expires = new Date();
         expires.setTime(expires.getTime() + 31536000000);
@@ -322,11 +328,12 @@ function openLogin() {
         vm.authInfo = loginService.getAuthInfo();
         vm.story = null;
         vm.contribution = "";
-        vm.cycleEditing = null;
+        vm.editor = { inEdit: false };
 
         var refreshStory = function () {
             storyService.getStoryById(vm.id).then(function (story) {
                 vm.story = story;
+            }, function () {
             });
         };
 
@@ -340,7 +347,9 @@ function openLogin() {
 
         socketService.on('updateDraft', function (data) {
             if (!vm.isEditing() && vm.id == data.id) {
-                $scope.$apply(function() { vm.contribution = data.text; });
+                $scope.$apply(function() {
+                     vm.contribution = data.text;
+                });
             }
         });
 
@@ -365,38 +374,72 @@ function openLogin() {
         };
 
         vm.cancelEdit = function () {
-            storyService.cancelEdit(vm.story);
-            vm.contribution = "";
+            storyService.cancelEdit(vm.story).then(function () {
+                vm.cancelContribution();
+            });
         };
 
         vm.editCycle = function (cycle) {
             vm.editStory(cycle.text);
-            vm.cycleEditing = cycle.id;
+            vm.editor = {
+                index: cycle.index,
+                story: cycle.story,
+                inEdit: true
+            };
+        }
+
+        vm.deleteCycle = function () {
+            if (vm.editor.inEdit) {
+                storyService.deleteCycle({
+                    story: vm.editor.story,
+                    index: vm.editor.index
+                }).then(function () {
+                    vm.cancelContribution();
+                });
+            }
         }
 
         vm.isEditing = function () {
             return vm.authInfo.currentUser != null && vm.story != null && vm.story.isLockedBy == vm.authInfo.currentUser.name;
         };
 
-        vm.saveStory = function(e) {
+        vm.saveStory = function (e) {
             if (vm.story.active) {
-                storyService.addCycle({
-                    story: vm.id,
-                    index: vm.story.cycles.length,
-                    text: vm.contribution
-                });
-                vm.contribution = "";
+                if (vm.editor.inEdit) {
+                    storyService.changeCycle({
+                        story: vm.editor.story,
+                        index: vm.editor.index,
+                        text: vm.contribution
+                    }).then(function () {
+                        vm.cancelContribution();
+                    });
+                } else {
+                    storyService.addCycle({
+                        story: vm.id,
+                        text: vm.contribution
+                    }).then(function () {
+                        vm.cancelContribution();
+                    });
+                }
             };
         }
 
         vm.isAdmin = function () {
             return vm.authInfo.currentUser != null && vm.authInfo.currentUser.isAdmin;
         };
+
+        vm.cancelContribution = function () {
+            vm.contribution = "";
+            vm.editor = { inEdit: false };
+            
+        }
     });
 
     app.filter('breakFilter', function () {
         return function (text) {
-            return text.replace(/\n/g, "<br>");
+            if (text) {
+                return text.replace(/\n/g, "<br>");
+            }
         };
     });
 
@@ -577,23 +620,43 @@ function openLogin() {
 (function () {
     var app = angular.module('saycle');
     
-    app.service('storyService', function ($http, waitinfo, toastr, $translate) {
+    app.service('storyService', function ($http, waitinfo, toastr, $translate, $location) {
         
         return {
             getStories: function () {
                 return $http.get('/api/stories/getstories').then(function (result) {
                     return result.data;
+                }, function () {
+                    return false;
                 });
             },
             getStoryById: function (id) {
                 return $http.get('/api/stories/getstorybyid?id=' + id).then(function (result) {
                     return result.data;
+                }, function () {
+                    toastr.info($translate.instant('Toastr.StoryNotAvailable'), $translate.instant('Toastr.Error'));
+                    $location.path('/?back')
+
                 });
             },
             addCycle: function (cycle) {
                 waitinfo.show();
                 return $http.post('/api/stories/addcycle', cycle).then(function () {
                     toastr.success( $translate.instant('Toastr.CycleAdded'), $translate.instant('Toastr.Done'));
+                    waitinfo.hide();
+                });
+            },
+            changeCycle: function (cycle) {
+                waitinfo.show();
+                return $http.post('/api/stories/changecycle', cycle).then(function () {
+                    toastr.success($translate.instant('Toastr.CycleChanged'), $translate.instant('Toastr.Done'));
+                    waitinfo.hide();
+                });
+            },
+            deleteCycle: function (cycle) {
+                waitinfo.show();
+                return $http.post('/api/stories/deletecycle', cycle).then(function () {
+                    toastr.success($translate.instant('Toastr.CycleDeleted'), $translate.instant('Toastr.Done'));
                     waitinfo.hide();
                 });
             },
@@ -607,6 +670,7 @@ function openLogin() {
                     waitinfo.hide();
                 });
             },
+
             deleteStory: function (story) {
                 waitinfo.show();
                 return $http.post('/api/stories/deletestory', story).then(function () {
