@@ -9,25 +9,24 @@
         vm.authInfo = loginService.getAuthInfo();
 
         var setUserStories = function () {
-            debugger;
-            vm.stories.forEach((story) => {
-                if (story.usercontributed) {
-                    var cookie = $cookies.get('storyvisit_' + story.id);
-                    if (cookie) {
-                        var visit = JSON.parse(cookie);
-                        debugger;
-                        story.newcycles = (story.cyclecount - visit.numcycles > 0 ? story.cyclecount - visit.numcycles : 0);
-                        story.notvisited = story.modified > visit.date;
-                        if (story.newcycles > 0 || story.notvisited) {
-                            story.userupdated = true;
-                        } else {
-                            story.userupdated = false;
-                        }
-                        debugger;
-                    }
-                }
-            });
-        }
+			angular.forEach(vm.stories, function (story, key) {
+				if (story.usercontributed) {
+					var cookie = $cookies.get('storyvisit_' + story.id);
+					if (cookie) {
+						var visit = JSON.parse(cookie);
+						debugger;
+						story.newcycles = (story.cyclecount - visit.numcycles > 0 ? story.cyclecount - visit.numcycles : 0);
+						story.notvisited = story.modified > visit.date;
+						if (story.newcycles > 0 || story.notvisited) {
+							story.userupdated = true;
+						} else {
+							story.userupdated = false;
+						}
+						debugger;
+					}
+				}
+			});
+		};
 
         var refresh = function () {
             storyService.getStories().then(function (stories) {
